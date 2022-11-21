@@ -1,32 +1,140 @@
 {
-  "usuarios": [
+  "administradores": [
     {
       "id": 1,
-      "nome": "Gabriel",
-      "login": "admin",
-      "senha": "",
-      "perfil": "ADMIN"
+      "login": "admin"
     },
     {
       "id": 2,
-      "nome": "Otário",
-      "login": "gerente",
-      "senha": "",
-      "perfil": "GERENTE"
+      "login": "admin2"
     },
     {
       "id": 3,
-      "nome": "Cria",
-      "login": "func",
-      "senha": "",
-      "perfil": "FUNC"
+      "login": "admin3"
+    }
+  ],
+  "cidades": [
+    {
+      "municipio": "Curitiba",
+      "estado": {
+        "nome": "Paraná",
+        "UF": "PR"
+      }
     },
     {
-      "nome": "Alexandre",
-      "login": "alex",
-      "senha": "alex",
-      "perfil": "ADMIN",
-      "id": 4
+      "municipio": "Florianópolis",
+      "estado": {
+        "nome": "Santa Catarina",
+        "UF": "SC"
+      }
+    },
+    {
+      "municipio": "Porto Alegre",
+      "estado": {
+        "nome": "Rio Grande do Sul",
+        "UF": "RS"
+      }
+    }
+  ],
+  "estados": [
+    {
+      "nome": "Paraná",
+      "UF": "PR"
+    },
+    {
+      "nome": "Santa Catarina",
+      "UF": "SC"
+    },
+    {
+      "nome": "Rio Grande do Sul",
+      "UF": "RS"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Cliente Silva",
+      "email": "cliente.silva@bantads.com",
+      "CPF": "nnn.nnn.nnn-nn",
+      "telefone": "(xx) xxxxx-xxxx",
+      "perfil": "CLIENTE",
+      "salario": 250.0,
+      "endereco": {},
+      "conta": {
+        "id": 1,
+        "saldo": 250.0,
+        "limite": 500.0,
+        "gerente": {
+          "id": 1,
+          "nome": "Sr. Gerente 1",
+          "email": "gerente1@bantads.com",
+          "CPF": "",
+          "telefone": "(xx) xxxxx-xxxx",
+          "perfil": "GERENTE"
+        }
+      }
+    }
+  ],
+  "gerentes": [
+    {
+      "id": 1,
+      "nome": "Sr. Gerente 1",
+      "email": "gerente1@bantads.com",
+      "CPF": "nnn.nnn.nnn-nn",
+      "telefone": "(xx) xxxxx-xxxx",
+      "perfil": "GERENTE"
+    }
+  ],
+  "contas": [
+    {
+      "id": 1,
+      "saldo": 250.0,
+      "limite": 500.0,
+      "gerente": {
+        "id": 1,
+        "nome": "Sr. Gerente 1",
+        "email": "gerente1@bantads.com",
+        "CPF": "nnn.nnn.nnn-nn",
+        "telefone": "(xx) xxxxx-xxxx",
+        "perfil": "GERENTE"
+      }
+    }
+  ],
+  "movimentacoes": [
+    {
+      "timestamp": "2022-11-21 12:00",
+      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "valor": 100.00,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    }
+  ],
+  "logins": [
+    {
+      "login": "admin",
+      "senha": "admin"
+    }
+  ],
+  "enderecos": [
+    {
+      "logradouro": "Rua dos Testes",
+      "numero": 0,
+      "complemento": "Ap. 00",
+      "bairro": "Testovânia",
+      "CEP": "xxxxx-xxx",
+      "cidade": {
+        "municipio": "",
+        "estado": {
+          "nome": "",
+          "UF": ""
+        }
+      }
     }
   ]
 }

@@ -4,7 +4,7 @@ export type Operacao = "TRANSFERÊNCIA" | "DEPÓSITO"  | "SAQUE";
 
 export class Movimentacao {
   constructor(
-    public dataHora?: Date,
+    public timestamp?: Date,
     public operacao?: Operacao,
     public valor?: number,
     public origem?: Cliente,
