@@ -1,6 +1,10 @@
-# Bantads
+# BANTADS
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+
+## JSON-Server
+
+Execute `npx json-server --watch --no-cors server/db.json`. Irá subir o servidor no link: `http://localhost:3000/`, com cada um dos endpoints sendo especificados no log.
 
 ## Development server
 
