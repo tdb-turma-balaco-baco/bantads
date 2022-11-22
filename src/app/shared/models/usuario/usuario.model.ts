@@ -1,4 +1,4 @@
-export type Perfil = "CLIENTE" | "GERENTE" | "ADMIN";
+import { Perfil } from "./perfil.type";
 
 export class Usuario {
   constructor(

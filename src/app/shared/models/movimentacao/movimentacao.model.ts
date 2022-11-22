@@ -1,6 +1,5 @@
 import { Cliente } from "../cliente/cliente.model";
-
-export type Operacao = "TRANSFERÊNCIA" | "DEPÓSITO"  | "SAQUE";
+import { Operacao } from "./operacao.type";
 
 export class Movimentacao {
   constructor(
