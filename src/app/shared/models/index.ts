@@ -8,3 +8,5 @@ export * from './gerente/gerente.model';
 export * from './login/login.model';
 export * from './movimentacao/movimentacao.model';
 export * from './usuario/usuario.model';
+export * from './usuario/perfil.type';
+export * from './movimentacao/operacao.type';
