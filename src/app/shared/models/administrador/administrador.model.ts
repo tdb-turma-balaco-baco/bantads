@@ -1,4 +1,4 @@
-import { Perfil } from "../usuario/usuario.model";
+import { Perfil } from "../usuario/perfil.type";
 
 export class Administrador {
   perfil: Perfil = 'ADMIN'
