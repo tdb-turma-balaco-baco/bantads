@@ -9,6 +9,7 @@ import { GerenteModule } from './gerente';
 import { AdminModule } from './admin';
 import { AuthModule } from './auth';
 import { SharedModule } from './shared';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { SharedModule } from './shared';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgbModule,
     ClienteModule,
     GerenteModule,
     AdminModule,
