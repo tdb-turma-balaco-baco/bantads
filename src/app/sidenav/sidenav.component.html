@@ -1,59 +1,64 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">
+      <a mat-list-item href="#" routerLink="/perfil">
         <i class="fa-solid fa-address-card"></i>
         Perfil
       </a>
       <hr>
       <!-- Cliente -->
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-receipt"></i>
-        Extrato
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-sharp fa-solid fa-money-bill-transfer"></i>
-        Transferência
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-sack-dollar"></i>
-        Saque
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-piggy-bank"></i>
-        Depositar
-      </a>
-      <hr>
+      <div *ngIf="currentProfilePrivilege() === 'CLIENTE'">
+        <a mat-list-item href="#" routerLink="/extrato">
+          <i class="fa-solid fa-receipt"></i>
+          Extrato
+        </a>
+        <a mat-list-item href="#" routerLink="/transferencia">
+          <i class="fa-sharp fa-solid fa-money-bill-transfer"></i>
+          Transferência
+        </a>
+        <a mat-list-item href="#" routerLink="/saque">
+          <i class="fa-solid fa-sack-dollar"></i>
+          Saque
+        </a>
+        <a mat-list-item href="#" routerLink="/depositar">
+          <i class="fa-solid fa-piggy-bank"></i>
+          Depositar
+        </a>
+      </div>
+      <!-- Admin e Gerente -->
+      <div *ngIf="currentProfilePrivilege() === 'GERENTE' || currentProfilePrivilege() === 'ADMIN'">
+        <a mat-list-item href="#" routerLink="/clientes">
+          <i class="fa-solid fa-users"></i>
+          Clientes
+        </a>
+      </div>
       <!-- Gerente -->
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-users"></i>
-        Clientes
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        Pesquisar
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-ranking-star"></i>
-        Ranking
-      </a>
-      <hr>
+      <div *ngIf="currentProfilePrivilege() === 'GERENTE'">
+        <a mat-list-item href="#" routerLink="/pesquisar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Pesquisar
+        </a>
+        <a mat-list-item href="#" routerLink="/ranking">
+          <i class="fa-solid fa-ranking-star"></i>
+          Ranking
+        </a>
+      </div>
       <!-- Administrador -->
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-square-poll-vertical"></i>
-        Relatório
-      </a>
-      <a mat-list-item href="#">
-        <i class="fa-solid fa-clipboard-user"></i>
-        Gerentes
-      </a>
+      <div *ngIf="currentProfilePrivilege() === 'ADMIN'">
+        <a mat-list-item href="#" routerLink="/relatorio">
+          <i class="fa-solid fa-square-poll-vertical"></i>
+          Relatório
+        </a>
+        <a mat-list-item href="#" routerLink="/gerentes">
+          <i class="fa-solid fa-clipboard-user"></i>
+          Gerentes
+        </a>
+      </div>
       <!-- Geral -->
       <hr>
-      <a mat-list-item href="#">
+      <a mat-list-item (click)="logout()">
         <i class="fa-solid fa-right-from-bracket"></i>
         Sair
       </a>
@@ -61,11 +66,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -74,7 +75,7 @@
         BANTADS
       </span>
     </mat-toolbar>
-      <!-- Conteúdo -->
-      <main></main>
+      <router-outlet></router-outlet>
+    <main></main>
   </mat-sidenav-content>
 </mat-sidenav-container>
