@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    logar(): void{
+    autenticar(): void{
       this.loading = true;
       if(this.formLogin.form.valid){
         //Verifica se está correto o login
