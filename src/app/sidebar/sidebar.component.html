@@ -1,0 +1,93 @@
+<section class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 240px; height: 100vh;">
+  <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <span class="fs-4">
+      <i class="fa-solid fa-building-columns"></i>
+      BANTADS
+    </span>
+  </a>
+  <hr>
+  <ul *ngIf="currentProfileRole === 'CLIENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-receipt"></i>
+        Extrato
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        Transferência
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        Saque
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-piggy-bank"></i>
+        Depositar
+      </a>
+    </li>
+  </ul>
+  <ul *ngIf="currentProfileRole === 'GERENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-people-group"></i>
+        Clientes
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Pesquisar
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-ranking-star"></i>
+        Ranking
+      </a>
+    </li>
+  </ul>
+  <ul *ngIf="currentProfileRole === 'ADMIN'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-people-group"></i>
+        Clientes
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-chart-line"></i>
+        Relatórios
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-clipboard-user"></i>
+        Gerentes
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column d-flex">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-address-card"></i>
+        Perfil
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a (click)="logout()" ngbNavLink class="text-white">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        Sair
+      </a>
+    </li>
+  </ul>
+</section>
+<main>
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,98 @@
+<div class="row row-cols-1 g-4 p-5">
+  <div class="row mb-5">
+    <span class="col-4"></span>
+    <div class="col-4">
+      <div class="card">
+        <h4 class="card-header text-center">
+          <i class="fa-solid fa-coins"></i>
+          Saldo
+        </h4>
+        <div class="card-body text-center">
+          <h3 class="card-title" [ngStyle]="{'color': currentBalance > 0 ? '' : 'red'}">
+            R$ {{currentBalance}}
+          </h3>
+          <p class="card-text">
+            <i class="fa-solid fa-credit-card"></i>
+            Limite atual: R$ {{currentCreditLimit}}
+          </p>
+          <hr>
+          <p class="card-text">
+            <small class="text-muted">
+              <i class="fa-solid fa-clipboard-user"></i>
+              Gerente: {{managerName}}
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <span class="col-4"></span>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header text-center">Depósito</h5>
+        <div class="card-body">
+          <p class="card-text">
+            Guarde seu dinheiro com confiança de que mesmo com taxas abusivas
+            e mal atendimento, seu dinheiro continuará desvalorizando com a implacável
+            inflação que assola o país.
+          </p>
+          <hr>
+          <p class="card-text">
+            <small class="text-muted">
+              Desvalorização do dinheiro? É no BANTADS!
+            </small>
+          </p>
+          <a href="#" class="btn btn-primary">
+            <i class="fa-solid fa-piggy-bank"></i>
+            Depósito
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header text-center">Saque</h5>
+        <div class="card-body">
+          <p class="card-text">
+            Sendo feito de refém para que um criminoso tenha acesso a todo o seu
+            patrimônio? Clique no botão abaixo e para realizar saques na quantia
+            desejada (pelo sequestrador).
+          </p>
+          <hr>
+          <p class="card-text">
+            <small class="text-muted">
+              Falta de segurança? É no BANTADS!
+            </small>
+          </p>
+          <a href="#" class="btn btn-primary">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            Saque
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header text-center">Transferência</h5>
+        <div class="card-body">
+          <p class="card-text">
+            Super na vontade de cair igual a um pato em um esquema de pirâmide ou
+            um bom e velho golpe? Realize aqui as transferências para a pessoa
+            que você acredita ser idônea!
+          </p>
+          <hr>
+          <p class="card-text">
+            <small class="text-muted">
+              Estelionato e fraude? É no BANTADS!
+            </small>
+          </p>
+          <a href="#" class="btn btn-primary">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            Transferência
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

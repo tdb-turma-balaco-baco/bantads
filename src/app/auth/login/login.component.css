@@ -1,0 +1,8 @@
+.image-login{
+    object-fit: cover; 
+    object-position: left;
+}
+
+.form-login{
+    width: 23rem;
+}
