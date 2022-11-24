@@ -1,53 +1,93 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <svg class="bi pe-none me-2" width="40" height="32"></svg>
-    <span class="fs-4">Sidebar</span>
+<section class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 240px; height: 100vh;">
+  <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <span class="fs-4">
+      <i class="fa-solid fa-building-columns"></i>
+      BANTADS
+    </span>
   </a>
   <hr>
-  <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+  <ul *ngIf="currentProfileRole === 'CLIENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" aria-current="page">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Home
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-receipt"></i>
+        Extrato
       </a>
     </li>
     <li ngbNavItem="">
       <a href="#" ngbNavLink class="text-white">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-        Dashboard
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        Transferência
       </a>
     </li>
     <li ngbNavItem="">
       <a href="#" ngbNavLink class="text-white">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Orders
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        Saque
       </a>
     </li>
     <li ngbNavItem="">
       <a href="#" ngbNavLink class="text-white">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-        Products
+        <i class="fa-solid fa-piggy-bank"></i>
+        Depositar
+      </a>
+    </li>
+  </ul>
+  <ul *ngIf="currentProfileRole === 'GERENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-people-group"></i>
+        Clientes
       </a>
     </li>
     <li ngbNavItem="">
       <a href="#" ngbNavLink class="text-white">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-        Customers
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Pesquisar
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-ranking-star"></i>
+        Ranking
+      </a>
+    </li>
+  </ul>
+  <ul *ngIf="currentProfileRole === 'ADMIN'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-people-group"></i>
+        Clientes
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-chart-line"></i>
+        Relatórios
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-clipboard-user"></i>
+        Gerentes
       </a>
     </li>
   </ul>
   <hr>
-  <div ngbDropdown>
-    <a id="dropdownConfig" class="d-flex align-items-center text-white text-decoration-none" ngbDropdownToggle>
-      <strong>Menu</strong>
-    </a>
-    <ul ngbDropdownMenu class="dropdown-menu-dark text-small shadow">
-      <li><a ngbDropdownItem href="#">New project...</a></li>
-      <li><a ngbDropdownItem href="#">Settings</a></li>
-      <li><a ngbDropdownItem href="#">Profile</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a ngbDropdownItem href="#">Sign out</a></li>
-    </ul>
-  </div>
-</div>
-<router-outlet></router-outlet>
+  <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column d-flex">
+    <li ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white">
+        <i class="fa-solid fa-address-card"></i>
+        Perfil
+      </a>
+    </li>
+    <li ngbNavItem="">
+      <a (click)="logout()" ngbNavLink class="text-white">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        Sair
+      </a>
+    </li>
+  </ul>
+</section>
+<main>
+  <router-outlet></router-outlet>
+</main>
