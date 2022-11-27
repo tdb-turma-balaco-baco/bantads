@@ -12,5 +12,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule, RouterModule
   ]
+  
 })
 export class ClienteModule { }

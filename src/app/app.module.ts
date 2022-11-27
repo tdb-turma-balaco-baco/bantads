@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +11,9 @@ import { AuthModule } from './auth';
 import { SharedModule } from './shared';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [AppComponent, SidebarComponent],
   imports: [
@@ -25,7 +27,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AuthModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt'
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
