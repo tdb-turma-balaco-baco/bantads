@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TelaInicioComponent } from './tela-inicio/tela-inicio.component';
+import { SharedModule } from '../shared';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TelaInicioComponent
+    
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class GerenteModule { }
