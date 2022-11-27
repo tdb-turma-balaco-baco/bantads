@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ClienteService } from 'src/app/cliente';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
 

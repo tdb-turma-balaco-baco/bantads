@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let cliente of clientes">
-                <td>{{cliente.CPF}}</td>
+                <td>{{cliente.CPF ? ( cliente.CPF | cpf): null}}</td>
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.salario | currency:'BRL' :true: '2.2-2' }}</td>
                 <td class="text-center"><button class="btn btn-outline-success">Aprovar</button> <button class="btn btn-outline-danger offset-sm-3">Recusar</button> </td>
