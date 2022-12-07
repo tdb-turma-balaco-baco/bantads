@@ -1,1 +1,1 @@
-export type Operacao = "TRANSFERÊNCIA" | "DEPÓSITO"  | "SAQUE";
+export type Operacao = "TRANSFERENCIA" | "DEPOSITO"  | "SAQUE";
