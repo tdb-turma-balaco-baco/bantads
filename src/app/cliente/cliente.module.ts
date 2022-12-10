@@ -21,6 +21,5 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgxCurrencyModule
   ]
-  
 })
-export class ClienteModule { }
+export class ClienteModule {}
