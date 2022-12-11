@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mt-4">
+    <span class="col-4"></span>
+    <div class="col-4">
+      <div class="card shadow mb-4">
+        <h5 class="text-center text-muted mt-4">SAQUE</h5>
+        <hr class="text-muted">
+        <div class="card-body">
+          <div class="text-center">
+            <i class="fas fa-sack-dollar fa-3x mb-4 text-muted"></i>
+          </div>
+          <form #formSacar="ngForm">
+            <div class="input-group input-group-lg">
+              <span class="input-group-text">R$</span>
+              <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', nullable: true }" type="text"
+                #valor="ngModel" [(ngModel)]="saque.valor" id="valor" name="valor" class="form-control" required>
+            </div>
+            <div *ngIf="valor.errors && (valor.dirty || valor.touched)">
+              <small class="text-danger" [hidden]="!valor.errors?.['required']">Digite um valor para sacar</small>
+            </div>
+            <div class="mt-4">
+              <button class="btn btn-success w-100" type="button" (click)="sacar()"
+                [disabled]="!formSacar.form.valid">SACAR</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <span class="col-4"></span>
+  </div>
+</div>
