@@ -5,29 +5,29 @@
       <hr>
       <div class="row mb-3">
         <div class="col">
-          <input type="text" class="form-control" id="email" name="email" [(ngModel)]="cliente.email" #email="ngModel"
-            placeholder="E-mail">
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="cliente.email" #email="ngModel"
+            placeholder="E-mail" required>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-7">
           <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="cliente.nome" #nome="ngModel"
-            placeholder="Nome">
+            placeholder="Nome" required>
         </div>
         <div class="col">
-          <input type="text" class="form-control" id="CPF" name="CPF" [(ngModel)]="cliente.CPF" #CPF="ngModel"
-            placeholder="CPF">
+          <input type="text" class="form-control" id="CPF" name="CPF" [(ngModel)]="cliente.CPF" #CPF="ngModel" mask="000.000.000-00"
+            placeholder="CPF" required>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
-          <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="cliente.telefone"
-            #telefone="ngModel" placeholder="Telefone">
+          <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="cliente.telefone" mask="(00) 00000-0000"
+            #telefone="ngModel" placeholder="Telefone" required>
         </div>
         <div class="col input-group">
           <span class="input-group-text">R$</span>
           <input type="text" class="form-control" id="salario" name="salario" [(ngModel)]="cliente.salario"
-            #telefone="ngModel" placeholder="Renda Mensal">
+            #salario="ngModel" placeholder="Renda Mensal" mask="separator.2" thousandSeparator="." required>
         </div>
       </div>
       <hr>
@@ -36,13 +36,13 @@
         <div class="col">
           <select class="form-select">
             <option selected hidden>Selecione um estado</option>
-            <option *ngFor="let estado of estados" [value]="estado.UF">{{estado.nome}}</option>
+            <option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</option>
           </select>
         </div>
         <div class="col">
           <select class="form-select" aria-label="Cidades">
             <option selected hidden>Selecione a cidade</option>
-            <option *ngFor="let cidade of cidades" [value]="cidade.municipio">{{cidade.municipio}}</option>
+            <option *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.municipio}}</option>
           </select>
         </div>
       </div>
@@ -50,40 +50,44 @@
         <p class="col">Tipo do Logradouro:</p>
         <div class="col">
           <div class="form-check">
-            <input type="radio" name="tipo" id="tipo1" class="form-check-input" [(ngModel)]="endereco" #tipo1="ngModel"
+            <input type="radio" name="tipo" id="tipo1" class="form-check-input" [(ngModel)]="enderecoCliente.tipoEndereco" #tipo1="ngModel"
               value="Rua">
             <label for="tipo1" class="form-check-label">Rua</label>
           </div>
           <div class="form-check">
-            <input type="radio" name="tipo" id="tipo2" class="form-check-input" [(ngModel)]="endereco" #tipo2="ngModel"
+            <input type="radio" name="tipo" id="tipo2" class="form-check-input" [(ngModel)]="enderecoCliente.tipoEndereco" #tipo2="ngModel"
               value="Avenida">
             <label for="tipo2" class="form-check-label">Avenida</label>
           </div>
           <div class="form-check">
-            <input type="radio" name="tipo" id="tipo3" class="form-check-input" [(ngModel)]="endereco" #tipo3="ngModel"
+            <input type="radio" name="tipo" id="tipo3" class="form-check-input" [(ngModel)]="enderecoCliente.tipoEndereco" #tipo3="ngModel"
               value="Travessa">
             <label for="tipo3" class="form-check-label">Travessa</label>
           </div>
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col">
-          <input type="text" class="form-control" id="logradouro" name="logradouro" [(ngModel)]="endereco.logradouro"
-            #logradouro="ngModel" placeholder="Logradouro">
+        <div class="col-8">
+          <input type="text" class="form-control" id="logradouro" name="logradouro" [(ngModel)]="enderecoCliente.logradouro"
+            #logradouro="ngModel" placeholder="Logradouro" required>
+        </div>
+        <div class="col-4">
+          <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="enderecoCliente.numero"
+            #numero="ngModel" placeholder="Número" required>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
-          <input type="text" class="form-control" id="numero" name="numero" [(ngModel)]="endereco.numero"
-            #numero="ngModel" placeholder="Número">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" id="complemento" name="complemento" [(ngModel)]="endereco.complemento"
+          <input type="text" class="form-control" id="complemento" name="complemento" [(ngModel)]="enderecoCliente.complemento"
             #complemento="ngModel" placeholder="Complemento">
         </div>
         <div class="col">
-          <input type="text" class="form-control" id="CEP" name="CEP" [(ngModel)]="endereco.CEP" #CEP="ngModel"
-            placeholder="CEP">
+          <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="enderecoCliente.bairro" #bairro="ngModel"
+          placeholder="Bairro" required>
+          <div class="col">
+            <input type="text" class="form-control" id="CEP" name="CEP" [(ngModel)]="enderecoCliente.CEP" #CEP="ngModel" mask="00000-000"
+              placeholder="CEP" required>
+          </div>
         </div>
       </div>
       <hr>

@@ -28,7 +28,7 @@ registerLocaleData(ptBr);
     AdminModule,
     AuthModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

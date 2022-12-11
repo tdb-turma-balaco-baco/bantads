@@ -1,36 +1,32 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cidade, Conta, Endereco, Estado, Gerente } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClienteService {
-  constructor() {}
+  BASE_URL = environment.apiURL + 'clientes/';
 
-  listarTodos(): Cliente[] {
-    let clientes: Cliente[] = [];
-    let cliente: Cliente = {
-      CPF: '11111111111',
-      salario: 123456.78,
-      nome: 'Carlos Alberto Nobrega',
-    };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.73, nome: 'Carlos2' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.74, nome: 'Carlos3' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.75, nome: 'Carlos4' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.76, nome: 'Carlos5' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.77, nome: 'Carlos6' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.78, nome: 'Carlos7' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.79, nome: 'Carlos8' };
-    clientes.push(cliente);
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  }
 
-    return clientes;
+  constructor(private httpClient: HttpClient) {}
+
+  listarTodos() {
+    return this.httpClient.get<Cliente[]>(this.BASE_URL, this.httpOptions);
+  }
+
+  buscarClientePorId(id: number) {
+    return this.httpClient.get<Cliente>(this.BASE_URL + id, this.httpOptions);
+  }
+
+  inserir(cliente: Cliente) {
+    const clienteJSON = JSON.stringify(cliente);
+    return this.httpClient.post<Cliente>(this.BASE_URL, clienteJSON, this.httpOptions);
   }
 }

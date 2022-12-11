@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ClienteService } from 'src/app/cliente';
 import {
   Cidade,
   CidadeService,
@@ -17,26 +19,54 @@ import {
 export class CadastroComponent {
   @ViewChild('formCadastro') formCadastro!: NgForm;
   cliente!: Cliente;
-  endereco!: Endereco;
-  estados: Estado[] = [];
+  loading!: boolean;
+  enderecoCliente!: Endereco;
+  cidadeCliente!: Cidade;
+  estadoCliente!: Estado;
+  estados!: Estado[];
   cidades!: Cidade[];
 
   constructor(
     private cidadeService: CidadeService,
-    private estadoService: EstadoService
+    private estadoService: EstadoService,
+    private clienteService: ClienteService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
+    // Bind dos objetos TypeScript, para trabalhar o formulário
     this.cliente = new Cliente();
-    this.endereco = new Endereco();
+    this.enderecoCliente = new Endereco();
+    this.cliente.endereco = this.enderecoCliente;
+    this.cidadeCliente = new Cidade();
+    this.cliente.endereco.cidade = this.cidadeCliente;
+    this.estadoCliente = new Estado();
+    this.cliente.endereco.cidade.estado = this.estadoCliente;
+
+    // Define que o radio input padrão é rua, e pode ser alterado em runtime
+    this.enderecoCliente.tipoEndereco = 'Rua';
 
     this.listarCidades();
     this.listarEstados();
+
+    this.loading = false;
   }
 
   cadastrar() {
-    // TODO: Implementar
-    console.log('Cadastrar');
+    this.loading = true;
+
+    if (this.formCadastro.form.valid) {
+      this.clienteService.inserir(this.cliente).subscribe({
+        complete: () => {
+          this.loading = false;
+          this.router.navigate(['/login']);
+        }
+      });
+    } else {
+      console.log(this.formCadastro.form)
+    }
+
+    this.loading = false;
   }
 
   listarEstados() {

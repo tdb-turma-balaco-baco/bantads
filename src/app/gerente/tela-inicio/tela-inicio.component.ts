@@ -16,7 +16,8 @@ export class TelaInicioComponent {
     this.clientes = this.listarClientes();
   }
 
-  listarClientes(): Cliente[] {
-    return this.clienteService.listarTodos();
+  listarClientes() {
+    const clientes: Cliente[] = [];
+    return clientes;
   }
 }

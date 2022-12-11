@@ -67,12 +67,12 @@
       "CPF": "nnn.nnn.nnn-nn",
       "telefone": "(xx) xxxxx-xxxx",
       "perfil": "CLIENTE",
-      "salario": 250.0,
+      "salario": 250,
       "endereco": {},
       "conta": {
         "id": 1,
-        "saldo": 250.0,
-        "limite": 500.0,
+        "saldo": 250,
+        "limite": 500,
         "gerente": {
           "id": 1,
           "nome": "Sr. Gerente 1",
@@ -82,6 +82,44 @@
           "perfil": "GERENTE"
         }
       }
+    },
+    {
+      "nome": "EDUARDO POST REQUEST",
+      "email": "dsfas@dafsd",
+      "CPF": "32423432443",
+      "telefone": "32432432412",
+      "salario": 4132,
+      "endereco": {
+        "tipoEndereco": "Travessa",
+        "logradouro": "asdfdsfsf",
+        "numero": 12,
+        "complemento": "casa",
+        "bairro": "capao raso",
+        "CEP": "32423423",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 2
+    },
+    {
+      "nome": "cagar muito",
+      "email": "coco@coco",
+      "CPF": "52345345435",
+      "telefone": "32142342314",
+      "salario": 31242,
+      "endereco": {
+        "tipoEndereco": "Avenida",
+        "logradouro": "caralho city",
+        "numero": 3124,
+        "complemento": "infernoo",
+        "bairro": "inferno",
+        "CEP": "23483284",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 3
     }
   ],
   "gerentes": [
@@ -97,8 +135,8 @@
   "contas": [
     {
       "id": 1,
-      "saldo": 250.0,
-      "limite": 500.0,
+      "saldo": 250,
+      "limite": 500,
       "gerente": {
         "id": 1,
         "nome": "Sr. Gerente 1",
@@ -113,7 +151,7 @@
     {
       "timestamp": "2022-11-21 12:00",
       "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
-      "valor": 100.00,
+      "valor": 100,
       "origem": {
         "id": 1,
         "nome": "Cliente Silva"
