@@ -15,22 +15,28 @@
   ],
   "cidades": [
     {
+      "id": 1,
       "municipio": "Curitiba",
       "estado": {
+        "id": 1,
         "nome": "Paraná",
         "UF": "PR"
       }
     },
     {
+      "id": 2,
       "municipio": "Florianópolis",
       "estado": {
+        "id": 2,
         "nome": "Santa Catarina",
         "UF": "SC"
       }
     },
     {
+      "id": 3,
       "municipio": "Porto Alegre",
       "estado": {
+        "id": 3,
         "nome": "Rio Grande do Sul",
         "UF": "RS"
       }
@@ -38,14 +44,17 @@
   ],
   "estados": [
     {
+      "id": 1,
       "nome": "Paraná",
       "UF": "PR"
     },
     {
+      "id": 2,
       "nome": "Santa Catarina",
       "UF": "SC"
     },
     {
+      "id": 3,
       "nome": "Rio Grande do Sul",
       "UF": "RS"
     }

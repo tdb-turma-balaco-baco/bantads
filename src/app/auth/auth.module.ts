@@ -5,18 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { SharedModule } from '../shared';
+import { CidadeService, EstadoService, SharedModule } from '../shared';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    CadastroComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    SharedModule
-  ]
+  declarations: [LoginComponent, CadastroComponent],
+  imports: [CommonModule, FormsModule, RouterModule, SharedModule],
+  providers: [CidadeService, EstadoService],
 })
-export class AuthModule { }
+export class AuthModule {}

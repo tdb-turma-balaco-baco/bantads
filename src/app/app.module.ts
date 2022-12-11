@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { AdminModule } from './admin';
 import { AuthModule } from './auth';
 import { SharedModule } from './shared';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -27,12 +29,14 @@ registerLocaleData(ptBr);
     AdminModule,
     AuthModule,
     SharedModule,
+    NgSelectModule,
+    HttpClientModule
   ],
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: 'pt'
-    }
+      useValue: 'pt',
+    },
   ],
   bootstrap: [AppComponent],
 })
