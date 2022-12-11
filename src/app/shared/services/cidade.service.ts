@@ -25,6 +25,7 @@ export class CidadeService {
     return this.httpClient.get<Cidade>(this.BASE_URL + id, this.httpOptions);
   }
 
+  // TODO: Essa implementação não é possível via json-server, só com a criação das APIs
   listarCidadesPorEstado(idEstado: number) {
     const cidades: Cidade[] = [];
     cidades.push(new Cidade());
