@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ClienteService } from 'src/app/cliente';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
+import { GerenteService } from '../service/gerente.service';
 
 @Component({
   selector: 'app-tela-inicio',
@@ -10,13 +10,13 @@ import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
 export class TelaInicioComponent {
   clientes: Cliente[] = [];
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(private gerenteService: GerenteService) {}
 
   ngOnInit(): void {
     this.clientes = this.listarClientes();
   }
 
   listarClientes(): Cliente[] {
-    return this.clienteService.listarTodos();
+    return this.gerenteService.listarClientesPendentes();
   }
 }

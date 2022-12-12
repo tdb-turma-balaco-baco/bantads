@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Cidade, Conta, Endereco, Estado, Gerente } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ClienteService {
-  constructor() {}
+export class GerenteService {
 
-  listarTodos(): Cliente[] {
+  constructor() { }
+
+  listarClientesPendentes(): Cliente[] {
     let clientes: Cliente[] = [];
     let cliente: Cliente = {
       CPF: '11111111111',
@@ -33,6 +33,4 @@ export class ClienteService {
 
     return clientes;
   }
-
-
 }
