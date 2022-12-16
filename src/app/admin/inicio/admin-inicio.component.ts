@@ -14,16 +14,13 @@ export class AdminInicioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.gerentes = this.listarTodos(), this.ordemCrescente();
-
+    this.gerentes = this.listarTodos();
+    this.gerentes.sort((a, b) => a.nome!.localeCompare(b.nome!));
   }
 
   listarTodos(): Gerente[] {
     return this.adminService.listarTodosGerentes();
   }
-  ordemCrescente(): void {
-    this.gerentes.sort((a, b) => a.nome!.localeCompare(b.nome!));
 
-  }
 
 }
