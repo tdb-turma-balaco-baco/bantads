@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { TelaInicioComponent } from './tela-inicio/tela-inicio.component';
-import { TelaRlclientesComponent } from './tela-rlclientes/tela-rlclientes.component';
+import { AdminInicioComponent } from './inicio/admin-inicio.component';
+import { RelatorioClientes } from './relatorio-clientes/relatorio-clientes.component';
 
 export const adminRoutes: Routes = [
   { path: 'admin', redirectTo: 'admin/inicio' },
-  { path: 'admin/inicio', component: TelaInicioComponent },
-  { path: 'admin-rlclientes', redirectTo: 'admin/rlclientes' },
-  { path: 'admin/rlclientes', component: TelaRlclientesComponent },
+  { path: 'admin/inicio', component: AdminInicioComponent },
+  { path: 'relatorio-clientes', redirectTo: 'admin/relatorio-clientes' },
+  { path: 'admin/relatorio-clientes', component: RelatorioClientes },
 ];
