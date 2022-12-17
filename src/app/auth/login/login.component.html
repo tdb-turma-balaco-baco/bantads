@@ -30,10 +30,10 @@
               </div>
             </div>
             <div class="mb-4">
-              <button class="btn btn-success btn-lg w-100" type="button" (click)="autenticar()"
-                [disabled]="!formLogin.form.valid">Acessar</button>
+              <button class="btn btn-success btn-lg w-100" type="submit" (click)="autenticar()"
+                [disabled]="!formLogin.form.valid || loading">Acessar</button>
             </div>
-            <p>Não possui conta? <a href="#" class="link-info" [routerLink]="['/']">Cadastre-se</a></p>
+            <p>Não possui conta? <a href="#" class="link-info" [routerLink]="['/cadastro']">Cadastre-se</a></p>
           </form>
         </div>
       </div>
