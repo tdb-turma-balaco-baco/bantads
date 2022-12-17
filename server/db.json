@@ -3,14 +3,6 @@
     {
       "id": 1,
       "login": "admin"
-    },
-    {
-      "id": 2,
-      "login": "admin2"
-    },
-    {
-      "id": 3,
-      "login": "admin3"
     }
   ],
   "cidades": [
@@ -101,25 +93,6 @@
         }
       },
       "id": 2
-    },
-    {
-      "nome": "cagar muito",
-      "email": "coco@coco",
-      "CPF": "52345345435",
-      "telefone": "32142342314",
-      "salario": 31242,
-      "endereco": {
-        "tipoEndereco": "Avenida",
-        "logradouro": "caralho city",
-        "numero": 3124,
-        "complemento": "infernoo",
-        "bairro": "inferno",
-        "CEP": "23483284",
-        "cidade": {
-          "estado": {}
-        }
-      },
-      "id": 3
     }
   ],
   "gerentes": [
@@ -162,26 +135,27 @@
       }
     }
   ],
-  "logins": [
+  "usuarios": [
     {
-      "login": "admin",
-      "senha": "admin"
-    }
-  ],
-  "enderecos": [
+      "id": "0",
+      "login": "admin@admin",
+      "senha": "admin",
+      "nome": "Senhor Admin",
+      "perfil": "ADMIN"
+    },
     {
-      "logradouro": "Rua dos Testes",
-      "numero": 0,
-      "complemento": "Ap. 00",
-      "bairro": "Testovânia",
-      "CEP": "xxxxx-xxx",
-      "cidade": {
-        "municipio": "",
-        "estado": {
-          "nome": "",
-          "UF": ""
-        }
-      }
+      "id": "1",
+      "login": "gerente@gerente",
+      "senha": "gerente",
+      "nome": "Senhor Gerente",
+      "perfil": "GERENTE"
+    },
+    {
+      "id": "2",
+      "login": "cliente@cliente",
+      "senha": "cliente",
+      "nome": "Senhor Cliente",
+      "perfil": "CLIENTE"
     }
   ]
 }
