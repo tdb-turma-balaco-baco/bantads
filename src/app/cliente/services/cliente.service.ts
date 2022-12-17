@@ -1,63 +1,33 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
-import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClienteService {
-  constructor() {}
+  BASE_URL = environment.apiURL + 'clientes/';
 
-
-  listarExtratosPordata( dataInicio : Date, dataFim : Date): RegistroExtrato[] {
-    //Post pro back com Datas e ID ?cliente?
-    let extratos: RegistroExtrato[] = [];
-    let extrato: RegistroExtrato = {
-      timestamp: new Date(2021,10,20),
-      operacao: undefined,
-      valor: 1500.35,
-      origem: new Usuario("1","Caetano",undefined,undefined,undefined,undefined),
-      destino: new Usuario("1","Caetano",undefined,undefined,undefined,undefined)
-    }
-    extratos.push(extrato);
-    if(dataInicio.getDate() === 17){
-      extrato = {
-        timestamp: new Date(2021,10,25),
-        operacao: undefined,
-        valor: 1500.35,
-        origem: new Usuario("1","Pedro",undefined,undefined,undefined,undefined),
-        destino: new Usuario("1","Pedro a",undefined,undefined,undefined,undefined)
-      }
-      extratos.push(extrato);
-    }
-    return extratos;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
   }
 
-  listarTodos(): Cliente[] {
-    let clientes: Cliente[] = [];
-    let cliente: Cliente = {
-      CPF: '11111111111',
-      salario: 123456.78,
-      nome: 'Carlos Alberto Nobrega',
-    };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.73, nome: 'Carlos2' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.74, nome: 'Carlos3' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.75, nome: 'Carlos4' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.76, nome: 'Carlos5' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.77, nome: 'Carlos6' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.78, nome: 'Carlos7' };
-    clientes.push(cliente);
-    cliente = { CPF: '11111111111', salario: 123456.79, nome: 'Carlos8' };
-    clientes.push(cliente);
+  constructor(private httpClient: HttpClient) {}
 
-    return clientes;
+  listarTodos() {
+    return this.httpClient.get<Cliente[]>(this.BASE_URL, this.httpOptions);
+  }
+
+  buscarClientePorId(id: number) {
+    return this.httpClient.get<Cliente>(this.BASE_URL + id, this.httpOptions);
+  }
+
+  inserir(cliente: Cliente) {
+    const clienteJSON = JSON.stringify(cliente);
+    return this.httpClient.post<Cliente>(this.BASE_URL, clienteJSON, this.httpOptions);
   }
 
 

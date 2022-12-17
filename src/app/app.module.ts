@@ -13,6 +13,7 @@ import { AdminModule } from './admin';
 import { AuthModule } from './auth';
 import { SharedModule } from './shared';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -27,12 +28,13 @@ registerLocaleData(ptBr);
     AdminModule,
     AuthModule,
     SharedModule,
+    HttpClientModule,
   ],
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: 'pt'
-    }
+      useValue: 'pt',
+    },
   ],
   bootstrap: [AppComponent],
 })
