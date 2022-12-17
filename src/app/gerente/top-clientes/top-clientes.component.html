@@ -1,0 +1,49 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-10 col-md-offset-10">
+    <h2 class="text-center my-3">
+      <i class="fa-solid fa-medal"></i>
+      Melhores Clientes
+    </h2>
+    <hr>
+    <table class="table table-light table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">
+            <i class="fa-solid fa-ranking-star"></i>
+          </th>
+          <th>
+            <i class="fa-solid fa-signature"></i>
+            Nome
+          </th>
+          <th>
+            <i class="fa-solid fa-mountain-city"></i>
+            Cidade
+          </th>
+          <th>
+            <i class="fa-solid fa-flag"></i>
+            Estado
+          </th>
+          <th>
+            <i class="fa-solid fa-id-card"></i>
+            CPF
+          </th>
+          <th>
+            <i class="fa-solid fa-money-bill-trend-up"></i>
+            Saldo
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of topClientes; index as i">
+          <th class="text-center">{{i + 1}}</th>
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.endereco?.cidade?.municipio}}</td>
+          <td>{{cliente.endereco?.cidade?.estado?.UF}}</td>
+          <td>{{cliente.CPF ? (cliente.CPF | cpf) : null}}</td>
+          <td>{{cliente.conta?.saldo | currency: 'BRL':true:'2.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="topClientes.length === 0">Não há nenhum cliente positivo ou cadastrado!</p>
+  </div>
+</div>

@@ -3,10 +3,9 @@ import { Operacao } from "./operacao.type";
 
 export class Movimentacao {
   constructor(
-    public timestamp?: Date,
+    public idContaDestino?: number,
     public operacao?: Operacao,
-    public valor?: number,
-    public origem?: Cliente,
-    public destino?: Cliente
+    public valor?: number
   ) {}
 }
+

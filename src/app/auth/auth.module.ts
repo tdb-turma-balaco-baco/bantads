@@ -4,15 +4,32 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import {
+  CidadeService,
+  EstadoService,
+  NumericoDirective,
+  SharedModule,
+} from '../shared';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { MinValidatorDirective } from '../shared/directives/min-validator.directive';
+
+export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    CadastroComponent,
+    NumericoDirective,
+    MinValidatorDirective,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
-  ]
+    RouterModule,
+    SharedModule,
+    NgxMaskModule.forRoot(),
+  ],
+  providers: [CidadeService, EstadoService],
 })
-export class AuthModule { }
+export class AuthModule {}
