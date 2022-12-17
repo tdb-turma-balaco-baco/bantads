@@ -7,19 +7,26 @@ import { DepositarComponent } from './depositar/depositar.component';
 import { TransferirComponent } from './transferir/transferir.component';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { FormsModule } from '@angular/forms';
+import { ExtratoComponent } from './extrato';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule } from 'ngx-mask';
+
 
 @NgModule({
   declarations: [
     TelaInicioComponent,
     SacarComponent,
     DepositarComponent,
-    TransferirComponent
+    TransferirComponent,
+    ExtratoComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    NgxCurrencyModule
+    NgbModule,
+    NgxCurrencyModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class ClienteModule {}
