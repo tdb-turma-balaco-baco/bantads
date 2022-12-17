@@ -21,7 +21,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   }
 
   format(date: NgbDateStruct | null): string {
-    return date ? (date.day < 10 ? "0" + date.day : date.day) + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+    return date ? (date.day < 10 ? "0" + date.day : date.day) + this.DELIMITER + (date.month < 10 ? "0" + date.month : date.month ) + this.DELIMITER + date.year : '';
   }
 }
 
@@ -48,6 +48,7 @@ export class ExtratoComponent implements OnInit {
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
   today: NgbDate = this.calendar.getToday();
+  startDate: NgbDate = this.calendar.getNext(this.calendar.getToday(), 'm', -1)
   extratos: RegistroExtrato[] = [];
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public clienteService: ClienteService, private changeDetection: ChangeDetectorRef) {
@@ -64,7 +65,6 @@ export class ExtratoComponent implements OnInit {
       this.ngbDatepicker?.close();
       this.toDate = date;
       this.extratos = this.listarExtratosPorData(this.fromDate, this.toDate);
-      console.log(this.extratos)
       this.changeDetection.detectChanges();
 
     } else {
@@ -101,14 +101,17 @@ export class ExtratoComponent implements OnInit {
   listarExtratosPorData(fromDate: NgbDate, toDate: NgbDate): RegistroExtrato[] {
     const dataInicioConvertida: Date = new Date(fromDate.year,fromDate.month - 1, fromDate.day);
     const dataFimConvertida: Date = new Date(toDate.year, toDate.month - 1, toDate.day);
+
     return this.clienteService.listarExtratosPordata(dataInicioConvertida, dataFimConvertida );
   }
 
-  converteData(timestamp: Date | undefined): string{
-
-
-    return timestamp != undefined ? timestamp.toLocaleTimeString("pt-Br") : "";
+  isDisabled(date: NgbDateStruct, curent: { year: number; month: number } | undefined){
+    if(curent == undefined){
+      return false;
+    }
+    return date > curent;
   }
+
 }
 
 

@@ -22,3 +22,6 @@
 .custom-day.faded {
   background-color: rgba(85, 85, 85, 0.5);
 }
+.disabled{
+  color: grey;
+}

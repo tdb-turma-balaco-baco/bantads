@@ -5,8 +5,8 @@
     <div class="dp-hidden position-absolute">
       <div class="input-group">
         <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside' " [maxDate]="today"
-          (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden"
-          [startDate]="fromDate!" tabindex="-1" />
+          (dateSelect)="onDateSelection($event)" [startDate]="startDate" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="isDisabled"
+           tabindex="-1" />
         <ng-template #t let-date let-focused="focused">
           <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
             [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
@@ -47,10 +47,10 @@
     <tbody>
       <tr *ngFor="let extrato of extratos">
 
-        <td>{{converteData(extrato.timestamp) | mask: 'd0/M00/y0000'}}</td>
+        <td>{{extrato.timestamp | date: 'dd/MM/yyyy'}}</td>
         <td>{{extrato.operacao}}</td>
-        <td>{{extrato.origem != undefined ? extrato.origem.nome : ""}}</td>
-        <td>{{extrato.destino != undefined ? extrato.destino.nome : ""}}</td>
+        <td>{{extrato.origem?.nome}}</td>
+        <td>{{extrato.destino?.nome}}</td>
         <td>{{extrato.valor | currency:'BRL' :true: '2.2-2'}} </td>
 
       </tr>

@@ -14,7 +14,7 @@ export class ClienteService {
     //Post pro back com Datas e ID ?cliente?
     let extratos: RegistroExtrato[] = [];
     let extrato: RegistroExtrato = {
-      timestamp: new Date(1,10,25),
+      timestamp: new Date(2021,10,20),
       operacao: undefined,
       valor: 1500.35,
       origem: new Usuario("1","Caetano",undefined,undefined,undefined,undefined),
@@ -23,7 +23,7 @@ export class ClienteService {
     extratos.push(extrato);
     if(dataInicio.getDate() === 17){
       extrato = {
-        timestamp: new Date(1,10,25),
+        timestamp: new Date(2021,10,25),
         operacao: undefined,
         valor: 1500.35,
         origem: new Usuario("1","Pedro",undefined,undefined,undefined,undefined),
