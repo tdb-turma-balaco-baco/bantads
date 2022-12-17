@@ -26,13 +26,14 @@ export class AutenticacaoService {
 
   public set usuarioAutenticado(usuario: Usuario) {
     localStorage.setItem(this.CHAVE_LS, JSON.stringify(usuario));
+    this.exibirMenuLateral.emit(true);
   }
 
   login(login: Login) {
     if (environment.featureFlagJsonServer) {
       return this.httpClient.get<Usuario>(
         // `${this.BASE_URL}?login=${login.login}&senha=${login.senha}`, **forma "ideal"
-        this.BASE_URL + '/2', // PRECISA ALTERAR PARA FUNCIONAR CORRETAMENTE, LIMITAÇÃO JSON-SERVER
+        this.BASE_URL + '/3', // PRECISA ALTERAR PARA FUNCIONAR CORRETAMENTE, LIMITAÇÃO JSON-SERVER
         this.httpOptions
       );
     } else {

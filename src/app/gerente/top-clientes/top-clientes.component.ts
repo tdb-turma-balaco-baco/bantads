@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Cliente } from 'src/app/shared';
+import { GerenteService } from '../services/gerente.service';
 
 @Component({
   selector: 'app-top-clientes',
@@ -7,49 +8,23 @@ import { Cliente } from 'src/app/shared';
   styleUrls: ['./top-clientes.component.css'],
 })
 export class TopClientesComponent {
-  topClientes!: Cliente[];
+  topClientes: Cliente[] = [];
 
-  constructor() {}
+  constructor(private gerenteService: GerenteService) {}
 
   ngOnInit(): void {
-    this.topClientes = this.listarTopClientes();
+    this.listarTopClientes();
   }
 
   listarTopClientes() {
-    // return this.gerenteService.listarTopClientes();
-    const remove: Cliente[] = [
-      {
-        nome: 'Pedro da Silva',
-        CPF: '99999999929',
-        conta: { saldo: 55000.03 },
-        endereco: { cidade: { municipio: 'Curitiba', estado: { UF: 'PR' } } },
+    this.gerenteService.listarTopClientesPorSaldo().subscribe({
+      next: (data: Cliente[]) => {
+        if (data === null) {
+          this.topClientes = [];
+        } else {
+          this.topClientes = data;
+        }
       },
-      {
-        nome: 'Joãozinho dos Santos',
-        CPF: '99399999929',
-        conta: { saldo: 30000.00 },
-        endereco: { cidade: { municipio: 'Florianópolis', estado: { UF: 'SC' } } },
-      },
-      {
-        nome: 'Gabriel dos Santos',
-        CPF: '99994999929',
-        conta: { saldo: 12000.00 },
-        endereco: { cidade: { municipio: 'Porto Alegre', estado: { UF: 'RS' } } },
-      },
-      {
-        nome: 'Maria do Rosário',
-        CPF: '99959999292',
-        conta: { saldo: 1000.00 },
-        endereco: { cidade: { municipio: 'Curitiba', estado: { UF: 'PR' } } },
-      },
-      {
-        nome: 'Letícia Galvão',
-        CPF: '19999999929',
-        conta: { saldo: 159 },
-        endereco: { cidade: { municipio: 'Curitiba', estado: { UF: 'PR' } } },
-      },
-    ];
-
-    return remove;
+    });
   }
 }

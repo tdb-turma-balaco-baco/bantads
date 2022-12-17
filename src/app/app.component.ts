@@ -8,7 +8,7 @@ import { AutenticacaoService } from './auth/services/autenticacao.service';
 })
 export class AppComponent {
   title = 'BANTADS';
-  exibirMenuLateral: boolean = false;
+  exibirMenuLateral!: boolean;
 
   constructor(private loginService: AutenticacaoService) {}
 
@@ -16,5 +16,9 @@ export class AppComponent {
     this.loginService.exibirMenuLateral.subscribe(
       (flagExibir) => (this.exibirMenuLateral = flagExibir)
     );
+  }
+
+  ngOnDestroy() {
+    this.loginService.exibirMenuLateral.unsubscribe();
   }
 }

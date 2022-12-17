@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm;
   login: Login = new Login();
   loading: boolean = false;
-  message!: string;
+  mensagemErro!: string;
 
   constructor(
     private router: Router,
@@ -22,30 +22,36 @@ export class LoginComponent implements OnInit {
   ) {
     // Validar se usuário já está logado
     if (this.loginService.usuarioAutenticado) {
-      this.router.navigate(this.definirRotaAutenticada(this.loginService.usuarioAutenticado.perfil));
+      this.router.navigate(
+        this.definirRotaAutenticada(this.loginService.usuarioAutenticado.perfil)
+      );
     }
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.message = params['error'];
+      this.mensagemErro = params['error'];
     });
   }
 
   autenticar(): void {
     this.loading = true;
     if (this.formLogin.form.valid) {
-      this.loginService.login(this.login).subscribe((usuario) => {
-        if (usuario !== null) {
-          this.loginService.usuarioAutenticado = usuario;
+      this.loginService.login(this.login).subscribe({
+        next: (usuario) => {
+          if (usuario !== null) {
+            this.loginService.usuarioAutenticado = usuario;
+            this.loading = false;
+            this.router.navigate(this.definirRotaAutenticada(usuario.perfil));
+          } else {
+            this.loading = false;
+            this.mensagemErro = 'E-mail/Senha inválidos';
+          }
+        },
+        error: () => {
           this.loading = false;
-          this.loginService.exibirMenuLateral.emit(true);
-          this.router.navigate(this.definirRotaAutenticada(usuario.perfil));
-        } else {
-          this.loading = false;
-          this.message = 'E-mail/Senha inválidos';
-          this.loginService.exibirMenuLateral.emit(false);
-        }
+          this.mensagemErro = 'E-mail/Senha inválidos';
+        },
       });
     }
   }

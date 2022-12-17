@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ClienteService {
   BASE_URL = environment.apiURL + 'clientes/';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

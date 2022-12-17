@@ -53,27 +53,24 @@
   ],
   "clientes": [
     {
-      "id": 1,
-      "nome": "Cliente Silva",
-      "email": "cliente.silva@bantads.com",
-      "CPF": "nnn.nnn.nnn-nn",
-      "telefone": "(xx) xxxxx-xxxx",
-      "perfil": "CLIENTE",
-      "salario": 250,
-      "endereco": {},
-      "conta": {
-        "id": 1,
-        "saldo": 250,
-        "limite": 500,
-        "gerente": {
-          "id": 1,
-          "nome": "Sr. Gerente 1",
-          "email": "gerente1@bantads.com",
-          "CPF": "",
-          "telefone": "(xx) xxxxx-xxxx",
-          "perfil": "GERENTE"
+      "nome": "TESTE SILVA",
+      "email": "dsfas@dafsd",
+      "CPF": "2242343236448",
+      "telefone": "32432432412",
+      "salario": 120.5,
+      "endereco": {
+        "tipoEndereco": "Travessa",
+        "logradouro": "asdfdsfsf",
+        "numero": 12,
+        "complemento": "casa",
+        "bairro": "capao raso",
+        "CEP": "32423423",
+        "cidade": {
+          "estado": {}
         }
-      }
+      },
+      "id": 1,
+      "situacaoConta": "ATIVA"
     },
     {
       "nome": "EDUARDO POST REQUEST",
@@ -92,7 +89,43 @@
           "estado": {}
         }
       },
-      "id": 2
+      "id": 2,
+      "situacaoConta": "PENDENTE"
+    },
+    {
+      "id": 3,
+      "nome": "Pedro da Silva",
+      "CPF": "99999999929",
+      "conta": { "saldo": 55000.03 },
+      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
+    },
+    {
+      "id": 4,
+      "nome": "Joãozinho dos Santos",
+      "CPF": "99399999929",
+      "conta": { "saldo": 30000.00 },
+      "endereco": { "cidade": { "municipio": "Florianópolis", "estado": { "UF": "SC" } } }
+    },
+    {
+      "id": 5,
+      "nome": "Gabriel dos Santos",
+      "CPF": "99994999929",
+      "conta": { "saldo": 12000.00 },
+      "endereco": { "cidade": { "municipio": "Porto Alegre", "estado": { "UF": "RS" } } }
+    },
+    {
+      "id": 6,
+      "nome": "Maria do Rosário",
+      "CPF": "99959999292",
+      "conta": { "saldo": 1000.00 },
+      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
+    },
+    {
+      "id": 7,
+      "nome": "Letícia Galvão",
+      "CPF": "19999999929",
+      "conta": { "saldo": 15900.02 },
+      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
     }
   ],
   "gerentes": [
