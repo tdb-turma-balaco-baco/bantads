@@ -96,36 +96,46 @@
       "id": 3,
       "nome": "Pedro da Silva",
       "CPF": "99999999929",
-      "conta": { "saldo": 55000.03 },
-      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
+      "conta": { "saldo": 55000.03, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
     },
     {
       "id": 4,
       "nome": "Joãozinho dos Santos",
       "CPF": "99399999929",
-      "conta": { "saldo": 30000.00 },
-      "endereco": { "cidade": { "municipio": "Florianópolis", "estado": { "UF": "SC" } } }
+      "conta": { "saldo": 30000.0 },
+      "endereco": {
+        "cidade": { "municipio": "Florianópolis", "estado": { "UF": "SC" } }
+      }
     },
     {
       "id": 5,
       "nome": "Gabriel dos Santos",
       "CPF": "99994999929",
-      "conta": { "saldo": 12000.00 },
-      "endereco": { "cidade": { "municipio": "Porto Alegre", "estado": { "UF": "RS" } } }
+      "conta": { "saldo": 12000.0, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Porto Alegre", "estado": { "UF": "RS" } }
+      }
     },
     {
       "id": 6,
       "nome": "Maria do Rosário",
       "CPF": "99959999292",
-      "conta": { "saldo": 1000.00 },
-      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
+      "conta": { "saldo": 1000.0, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
     },
     {
       "id": 7,
       "nome": "Letícia Galvão",
       "CPF": "19999999929",
-      "conta": { "saldo": 15900.02 },
-      "endereco": { "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } } }
+      "conta": { "saldo": 15900.02, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
     }
   ],
   "gerentes": [

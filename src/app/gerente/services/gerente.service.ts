@@ -37,4 +37,8 @@ export class GerenteService {
       return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}`, this.httpOptions); // TODO: Atualizar com o endpoint correto
     }
   }
+
+  listarClientesPorGerenteId(idGerente: number) {
+    return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}?conta.gerente.id=${idGerente}`, this.httpOptions);
+  }
 }
