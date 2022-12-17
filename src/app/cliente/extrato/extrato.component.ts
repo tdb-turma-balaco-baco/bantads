@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateAdapter, NgbDateParserFormatter, NgbDatepicker, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
-import { ClienteService } from '../services';
-
+import { ClienteService } from '../services/cliente.service';
 
 @Injectable()
 export class CustomDateParserFormatter extends NgbDateParserFormatter {
@@ -21,7 +20,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   }
 
   format(date: NgbDateStruct | null): string {
-    return date ? (date.day < 10 ? "0" + date.day : date.day) + this.DELIMITER + (date.month < 10 ? "0" + date.month : date.month ) + this.DELIMITER + date.year : '';
+    return date ? (date.day < 10 ? "0" + date.day : date.day) + this.DELIMITER + (date.month < 10 ? "0" + date.month : date.month) + this.DELIMITER + date.year : '';
   }
 }
 
@@ -33,13 +32,13 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 
   providers: [
 
-		{ provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-	],
+    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
+  ],
 })
 
 export class ExtratoComponent implements OnInit {
   ngOnInit(): void {
-    this.extratos = this.listarExtratosPorData( this.calendar.getNext(this.calendar.getToday(), 'd', -10), this.calendar.getToday())
+
   }
   @ViewChild('datepicker') ngbDatepicker: NgbInputDatepicker | null;
 
@@ -64,7 +63,7 @@ export class ExtratoComponent implements OnInit {
     } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
       this.ngbDatepicker?.close();
       this.toDate = date;
-      this.extratos = this.listarExtratosPorData(this.fromDate, this.toDate);
+      this.listarExtratosPorData(this.fromDate, this.toDate);
       this.changeDetection.detectChanges();
 
     } else {
@@ -98,20 +97,28 @@ export class ExtratoComponent implements OnInit {
   }
 
 
-  listarExtratosPorData(fromDate: NgbDate, toDate: NgbDate): RegistroExtrato[] {
-    const dataInicioConvertida: Date = new Date(fromDate.year,fromDate.month - 1, fromDate.day);
+  listarExtratosPorData(fromDate: NgbDate, toDate: NgbDate) {
+    const dataInicioConvertida: Date = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
     const dataFimConvertida: Date = new Date(toDate.year, toDate.month - 1, toDate.day);
 
-    return this.clienteService.listarExtratosPordata(dataInicioConvertida, dataFimConvertida );
+    this.clienteService.listarExtratosPordata(dataInicioConvertida, dataFimConvertida).subscribe(
+      {
+        next: (data: RegistroExtrato[]) => {
+          if (data === null) {
+            this.extratos = [];
+          } else {
+            this.extratos = data;
+          }
+        }
+      });
   }
 
-  isDisabled(date: NgbDateStruct, curent: { year: number; month: number } | undefined){
-    if(curent == undefined){
+  isDisabled(date: NgbDateStruct, curent: { year: number; month: number } | undefined) {
+    if (curent == undefined) {
       return false;
     }
     return date > curent;
   }
-
 }
 
 

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ExtratoComponent } from './extrato';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
+import { ClienteService } from './services/cliente.service';
 
 
 @NgModule({

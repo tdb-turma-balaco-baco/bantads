@@ -16,7 +16,6 @@ export class DepositarComponent implements OnInit {
 
   }
 
-
   depositar(): void {
     if (this.formDeposito.form.valid) {
       this.deposito.operacao = "DEPOSITO";
