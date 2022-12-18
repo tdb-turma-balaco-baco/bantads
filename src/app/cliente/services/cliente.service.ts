@@ -27,6 +27,13 @@ export class ClienteService {
   }
 
   inserir(cliente: Cliente) {
+    if (cliente.salario && cliente.salario > 0) {
+      cliente.limite = cliente.salario / 2;
+    } else {
+      cliente.salario = 0;
+      cliente.limite = 0;
+    }
+
     const clienteJSON = JSON.stringify(cliente);
     return this.httpClient.post<Cliente>(
       this.BASE_URL,
@@ -44,6 +51,22 @@ export class ClienteService {
   }
 
   atualizar(cliente: Cliente) {
+    // Atende a regra de negócio de atualizar perfil:
+    // Caso haja alteração do salário, o novo limite deve ser calculado.
+
+    if (cliente.salario && cliente.salario > 0) {
+      // Se o novo limite for menor que o seu saldo negativo neste momento,
+      // então seu limite será ajustado para seu saldo negativo
+      if (cliente.salario < 0) {
+        cliente.limite = cliente.salario;
+      } else {
+        cliente.limite = cliente.salario / 2;
+      }
+    } else {
+      cliente.salario = 0;
+      cliente.limite = 0;
+    }
+
     const clienteJSON = JSON.stringify(cliente);
     return this.httpClient.put<Cliente>(this.BASE_URL + cliente.id!, clienteJSON, this.httpOptions);
   }

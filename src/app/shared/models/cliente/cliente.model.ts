@@ -9,6 +9,7 @@ export class Cliente extends Usuario {
     public endereco?: Endereco,
     public conta?: Conta,
     public situacaoConta?: SituacaoConta,
+    public limite?: number,
   ) {
     super();
   }
