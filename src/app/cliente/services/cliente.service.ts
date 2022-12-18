@@ -14,7 +14,7 @@ export class ClienteService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
-  }
+  };
 
   constructor(private httpClient: HttpClient) {}
 
@@ -28,13 +28,23 @@ export class ClienteService {
 
   inserir(cliente: Cliente) {
     const clienteJSON = JSON.stringify(cliente);
-    return this.httpClient.post<Cliente>(this.BASE_URL, clienteJSON, this.httpOptions);
+    return this.httpClient.post<Cliente>(
+      this.BASE_URL,
+      clienteJSON,
+      this.httpOptions
+    );
   }
 
-  listarExtratosPordata( dataInicio : Date, dataFim : Date) {
-    //Post pro back com Datas e ID ?cliente?
-
-    return this.httpClient.get<RegistroExtrato[]>(this.URL_MOVIMENTACOES, this.httpOptions);
+  listarExtratosPordata(dataInicio: Date, dataFim: Date) {
+    // Post pro back com Datas e ID ?cliente?
+    return this.httpClient.get<RegistroExtrato[]>(
+      this.URL_MOVIMENTACOES,
+      this.httpOptions
+    );
   }
 
+  atualizar(cliente: Cliente) {
+    const clienteJSON = JSON.stringify(cliente);
+    return this.httpClient.put<Cliente>(this.BASE_URL + cliente.id!, clienteJSON, this.httpOptions);
+  }
 }

@@ -12,7 +12,7 @@ export class TelaInicioComponent {
   managerName!: string;
 
   constructor() {
-    this.currentBalance = -23589.01;
+    this.currentBalance = 3589.01;
     this.currentCreditLimit = 128.02;
     this.managerName = 'João Silva';
   }

@@ -8,25 +8,25 @@
   <hr>
   <ul *ngIf="usuarioAutenticado?.perfil === 'CLIENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/extrato']">
         <i class="fa-solid fa-receipt"></i>
         Extrato
       </a>
     </li>
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/transferir']">
         <i class="fa-solid fa-money-bill-transfer"></i>
         Transferência
       </a>
     </li>
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/sacar']">
         <i class="fa-solid fa-hand-holding-dollar"></i>
         Saque
       </a>
     </li>
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/depositar']">
         <i class="fa-solid fa-piggy-bank"></i>
         Depositar
       </a>
@@ -34,7 +34,7 @@
   </ul>
   <ul *ngIf="usuarioAutenticado?.perfil === 'GERENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/gerente/clientes']">
         <i class="fa-solid fa-people-group"></i>
         Clientes
       </a>
@@ -73,9 +73,9 @@
     </li>
   </ul>
   <hr>
-  <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column d-flex">
+  <ul *ngIf="usuarioAutenticado?.perfil === 'CLIENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column d-flex">
     <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="['/perfil']">
         <i class="fa-solid fa-address-card"></i>
         Perfil
       </a>

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AlterarPerfilComponent } from './alterar-perfil/alterar-perfil.component';
 import { DepositarComponent } from './depositar/depositar.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { SacarComponent } from './sacar/sacar.component';
@@ -19,5 +20,8 @@ export const ClienteRoutes: Routes = [
   { path: 'cliente/transferir', component: TransferirComponent },
 
   { path: 'extrato', redirectTo: 'cliente/extrato' },
-  { path: 'cliente/extrato', component: ExtratoComponent }
+  { path: 'cliente/extrato', component: ExtratoComponent },
+
+  { path: 'perfil', redirectTo: 'cliente/perfil' },
+  { path: 'cliente/perfil', component: AlterarPerfilComponent },
 ];

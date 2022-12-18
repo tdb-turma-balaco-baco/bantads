@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center">
   <div class="col-md-6 col-md-offset-6">
-    <form #formCadastro="ngForm">
-      <h2 class="my-3 text-center">Cadastro Pessoal</h2>
+    <form #formAlterarPerfil="ngForm">
+      <h2 class="my-3 text-center">Atualizar Perfil</h2>
       <hr>
       <div class="row mb-3">
         <div class="col">
@@ -15,8 +15,8 @@
             placeholder="Nome" required>
         </div>
         <div class="col">
-          <input type="text" class="form-control" id="CPF" name="CPF" [(ngModel)]="cliente.CPF" #CPF="ngModel"
-            mask="000.000.000-00" placeholder="CPF" required>
+          <input type="text" class="form-control" id="CPF" name="CPF" [value]="cliente.CPF ? (cliente.CPF | cpf) : null"
+            readonly>
         </div>
       </div>
       <div class="row mb-3">
@@ -36,15 +36,17 @@
         <div class="col">
           <select name="estado" class="form-select" [(ngModel)]="cliente.endereco?.cidade?.estado!.id">
             <option value disabled>Selecione um estado</option>
-            <option *ngFor="let estado of estados$ | async" [value]="estado.id">
+            <option *ngFor="let estado of estados$ | async" [value]="estado.id"
+              [selected]="estado.id === cliente.endereco?.cidade?.estado?.id">
               {{estado.nome}}
             </option>
           </select>
         </div>
         <div class="col">
           <select name="cidade" class="form-select" [(ngModel)]="cliente.endereco?.cidade!.id">
-            <option value disabled>Selecione a cidade</option>
-            <option *ngFor="let cidade of cidades$ | async" [value]="cidade.id">
+            <option value disabled>Selecione uma cidade</option>
+            <option *ngFor="let cidade of cidades$ | async" [value]="cidade.id"
+              [selected]="cidade.id === cliente.endereco?.cidade?.id">
               {{cidade.municipio}}
             </option>
           </select>
@@ -96,13 +98,13 @@
       </div>
       <hr>
       <div class="col-12 text-end">
-        <a class="btn btn-secondary mx-2" type="button" [routerLink]="['/login']">
+        <a class="btn btn-secondary mx-2" type="button" [routerLink]="['/cliente']">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           Voltar
         </a>
-        <button class="btn btn-success" (click)="cadastrar()" [disabled]="!formCadastro.form.valid">
+        <button class="btn btn-success" (click)="atualizar()" [disabled]="!formAlterarPerfil.form.valid">
           <i class="fa fa-save" aria-hidden="true"></i>
-          Cadastrar
+          Atualizar
         </button>
       </div>
     </form>

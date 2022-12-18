@@ -77,16 +77,19 @@
       "email": "dsfas@dafsd",
       "CPF": "32423432443",
       "telefone": "32432432412",
-      "salario": 4132,
+      "salario": 11223.34,
       "endereco": {
-        "tipoEndereco": "Travessa",
-        "logradouro": "asdfdsfsf",
+        "tipoEndereco": "Rua",
+        "logradouro": "Rua Malucaaa",
         "numero": 12,
         "complemento": "casa",
         "bairro": "capao raso",
         "CEP": "32423423",
         "cidade": {
-          "estado": {}
+          "estado": {
+            "id": "2"
+          },
+          "id": "2"
         }
       },
       "id": 2,
@@ -96,46 +99,153 @@
       "id": 3,
       "nome": "Pedro da Silva",
       "CPF": "99999999929",
-      "conta": { "saldo": 55000.03, "gerente": { "id": 1 } },
+      "conta": {
+        "saldo": 55000.03,
+        "gerente": {
+          "id": 1
+        }
+      },
       "endereco": {
-        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
       }
     },
     {
       "id": 4,
       "nome": "Joãozinho dos Santos",
       "CPF": "99399999929",
-      "conta": { "saldo": 30000.0 },
+      "conta": {
+        "saldo": 30000
+      },
       "endereco": {
-        "cidade": { "municipio": "Florianópolis", "estado": { "UF": "SC" } }
+        "cidade": {
+          "municipio": "Florianópolis",
+          "estado": {
+            "UF": "SC"
+          }
+        }
       }
     },
     {
       "id": 5,
       "nome": "Gabriel dos Santos",
       "CPF": "99994999929",
-      "conta": { "saldo": 12000.0, "gerente": { "id": 1 } },
+      "conta": {
+        "saldo": 12000,
+        "gerente": {
+          "id": 1
+        }
+      },
       "endereco": {
-        "cidade": { "municipio": "Porto Alegre", "estado": { "UF": "RS" } }
+        "cidade": {
+          "municipio": "Porto Alegre",
+          "estado": {
+            "UF": "RS"
+          }
+        }
       }
     },
     {
       "id": 6,
       "nome": "Maria do Rosário",
       "CPF": "99959999292",
-      "conta": { "saldo": 1000.0, "gerente": { "id": 1 } },
+      "conta": {
+        "saldo": 1000,
+        "gerente": {
+          "id": 1
+        }
+      },
       "endereco": {
-        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
       }
     },
     {
       "id": 7,
       "nome": "Letícia Galvão",
       "CPF": "19999999929",
-      "conta": { "saldo": 15900.02, "gerente": { "id": 1 } },
+      "conta": {
+        "saldo": 15900.02,
+        "gerente": {
+          "id": 1
+        }
+      },
       "endereco": {
-        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
       }
+    },
+    {
+      "nome": "teste bril",
+      "email": "novo@bantads",
+      "CPF": "12341223124",
+      "telefone": "12412342342",
+      "salario": 234.23,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "asdfasfsfsf sdfasd",
+        "numero": 32321,
+        "complemento": "nunca",
+        "bairro": "te falarei",
+        "CEP": "32452331",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 8
+    },
+    {
+      "nome": "eendereco adsds",
+      "email": "teste@endereco",
+      "CPF": "34234352353",
+      "telefone": "45234534254",
+      "salario": 43252.43,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "casa do teste",
+        "numero": 32523,
+        "complemento": "asdfsdf",
+        "bairro": "asdfasdf",
+        "CEP": "34532442",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 9
+    },
+    {
+      "nome": "com nome",
+      "email": "teste@cadastro",
+      "CPF": "23423142342",
+      "telefone": "32452345432",
+      "salario": 454.32,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "rua rua rua",
+        "numero": 343,
+        "complemento": "nao nao",
+        "bairro": "menos ainda",
+        "CEP": "35255234",
+        "cidade": {
+          "id": "1",
+          "estado": {
+            "id": "2"
+          }
+        }
+      },
+      "id": 10
     }
   ],
   "gerentes": [

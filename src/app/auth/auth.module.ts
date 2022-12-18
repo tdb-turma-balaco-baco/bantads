@@ -14,6 +14,7 @@ import {
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MinValidatorDirective } from '../shared/directives/min-validator.directive';
 import { ClienteService } from '../cliente/services/cliente.service';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
@@ -30,6 +31,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     RouterModule,
     SharedModule,
     NgxMaskModule.forRoot(),
+    NgxCurrencyModule
   ],
   providers: [CidadeService, EstadoService, ClienteService],
 })
