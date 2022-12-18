@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../auth/services/autenticacao.service';
 import { Usuario } from '../shared';
 
@@ -13,6 +14,8 @@ import { Usuario } from '../shared';
 export class SidebarComponent {
   activeId!: number;
 
+
+
   constructor(
     config: NgbDropdownConfig,
     private router: Router,
@@ -20,7 +23,9 @@ export class SidebarComponent {
   ) {
     config.placement = 'top-start';
   }
+  ngOnInit() {
 
+  }
   get usuarioAutenticado(): Usuario | null {
     return this.loginService.usuarioAutenticado;
   }
@@ -29,4 +34,6 @@ export class SidebarComponent {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }
+
+
 }

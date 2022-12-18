@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Login, Usuario } from 'src/app/shared';
 import { environment } from 'src/environments/environment';
 
@@ -15,7 +16,7 @@ export class AutenticacaoService {
   };
   CHAVE_LS = 'user-session';
 
-  exibirMenuLateral = new EventEmitter<boolean>();
+  //exibirMenuLateral = new EventEmitter<boolean>();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +27,7 @@ export class AutenticacaoService {
 
   public set usuarioAutenticado(usuario: Usuario) {
     localStorage.setItem(this.CHAVE_LS, JSON.stringify(usuario));
-    this.exibirMenuLateral.emit(true);
+    //this.exibirMenuLateral.emit(true);
   }
 
   login(login: Login) {
@@ -35,6 +36,7 @@ export class AutenticacaoService {
         // `${this.BASE_URL}?login=${login.login}&senha=${login.senha}`, **forma "ideal"
         this.BASE_URL + '/2', // PRECISA ALTERAR PARA FUNCIONAR CORRETAMENTE, LIMITAÇÃO JSON-SERVER
         this.httpOptions
+
       );
     } else {
       return this.httpClient.post<Usuario>(
@@ -47,6 +49,7 @@ export class AutenticacaoService {
 
   logout() {
     localStorage.removeItem(this.CHAVE_LS);
-    this.exibirMenuLateral.emit(false);
+    //this.exibirMenuLateral.emit(false);
   }
+
 }

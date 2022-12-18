@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   autenticar(): void {
     this.loading = true;
     if (this.formLogin.form.valid) {
+
       this.loginService.login(this.login).subscribe({
         next: (usuario) => {
           if (usuario !== null) {

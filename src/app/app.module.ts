@@ -14,10 +14,16 @@ import { AuthModule } from './auth';
 import { SharedModule } from './shared';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 
 registerLocaleData(ptBr);
 @NgModule({
-  declarations: [AppComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
