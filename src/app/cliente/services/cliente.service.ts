@@ -28,10 +28,10 @@ export class ClienteService {
 
   inserir(cliente: Cliente) {
     if (cliente.salario && cliente.salario > 0) {
-      cliente.limite = cliente.salario / 2;
+      cliente.conta!.limite = cliente.salario / 2;
     } else {
       cliente.salario = 0;
-      cliente.limite = 0;
+      cliente.conta!.limite = 0;
     }
 
     const clienteJSON = JSON.stringify(cliente);
@@ -58,13 +58,13 @@ export class ClienteService {
       // Se o novo limite for menor que o seu saldo negativo neste momento,
       // então seu limite será ajustado para seu saldo negativo
       if (cliente.salario < 0) {
-        cliente.limite = cliente.salario;
+        cliente.conta!.limite = cliente.salario;
       } else {
-        cliente.limite = cliente.salario / 2;
+        cliente.conta!.limite = cliente.salario / 2;
       }
     } else {
       cliente.salario = 0;
-      cliente.limite = 0;
+      cliente.conta!.limite = 0;
     }
 
     const clienteJSON = JSON.stringify(cliente);
