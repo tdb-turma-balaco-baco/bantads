@@ -13,12 +13,10 @@ export class AppComponent {
   constructor(private loginService: AutenticacaoService) {}
 
   ngOnInit() {
-    this.loginService.exibirMenuLateral.subscribe(
-      (flagExibir) => (this.exibirMenuLateral = flagExibir)
-    );
+
   }
 
   ngOnDestroy() {
-    this.loginService.exibirMenuLateral.unsubscribe();
+
   }
 }
