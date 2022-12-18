@@ -3,14 +3,6 @@
     {
       "id": 1,
       "login": "admin"
-    },
-    {
-      "id": 2,
-      "login": "admin2"
-    },
-    {
-      "id": 3,
-      "login": "admin3"
     }
   ],
   "cidades": [
@@ -61,27 +53,24 @@
   ],
   "clientes": [
     {
-      "id": 1,
-      "nome": "Cliente Silva",
-      "email": "cliente.silva@bantads.com",
-      "CPF": "nnn.nnn.nnn-nn",
-      "telefone": "(xx) xxxxx-xxxx",
-      "perfil": "CLIENTE",
-      "salario": 250,
-      "endereco": {},
-      "conta": {
-        "id": 1,
-        "saldo": 250,
-        "limite": 500,
-        "gerente": {
-          "id": 1,
-          "nome": "Sr. Gerente 1",
-          "email": "gerente1@bantads.com",
-          "CPF": "",
-          "telefone": "(xx) xxxxx-xxxx",
-          "perfil": "GERENTE"
+      "nome": "TESTE SILVA",
+      "email": "dsfas@dafsd",
+      "CPF": "2242343236448",
+      "telefone": "32432432412",
+      "salario": 120.5,
+      "endereco": {
+        "tipoEndereco": "Travessa",
+        "logradouro": "asdfdsfsf",
+        "numero": 12,
+        "complemento": "casa",
+        "bairro": "capao raso",
+        "CEP": "32423423",
+        "cidade": {
+          "estado": {}
         }
-      }
+      },
+      "id": 1,
+      "situacaoConta": "ATIVA"
     },
     {
       "nome": "EDUARDO POST REQUEST",
@@ -100,26 +89,53 @@
           "estado": {}
         }
       },
-      "id": 2
+      "id": 2,
+      "situacaoConta": "PENDENTE"
     },
     {
-      "nome": "cagar muito",
-      "email": "coco@coco",
-      "CPF": "52345345435",
-      "telefone": "32142342314",
-      "salario": 31242,
+      "id": 3,
+      "nome": "Pedro da Silva",
+      "CPF": "99999999929",
+      "conta": { "saldo": 55000.03, "gerente": { "id": 1 } },
       "endereco": {
-        "tipoEndereco": "Avenida",
-        "logradouro": "caralho city",
-        "numero": 3124,
-        "complemento": "infernoo",
-        "bairro": "inferno",
-        "CEP": "23483284",
-        "cidade": {
-          "estado": {}
-        }
-      },
-      "id": 3
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
+    },
+    {
+      "id": 4,
+      "nome": "Joãozinho dos Santos",
+      "CPF": "99399999929",
+      "conta": { "saldo": 30000.0 },
+      "endereco": {
+        "cidade": { "municipio": "Florianópolis", "estado": { "UF": "SC" } }
+      }
+    },
+    {
+      "id": 5,
+      "nome": "Gabriel dos Santos",
+      "CPF": "99994999929",
+      "conta": { "saldo": 12000.0, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Porto Alegre", "estado": { "UF": "RS" } }
+      }
+    },
+    {
+      "id": 6,
+      "nome": "Maria do Rosário",
+      "CPF": "99959999292",
+      "conta": { "saldo": 1000.0, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
+    },
+    {
+      "id": 7,
+      "nome": "Letícia Galvão",
+      "CPF": "19999999929",
+      "conta": { "saldo": 15900.02, "gerente": { "id": 1 } },
+      "endereco": {
+        "cidade": { "municipio": "Curitiba", "estado": { "UF": "PR" } }
+      }
     }
   ],
   "gerentes": [
@@ -160,28 +176,81 @@
         "id": 1,
         "nome": "Cliente Silva"
       }
-    }
-  ],
-  "logins": [
+    },
     {
-      "login": "admin",
-      "senha": "admin"
-    }
-  ],
-  "enderecos": [
-    {
-      "logradouro": "Rua dos Testes",
-      "numero": 0,
-      "complemento": "Ap. 00",
-      "bairro": "Testovânia",
-      "CEP": "xxxxx-xxx",
-      "cidade": {
-        "municipio": "",
-        "estado": {
-          "nome": "",
-          "UF": ""
-        }
+      "timestamp": "2022-11-30 12:00",
+      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
       }
+    },
+    {
+      "timestamp": "2022-09-24 12:00",
+      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    },
+    {
+      "timestamp": "2022-10-30 12:00",
+      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    },
+    {
+      "timestamp": "2022-11-25 12:00",
+      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ass"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "0",
+      "login": "admin@admin",
+      "senha": "admin",
+      "nome": "Senhor Admin",
+      "perfil": "ADMIN"
+    },
+    {
+      "id": "1",
+      "login": "gerente@gerente",
+      "senha": "gerente",
+      "nome": "Senhor Gerente",
+      "perfil": "GERENTE"
+    },
+    {
+      "id": "2",
+      "login": "cliente@cliente",
+      "senha": "cliente",
+      "nome": "Senhor Cliente",
+      "perfil": "CLIENTE"
     }
   ]
 }

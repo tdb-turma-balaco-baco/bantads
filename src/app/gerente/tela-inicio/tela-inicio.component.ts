@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { ClienteService } from 'src/app/cliente/services/cliente.service';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
-import { GerenteService } from '../service/gerente.service';
+import { GerenteService } from '../services/gerente.service';
 
 @Component({
   selector: 'app-tela-inicio',
@@ -10,13 +11,46 @@ import { GerenteService } from '../service/gerente.service';
 export class TelaInicioComponent {
   clientes: Cliente[] = [];
 
-  constructor(private gerenteService: GerenteService) {}
+  constructor(
+    private clienteService: ClienteService,
+    private gerenteService: GerenteService
+  ) {}
 
   ngOnInit(): void {
-    this.clientes = this.listarClientes();
+    this.listarClientesPendentesAprovacao();
   }
 
-  listarClientes(): Cliente[] {
-    return this.gerenteService.listarClientesPendentes();
+  listarClientesPendentesAprovacao() {
+    return this.gerenteService.listarClientesPendentesAprovacao().subscribe({
+      next: (data: Cliente[]) => {
+        if (data === null) {
+          this.clientes = [];
+        } else {
+          this.clientes = data;
+        }
+      },
+    });
+  }
+
+  aprovarAberturaConta($event: MouseEvent, cliente: Cliente) {
+    $event.preventDefault();
+    if (confirm(`Deseja realmente APROVAR a abertura de conta do cliente ${cliente.nome}?`)) {
+      this.gerenteService.aprovarAberturaConta(cliente).subscribe({
+        complete: () => {
+          this.listarClientesPendentesAprovacao();
+        }
+      });
+    }
+  }
+
+  recusarAberturaConta($event: MouseEvent, cliente: Cliente) {
+    $event.preventDefault();
+    if (confirm(`Deseja realmente RECUSAR a abertura de conta do cliente ${cliente.nome}?`)) {
+      this.gerenteService.recusarAberturaConta(cliente).subscribe({
+        complete: () => {
+          this.listarClientesPendentesAprovacao();
+        }
+      });
+    }
   }
 }

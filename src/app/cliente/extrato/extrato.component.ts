@@ -38,7 +38,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 
 export class ExtratoComponent implements OnInit {
   ngOnInit(): void {
-
+    this.listarExtratosPorData(this.calendar.getNext(this.calendar.getToday(), 'd', -10), this.calendar.getToday())
   }
   @ViewChild('datepicker') ngbDatepicker: NgbInputDatepicker | null;
 
@@ -107,7 +107,7 @@ export class ExtratoComponent implements OnInit {
           if (data === null) {
             this.extratos = [];
           } else {
-            this.extratos = data;
+            this.extratos = data.sort((a, b) => a.timestamp!.valueOf() - b.timestamp!.valueOf());
           }
         }
       });
