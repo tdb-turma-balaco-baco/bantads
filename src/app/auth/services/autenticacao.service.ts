@@ -17,7 +17,6 @@ export class AutenticacaoService {
   CHAVE_LS = 'user-session';
 
   //exibirMenuLateral = new EventEmitter<boolean>();
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient: HttpClient) {}
 
@@ -33,7 +32,6 @@ export class AutenticacaoService {
 
   login(login: Login) {
     if (environment.featureFlagJsonServer) {
-      this.loggedIn.next(true);
       return this.httpClient.get<Usuario>(
         // `${this.BASE_URL}?login=${login.login}&senha=${login.senha}`, **forma "ideal"
         this.BASE_URL + '/2', // PRECISA ALTERAR PARA FUNCIONAR CORRETAMENTE, LIMITAÇÃO JSON-SERVER
@@ -51,10 +49,7 @@ export class AutenticacaoService {
 
   logout() {
     localStorage.removeItem(this.CHAVE_LS);
-    this.loggedIn.next(false);
     //this.exibirMenuLateral.emit(false);
   }
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
+
 }

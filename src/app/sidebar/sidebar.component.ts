@@ -14,7 +14,7 @@ import { Usuario } from '../shared';
 export class SidebarComponent {
   activeId!: number;
 
-  isLoggedIn$!: Observable<boolean>;
+
 
   constructor(
     config: NgbDropdownConfig,
@@ -24,7 +24,7 @@ export class SidebarComponent {
     config.placement = 'top-start';
   }
   ngOnInit() {
-    this.isLoggedIn$ = this.loginService.isLoggedIn;
+
   }
   get usuarioAutenticado(): Usuario | null {
     return this.loginService.usuarioAutenticado;
