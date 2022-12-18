@@ -13,6 +13,7 @@ import {
 } from '../shared';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MinValidatorDirective } from '../shared/directives/min-validator.directive';
+import { ClienteService } from '../cliente/services/cliente.service';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
@@ -30,6 +31,6 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     SharedModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [CidadeService, EstadoService],
+  providers: [CidadeService, EstadoService, ClienteService],
 })
 export class AuthModule {}

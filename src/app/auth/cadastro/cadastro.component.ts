@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClienteService } from 'src/app/cliente';
+import { ClienteService } from 'src/app/cliente/services/cliente.service';
 import {
   Cidade,
   CidadeService,

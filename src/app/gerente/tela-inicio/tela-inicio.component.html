@@ -6,7 +6,7 @@
         <th>CPF</th>
         <th>Nome</th>
         <th>Salário</th>
-        <th></th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -15,8 +15,8 @@
         <td>{{cliente.nome}}</td>
         <td>{{cliente.salario | currency:'BRL' :true: '2.2-2' }}</td>
         <td class="text-center">
-          <button class="btn btn-outline-success">Aprovar</button>
-          <button class="btn btn-outline-danger offset-sm-3">Recusar</button>
+          <button class="btn btn-outline-success" (click)="aprovarAberturaConta($event, cliente)">Aprovar</button>
+          <button class="btn btn-outline-danger offset-sm-3" (click)="recusarAberturaConta($event, cliente)">Recusar</button>
         </td>
       </tr>
     </tbody>

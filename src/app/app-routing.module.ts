@@ -5,7 +5,8 @@ import { ClienteRoutes } from './cliente';
 import { gerenteRoutes } from './gerente/gerente-routing.module';
 import { adminRoutes } from './admin/admin-routing.module';
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'gerente/inicio' },
+  // TODO: Atualizar o redirectTo do root
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   ...adminRoutes,
   ...AuthRoutes,
   ...ClienteRoutes,

@@ -1,0 +1,59 @@
+
+<section class="container py-5">
+<form class="row row-cols-sm-auto pb-2">
+  <div class="col-12">
+    <div class="dp-hidden position-absolute">
+      <div class="input-group">
+        <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside' " [maxDate]="today"
+          (dateSelect)="onDateSelection($event)" [startDate]="startDate" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="isDisabled"
+           tabindex="-1" />
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="input-group">
+      <input #dpFromDate class="form-control" placeholder="dd/mm/aaaa" name="dpFromDate"
+        [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)"  readonly/>
+      <button class="btn btn-outline-secondary fa-regular fa-calendar-days" (click)="datepicker.toggle()"
+        type="button"></button>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="input-group">
+      <input  #dpToDate class="form-control" placeholder="dd/mm/aaaa" name="dpToDate" [value]="formatter.format(toDate) "
+        (input)="toDate = validateInput(toDate, dpToDate.value)" readonly/>
+      <button class="btn btn-outline-secondary fa-regular fa-calendar-days" (click)="datepicker.toggle()"
+        type="button"></button>
+    </div>
+  </div>
+</form>
+
+  <table class="table table-hover table-bordered">
+
+    <thead class="table-light">
+      <tr >
+        <th>Data</th>
+        <th>Operação</th>
+        <th>Cliente origem</th>
+        <th>Cliente destino</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let extrato of extratos">
+
+        <td>{{extrato.timestamp | date: 'dd/MM/yyyy'}}</td>
+        <td>{{extrato.operacao}}</td>
+        <td>{{extrato.origem?.nome}}</td>
+        <td>{{extrato.destino?.nome}}</td>
+        <td>{{extrato.valor | currency:'BRL' :true: '2.2-2'}} </td>
+
+      </tr>
+    </tbody>
+  </table>
+</section>

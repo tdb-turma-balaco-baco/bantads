@@ -1,6 +1,7 @@
 export * from './administrador/administrador.model';
 export * from './cidade/cidade.model';
 export * from './cliente/cliente.model';
+export * from './cliente/situacao-conta.type';
 export * from './conta/conta.model';
 export * from './endereco/endereco.model';
 export * from './estado/estado.model';

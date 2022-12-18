@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Perfil } from '../shared';
+import { AutenticacaoService } from '../auth/services/autenticacao.service';
+import { Usuario } from '../shared';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,19 +12,21 @@ import { Perfil } from '../shared';
 })
 export class SidebarComponent {
   activeId!: number;
-  currentProfileRole!: Perfil;
 
-  constructor(config: NgbDropdownConfig, private router: Router) {
+  constructor(
+    config: NgbDropdownConfig,
+    private router: Router,
+    private loginService: AutenticacaoService
+  ) {
     config.placement = 'top-start';
-    this.currentProfileRole = this.initializeProfileRole();
   }
 
-  initializeProfileRole(): Perfil {
-    return 'CLIENTE';
+  get usuarioAutenticado(): Usuario | null {
+    return this.loginService.usuarioAutenticado;
   }
 
   logout(): void {
-    console.log("Logout feito!");
-    this.currentProfileRole === 'ADMIN' ? this.currentProfileRole = 'CLIENTE' : this.currentProfileRole = 'ADMIN';
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 }
