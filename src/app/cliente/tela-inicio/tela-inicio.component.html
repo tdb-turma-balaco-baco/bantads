@@ -9,11 +9,11 @@
         </h4>
         <div class="card-body text-center">
           <h3 class="card-title" [ngStyle]="{'color': currentBalance > 0 ? '' : 'red'}">
-            R$ {{currentBalance}}
+            {{ currentBalance | currency:'BRL':true:'2.2-2' }}
           </h3>
           <p class="card-text">
             <i class="fa-solid fa-credit-card"></i>
-            Limite atual: R$ {{currentCreditLimit}}
+            Limite atual: {{ currentCreditLimit | currency:'BRL':true:'2.2-2'}}
           </p>
           <hr>
           <p class="card-text">
@@ -43,7 +43,7 @@
               Desvalorização do dinheiro? É no BANTADS!
             </small>
           </p>
-          <a href="#" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" [routerLink]="['/depositar']">
             <i class="fa-solid fa-piggy-bank"></i>
             Depósito
           </a>
@@ -65,7 +65,7 @@
               Falta de segurança? É no BANTADS!
             </small>
           </p>
-          <a href="#" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" [routerLink]="['/sacar']">
             <i class="fa-solid fa-hand-holding-dollar"></i>
             Saque
           </a>
@@ -87,7 +87,7 @@
               Estelionato e fraude? É no BANTADS!
             </small>
           </p>
-          <a href="#" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" [routerLink]="['/transferir']">
             <i class="fa-solid fa-money-bill-transfer"></i>
             Transferência
           </a>

@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ExtratoComponent } from './extrato';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
-import { ClienteService } from './services/cliente.service';
-
+import { AlterarPerfilComponent } from './alterar-perfil/alterar-perfil.component';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { ClienteService } from './services/cliente.service';
     SacarComponent,
     DepositarComponent,
     TransferirComponent,
-    ExtratoComponent
+    ExtratoComponent,
+    AlterarPerfilComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +28,8 @@ import { ClienteService } from './services/cliente.service';
     FormsModule,
     NgbModule,
     NgxCurrencyModule,
-    NgxMaskModule.forRoot()
-  ]
+    NgxMaskModule.forRoot(),
+    SharedModule,
+  ],
 })
 export class ClienteModule {}

@@ -14,7 +14,7 @@ export class ClienteService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
-  }
+  };
 
   constructor(private httpClient: HttpClient) {}
 
@@ -27,14 +27,47 @@ export class ClienteService {
   }
 
   inserir(cliente: Cliente) {
+    if (cliente.salario && cliente.salario > 0) {
+      cliente.conta!.limite = cliente.salario / 2;
+    } else {
+      cliente.salario = 0;
+      cliente.conta!.limite = 0;
+    }
+
     const clienteJSON = JSON.stringify(cliente);
-    return this.httpClient.post<Cliente>(this.BASE_URL, clienteJSON, this.httpOptions);
+    return this.httpClient.post<Cliente>(
+      this.BASE_URL,
+      clienteJSON,
+      this.httpOptions
+    );
   }
 
-  listarExtratosPordata( dataInicio : Date, dataFim : Date) {
-    //Post pro back com Datas e ID ?cliente?
-
-    return this.httpClient.get<RegistroExtrato[]>(this.URL_MOVIMENTACOES, this.httpOptions);
+  listarExtratosPordata(dataInicio: Date, dataFim: Date) {
+    // Post pro back com Datas e ID ?cliente?
+    return this.httpClient.get<RegistroExtrato[]>(
+      this.URL_MOVIMENTACOES,
+      this.httpOptions
+    );
   }
 
+  atualizar(cliente: Cliente) {
+    // Atende a regra de negócio de atualizar perfil:
+    // Caso haja alteração do salário, o novo limite deve ser calculado.
+
+    if (cliente.salario && cliente.salario > 0) {
+      // Se o novo limite for menor que o seu saldo negativo neste momento,
+      // então seu limite será ajustado para seu saldo negativo
+      if (cliente.salario < 0) {
+        cliente.conta!.limite = cliente.salario;
+      } else {
+        cliente.conta!.limite = cliente.salario / 2;
+      }
+    } else {
+      cliente.salario = 0;
+      cliente.conta!.limite = 0;
+    }
+
+    const clienteJSON = JSON.stringify(cliente);
+    return this.httpClient.put<Cliente>(this.BASE_URL + cliente.id!, clienteJSON, this.httpOptions);
+  }
 }

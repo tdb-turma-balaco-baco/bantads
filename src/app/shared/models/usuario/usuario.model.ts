@@ -3,7 +3,7 @@ import { Perfil } from "./perfil.type";
 
 export class Usuario extends Login {
   constructor(
-    public id?: string,
+    public id?: number,
     public nome?: string,
     public email?: string,
     public CPF?: string,

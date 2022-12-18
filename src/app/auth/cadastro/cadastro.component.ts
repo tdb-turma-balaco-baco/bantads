@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ClienteService } from 'src/app/cliente/services/cliente.service';
 import {
   Cidade,
@@ -18,36 +19,31 @@ import {
 })
 export class CadastroComponent {
   @ViewChild('formCadastro') formCadastro!: NgForm;
-  cliente!: Cliente;
+
+  cliente: Cliente = new Cliente();
   loading!: boolean;
-  enderecoCliente!: Endereco;
-  cidadeCliente!: Cidade;
-  estadoCliente!: Estado;
-  estados!: Estado[];
-  cidades!: Cidade[];
+  public estados$: Observable<Estado[]>;
+  public cidades$: Observable<Cidade[]>;
 
   constructor(
     private cidadeService: CidadeService,
     private estadoService: EstadoService,
     private clienteService: ClienteService,
     public router: Router
-  ) {}
+  ) {
+    this.estados$ = this.estadoService.listarTodosEstados();
+    this.cidades$ = this.cidadeService.listarTodasCidades();
+  }
 
   ngOnInit(): void {
     // Bind dos objetos TypeScript, para trabalhar o formulário
     this.cliente = new Cliente();
-    this.enderecoCliente = new Endereco();
-    this.cliente.endereco = this.enderecoCliente;
-    this.cidadeCliente = new Cidade();
-    this.cliente.endereco.cidade = this.cidadeCliente;
-    this.estadoCliente = new Estado();
-    this.cliente.endereco.cidade.estado = this.estadoCliente;
+    this.cliente.endereco = new Endereco();
+    this.cliente.endereco.cidade = new Cidade();
+    this.cliente.endereco.cidade.estado = new Estado();
 
     // Define que o radio input padrão é rua, e pode ser alterado em runtime
-    this.enderecoCliente.tipoEndereco = 'Rua';
-
-    this.listarCidades();
-    this.listarEstados();
+    this.cliente.endereco!.tipoEndereco = 'Rua';
 
     this.loading = false;
   }
@@ -67,29 +63,5 @@ export class CadastroComponent {
     }
 
     this.loading = false;
-  }
-
-  listarEstados() {
-    return this.estadoService.listarTodosEstados().subscribe({
-      next: (data: Estado[]) => {
-        if (data === null) {
-          this.estados = [];
-        } else {
-          this.estados = data;
-        }
-      },
-    });
-  }
-
-  listarCidades() {
-    return this.cidadeService.listarTodasCidades().subscribe({
-      next: (data: Cidade[]) => {
-        if (data === null) {
-          this.cidades = [];
-        } else {
-          this.cidades = data;
-        }
-      },
-    });
   }
 }

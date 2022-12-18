@@ -6,6 +6,7 @@ import { TopClientesComponent } from './top-clientes/top-clientes.component';
 import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     TelaInicioComponent,
     TopClientesComponent,
-    ListarClientesComponent
+    ListarClientesComponent,
+    ConsultarClienteComponent
   ],
   imports: [
     CommonModule,
