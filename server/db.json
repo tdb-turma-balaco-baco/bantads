@@ -78,6 +78,19 @@
       "CPF": "32423432443",
       "telefone": "32432432412",
       "salario": 11223.34,
+      "conta": {
+        "id": 1,
+        "saldo": 250,
+        "limite": 500,
+        "gerente": {
+          "id": 1,
+          "nome": "Sr. Gerente 1",
+          "email": "gerente1@bantads.com",
+          "CPF": "nnn.nnn.nnn-nn",
+          "telefone": "(xx) xxxxx-xxxx",
+          "perfil": "GERENTE"
+        }
+      },
       "endereco": {
         "tipoEndereco": "Rua",
         "logradouro": "Rua Malucaaa",
@@ -245,9 +258,49 @@
           "estado": {
             "id": "2"
           }
-        }
+        },
+        "conta": [
+          {
+            "id": 2,
+            "saldo": 350,
+            "limite": 500,
+            "gerente": {
+              "id": 1,
+              "nome": "Sr. Gerente 2",
+              "email": "gerente1@bantads.com",
+              "CPF": "nnn.nnn.nnn-nn",
+              "telefone": "(xx) xxxxx-xxxx",
+              "perfil": "GERENTE"
+            }
+          }
+        ]
       },
       "id": 10
+    },
+    {
+      "nome": "aaaaaa",
+      "email": "teste@teste.com",
+      "CPF": "11111111111",
+      "telefone": "41992848795",
+      "salario": 111111111.11,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "Rua rua das ruas",
+        "numero": 11111,
+        "complemento": "casa",
+        "bairro": "casa",
+        "CEP": "11111111",
+        "cidade": {
+          "id": "3",
+          "estado": {
+            "id": "3"
+          }
+        }
+      },
+      "conta": {
+        "limite": 55555555.555
+      },
+      "id": 11
     }
   ],
   "gerentes": [
@@ -268,6 +321,19 @@
       "gerente": {
         "id": 1,
         "nome": "Sr. Gerente 1",
+        "email": "gerente1@bantads.com",
+        "CPF": "nnn.nnn.nnn-nn",
+        "telefone": "(xx) xxxxx-xxxx",
+        "perfil": "GERENTE"
+      }
+    },
+    {
+      "id": 2,
+      "saldo": 350,
+      "limite": 500,
+      "gerente": {
+        "id": 1,
+        "nome": "Sr. Gerente 2",
         "email": "gerente1@bantads.com",
         "CPF": "nnn.nnn.nnn-nn",
         "telefone": "(xx) xxxxx-xxxx",

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Conta } from 'src/app/shared';
 import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
 import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
 import { environment } from 'src/environments/environment';
@@ -33,6 +34,7 @@ export class ClienteService {
   }
 
   inserir(cliente: Cliente) {
+    cliente.conta = new Conta;
     if (cliente.salario && cliente.salario > 0) {
       cliente.conta!.limite = cliente.salario / 2;
     } else {

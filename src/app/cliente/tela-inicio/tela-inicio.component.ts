@@ -17,7 +17,7 @@ export class TelaInicioComponent {
     private clienteService: ClienteService
   ) {
     this.usuario = this.authService.usuarioAutenticado;
-    console.log(this.usuario);
+    this.cliente = new Cliente();
 
     this.clienteService.buscarClientePorId(this.usuario.id!).subscribe({
       next: (cliente) => {
