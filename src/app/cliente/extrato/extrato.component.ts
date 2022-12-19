@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateAdapter, NgbDateParserFormatter, NgbDatepicker, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
+import { Cliente, Usuario } from 'src/app/shared';
 import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
 import { ClienteService } from '../services/cliente.service';
 
@@ -42,6 +44,9 @@ export class ExtratoComponent implements OnInit {
   }
   @ViewChild('datepicker') ngbDatepicker: NgbInputDatepicker | null;
 
+  usuario: Usuario;
+  cliente: Cliente | null = null;
+
   hoveredDate: NgbDate | null = null;
 
   fromDate: NgbDate | null;
@@ -50,11 +55,26 @@ export class ExtratoComponent implements OnInit {
   startDate: NgbDate = this.calendar.getNext(this.calendar.getToday(), 'm', -1)
   extratos: RegistroExtrato[] = [];
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public clienteService: ClienteService, private changeDetection: ChangeDetectorRef) {
+  constructor(
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter,
+    public clienteService: ClienteService,
+    private authService: AutenticacaoService,
+
+    ) {
     this.fromDate = null;
     this.ngbDatepicker = null;
     this.toDate = null;
     this.today = this.calendar.getToday();
+    this.usuario = this.authService.usuarioAutenticado;
+    this.clienteService.buscarClientePorId(this.usuario.id!).subscribe({
+      next: (cliente) => {
+        if(cliente){
+          this.cliente = cliente;
+        }
+      }
+    });
+
   }
 
   onDateSelection(date: NgbDate) {
@@ -64,7 +84,6 @@ export class ExtratoComponent implements OnInit {
       this.ngbDatepicker?.close();
       this.toDate = date;
       this.listarExtratosPorData(this.fromDate, this.toDate);
-      this.changeDetection.detectChanges();
 
     } else {
       this.toDate = null;
@@ -90,7 +109,26 @@ export class ExtratoComponent implements OnInit {
       this.isHovered(date)
     );
   }
+  isSaida(registro: RegistroExtrato) {
 
+    if(registro.operacao == "SAQUE"){
+      return true;
+    }else if (registro.operacao == "TRANSFERENCIA" && registro.destino?.nome != this.cliente?.nome){
+      return true;
+    }else{
+      return false
+    }
+  }
+  isEntrada(registro: RegistroExtrato) {
+
+    if(registro.operacao == "DEPOSITO"){
+      return true;
+    }else if (registro.operacao == "TRANSFERENCIA" && registro.destino?.nome == this.cliente?.nome){
+      return true;
+    }else{
+      return false
+    }
+  }
   validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
     const parsed = this.formatter.parse(input);
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
