@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   login: Login = new Login();
   loading: boolean = false;
   mensagemErro!: string;
+  exibirErro: boolean = false;
 
   constructor(
     private router: Router,
@@ -37,21 +38,19 @@ export class LoginComponent implements OnInit {
   autenticar(): void {
     this.loading = true;
     if (this.formLogin.form.valid) {
-
       this.loginService.login(this.login).subscribe({
-        next: (usuario) => {
-          if (usuario !== null) {
-            this.loginService.usuarioAutenticado = usuario;
+        next: (usuarios) => {
+          if (usuarios[0] !== null && usuarios[0] !== undefined) {
+            this.loginService.usuarioAutenticado = usuarios[0];
             this.loading = false;
-            this.router.navigate(this.definirRotaAutenticada(usuario.perfil));
+            this.router.navigate(
+              this.definirRotaAutenticada(usuarios[0].perfil)
+            );
           } else {
             this.loading = false;
+            this.exibirErro = true;
             this.mensagemErro = 'E-mail/Senha inválidos';
           }
-        },
-        error: () => {
-          this.loading = false;
-          this.mensagemErro = 'E-mail/Senha inválidos';
         },
       });
     }
