@@ -21,18 +21,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let cliente of clientes">
-
-
               <td>{{cliente.nome}}</td>
-              <td>{{cliente.CPF}}</td>
+              <td>{{cliente.CPF ? (cliente.CPF | cpf) : null}}</td>
               <td>{{cliente.conta?.limite}} </td>
               <td>{{cliente.telefone}} </td>
-              <td>{{cliente.conta?.gerente}} </td>
+              <td>{{cliente.conta?.gerente?.nome}} </td>
               <td>{{cliente.conta?.saldo}}</td>
-
             </tr>
-
-
           </tbody>
         </table>
 

@@ -17,19 +17,31 @@
               <th scope="col">Qnt Clientes</th>
               <th scope="col">Saldos Positivos</th>
               <th scope="col">Saldos Negativos</th>
+              <a [routerLink]="['/admin/novo']" href="#" title="Novo" alt="Novo" class="btn btn-xs btn-sucess">
+                <i class="fa fa-plus" aria-hidden="true">
+
+                </i>
+                Novo
+              </a>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let gerente of gerentes">
-
-
               <td> {{gerente.nome}} </td>
-              <td> {{gerente.CPF}}</td>
+              <td> {{gerente.CPF ? (gerente.CPF | cpf) : null}}</td>
               <td> {{gerente.email}}</td>
-              <td> {{gerente.telefone}}</td>
+              <td> {{gerente.telefone | telefone}}</td>
               <td> {{gerente.clientes?.length}}</td>
-              <td> </td>
-              <td> </td>
+              <td>  R$4000,00 </td>
+              <td>  R$5000,00 </td>
+              <a [routerLink]="['/admin/editar-gerentes', gerente.id]" href="#" title="Editar" alt="Editar"
+              class="btn btn-xs btn-info">
+              <i class="fa fa-edit" aria-hidden="true"></i>Editar
+            </a>
+            <a  href="#" title="Excluir" alt="Excluir" class="btn btn-xs btn-danger" (click)="remover($event, gerente)">
+              <i class="fa fa-times" aria-hidden="true"></i>Excluir
+            </a>
+            <p *ngIf="gerentes.length === 0">Nenhum gerente no momento.</p>
             </tr>
 
 

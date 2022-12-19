@@ -1,1 +1,1 @@
-export * from '../services';
+export * from './admin.service.spec'

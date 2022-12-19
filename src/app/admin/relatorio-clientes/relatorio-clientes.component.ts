@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
-import { Cliente } from 'src/app/shared';
+import { Cliente, Usuario } from 'src/app/shared';
+import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
 
 
 @Component({
@@ -10,14 +11,32 @@ import { Cliente } from 'src/app/shared';
 })
 export class RelatorioClientes implements OnInit   {
   clientes: Cliente[] = [];
-  constructor(private adminService: AdminService) { }
+  perfilAtual!: Usuario;
+
+  constructor(private adminService: AdminService, private authService: AutenticacaoService) { }
+
   ngOnInit(): void {
+    this.perfilAtual = this.authService.usuarioAutenticado;
+
     this.clientes = this.listarTodos();
-    this.clientes.sort((a, b) => a.nome!.localeCompare(b.nome!));
+    this.clientes.sort((clienteA, clienteB) => clienteA.nome!.localeCompare(clienteB.nome!));
   }
 
-  listarTodos(): Cliente[] {
-    return this.adminService.listarTodosClientes();
+   listarTodos(): Cliente[] {
+    this.adminService.listarTodosClientes().subscribe({
+      next: (data: Cliente[]) => {
+        if (data === null) {
+          this.clientes = [];
+        } else {
+          this.clientes = data.sort((clienteA, clienteB) =>
+            clienteA
+              .nome!.toLowerCase()
+              .localeCompare(clienteB.nome!.toLowerCase())
+          );
+        }
+      },
+    });
+    return this.clientes;
   }
 
 }
