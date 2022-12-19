@@ -7,21 +7,25 @@ import { ListarClientesComponent } from './listar-clientes/listar-clientes.compo
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente.component';
-
-
+import { NgxCurrencyModule } from 'ngx-currency';
+import { NgxMaskModule } from 'ngx-mask';
+import { DetalheClienteComponent } from './detalhe-cliente/detalhe-cliente.component';
 
 @NgModule({
   declarations: [
     TelaInicioComponent,
     TopClientesComponent,
     ListarClientesComponent,
-    ConsultarClienteComponent
+    ConsultarClienteComponent,
+    DetalheClienteComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    FormsModule
-  ]
+    FormsModule,
+    NgxCurrencyModule,
+    NgxMaskModule
+  ],
 })
-export class GerenteModule { }
+export class GerenteModule {}

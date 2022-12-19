@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ClienteService {
-  BASE_URL = environment.apiURL + 'clientes/';
+  BASE_URL = environment.apiURL + 'clientes';
   URL_MOVIMENTACOES = environment.apiURL + 'movimentacoes';
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,7 +23,12 @@ export class ClienteService {
   }
 
   buscarClientePorId(id: number) {
-    return this.httpClient.get<Cliente>(this.BASE_URL + id, this.httpOptions);
+    return this.httpClient.get<Cliente>(`${this.BASE_URL}/${id}`, this.httpOptions);
+  }
+
+  buscarClientePorCPF(cpf: string) {
+    return this.httpClient.get<Cliente[]>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);
+    // CORRETO: return this.httpClient.get<Cliente>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);
   }
 
   inserir(cliente: Cliente) {
@@ -68,6 +73,6 @@ export class ClienteService {
     }
 
     const clienteJSON = JSON.stringify(cliente);
-    return this.httpClient.put<Cliente>(this.BASE_URL + cliente.id!, clienteJSON, this.httpOptions);
+    return this.httpClient.put<Cliente>(`${this.BASE_URL}/${cliente.id!}`, clienteJSON, this.httpOptions);
   }
 }
