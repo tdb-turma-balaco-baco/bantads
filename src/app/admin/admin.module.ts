@@ -4,18 +4,21 @@ import { AdminInicioComponent } from './inicio/admin-inicio.component'
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RelatorioClientes } from './relatorio-clientes/relatorio-clientes.component';
-
+import { EditarGerenteComponent } from './editar-gerente/editar-gerente.component';
+import { SharedModule } from '../shared';
 
 
 @NgModule({
   declarations: [
     AdminInicioComponent,
-    RelatorioClientes
+    RelatorioClientes,
+    EditarGerenteComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
