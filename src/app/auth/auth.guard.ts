@@ -31,19 +31,19 @@ export class AuthGuard implements CanActivate {
 
     if (!usuarioAutenticado) {
       this.router.navigate(['/login'], {
-        queryParams: { error: `Acesso proibido à ${returnURL}` },
+        queryParams: { error: `Você precisa se autenticar para acessar a rota: ${returnURL}` },
       });
       return false;
     }
 
     if (
       route.data['role'] &&
-      route.data['role'].indexOf(usuarioAutenticado) === -1
+      route.data['role'].indexOf(usuarioAutenticado.perfil) === -1
     ) {
       // Se o perfil do usuário não está no perfil da rota
       // redireciona p/ login
       this.router.navigate(['/login'], {
-        queryParams: { error: `Proibido o acesso à ${returnURL}` },
+        queryParams: { error: `Acesso proibido à rota: ${returnURL}` },
       });
       return false;
     }

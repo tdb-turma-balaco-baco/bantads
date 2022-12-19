@@ -32,6 +32,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.mensagemErro = params['error'];
+      if (params['error'].length > 0) {
+        this.exibirErro = true;
+      }
     });
   }
 
