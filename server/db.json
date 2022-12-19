@@ -136,8 +136,10 @@
       "CPF": "99994999929",
       "conta": {
         "saldo": 12000,
+        "limite": 10000,
         "gerente": {
-          "id": 1
+          "id": 1,
+          "nome": "Testivaldo"
         }
       },
       "endereco": {
