@@ -17,12 +17,13 @@
               <th scope="col">Qnt Clientes</th>
               <th scope="col">Saldos Positivos</th>
               <th scope="col">Saldos Negativos</th>
-              <a [routerLink]="['/admin/novo']" href="#" title="Novo" alt="Novo" class="btn btn-xs btn-sucess">
-                <i class="fa fa-plus" aria-hidden="true">
+              <th>
+                <a [routerLink]="['/admin/novo']" href="#" title="Novo" alt="Novo" class="btn btn-outline-success">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                  Novo
+                </a>
 
-                </i>
-                Novo
-              </a>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -34,13 +35,18 @@
               <td> {{gerente.clientes?.length}}</td>
               <td>  R$4000,00 </td>
               <td>  R$5000,00 </td>
-              <a [routerLink]="['/admin/editar-gerentes', gerente.id]" href="#" title="Editar" alt="Editar"
-              class="btn btn-xs btn-info">
-              <i class="fa fa-edit" aria-hidden="true"></i>Editar
-            </a>
-            <a  href="#" title="Excluir" alt="Excluir" class="btn btn-xs btn-danger" (click)="remover($event, gerente)">
-              <i class="fa fa-times" aria-hidden="true"></i>Excluir
-            </a>
+              <td>
+                <a [routerLink]="['/admin/editar-gerentes', gerente.id]" href="#" title="Editar" alt="Editar"
+                class="btn btn-outline-info">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+                Editar
+              </a>
+              <a  href="#" title="Excluir" alt="Excluir" class="btn btn-outline-danger offset-sm-2" (click)="remover($event, gerente)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                Excluir
+              </a>
+              </td>
+
             <p *ngIf="gerentes.length === 0">Nenhum gerente no momento.</p>
             </tr>
 

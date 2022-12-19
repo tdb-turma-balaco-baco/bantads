@@ -15,8 +15,12 @@
         <td>{{cliente.nome}}</td>
         <td>{{cliente.salario | currency:'BRL' :true: '2.2-2' }}</td>
         <td class="text-center">
-          <button class="btn btn-outline-success" (click)="aprovarAberturaConta($event, cliente)">Aprovar</button>
-          <button class="btn btn-outline-danger offset-sm-3" (click)="recusarAberturaConta($event, cliente)">Recusar</button>
+          <button class="btn btn-outline-success" (click)="aprovarAberturaConta($event, cliente)">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Aprovar</button>
+          <button class="btn btn-outline-danger offset-sm-3" (click)="recusarAberturaConta($event, cliente)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            Recusar</button>
         </td>
       </tr>
     </tbody>
