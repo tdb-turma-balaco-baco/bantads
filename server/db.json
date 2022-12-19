@@ -3,34 +3,32 @@
     {
       "id": 1,
       "login": "admin"
-    },
-    {
-      "id": 2,
-      "login": "admin2"
-    },
-    {
-      "id": 3,
-      "login": "admin3"
     }
   ],
   "cidades": [
     {
+      "id": 1,
       "municipio": "Curitiba",
       "estado": {
+        "id": 1,
         "nome": "Paraná",
         "UF": "PR"
       }
     },
     {
+      "id": 2,
       "municipio": "Florianópolis",
       "estado": {
+        "id": 2,
         "nome": "Santa Catarina",
         "UF": "SC"
       }
     },
     {
+      "id": 3,
       "municipio": "Porto Alegre",
       "estado": {
+        "id": 3,
         "nome": "Rio Grande do Sul",
         "UF": "RS"
       }
@@ -38,41 +36,271 @@
   ],
   "estados": [
     {
+      "id": 1,
       "nome": "Paraná",
       "UF": "PR"
     },
     {
+      "id": 2,
       "nome": "Santa Catarina",
       "UF": "SC"
     },
     {
+      "id": 3,
       "nome": "Rio Grande do Sul",
       "UF": "RS"
     }
   ],
   "clientes": [
     {
+      "nome": "TESTE SILVA",
+      "email": "dsfas@dafsd",
+      "CPF": "2242343236448",
+      "telefone": "32432432412",
+      "salario": 120.5,
+      "endereco": {
+        "tipoEndereco": "Travessa",
+        "logradouro": "asdfdsfsf",
+        "numero": 12,
+        "complemento": "casa",
+        "bairro": "capao raso",
+        "CEP": "32423423",
+        "cidade": {
+          "estado": {}
+        }
+      },
       "id": 1,
-      "nome": "Cliente Silva",
-      "email": "cliente.silva@bantads.com",
-      "CPF": "nnn.nnn.nnn-nn",
-      "telefone": "(xx) xxxxx-xxxx",
-      "perfil": "CLIENTE",
-      "salario": 250.0,
-      "endereco": {},
+      "situacaoConta": "ATIVA"
+    },
+    {
+      "nome": "EDUARDO POST REQUEST",
+      "email": "dsfas@dafsd",
+      "CPF": "32423432443",
+      "telefone": "32432432412",
+      "salario": 11223.34,
       "conta": {
         "id": 1,
-        "saldo": 250.0,
-        "limite": 500.0,
+        "saldo": 250,
+        "limite": 500,
         "gerente": {
           "id": 1,
           "nome": "Sr. Gerente 1",
           "email": "gerente1@bantads.com",
-          "CPF": "",
+          "CPF": "nnn.nnn.nnn-nn",
           "telefone": "(xx) xxxxx-xxxx",
           "perfil": "GERENTE"
         }
+      },
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "Rua Malucaaa",
+        "numero": 12,
+        "complemento": "casa",
+        "bairro": "capao raso",
+        "CEP": "32423423",
+        "cidade": {
+          "estado": {
+            "id": "2"
+          },
+          "id": "2"
+        }
+      },
+      "id": 2,
+      "situacaoConta": "PENDENTE"
+    },
+    {
+      "id": 3,
+      "nome": "Pedro da Silva",
+      "CPF": "99999999929",
+      "conta": {
+        "saldo": 55000.03,
+        "gerente": {
+          "id": 1
+        }
+      },
+      "endereco": {
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
       }
+    },
+    {
+      "id": 4,
+      "nome": "Joãozinho dos Santos",
+      "CPF": "99399999929",
+      "conta": {
+        "saldo": 30000
+      },
+      "endereco": {
+        "cidade": {
+          "municipio": "Florianópolis",
+          "estado": {
+            "UF": "SC"
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "nome": "Gabriel dos Santos",
+      "CPF": "99994999929",
+      "conta": {
+        "saldo": 12000,
+        "limite": 10000,
+        "gerente": {
+          "id": 1,
+          "nome": "Testivaldo"
+        }
+      },
+      "endereco": {
+        "cidade": {
+          "municipio": "Porto Alegre",
+          "estado": {
+            "UF": "RS"
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "nome": "Maria do Rosário",
+      "CPF": "99959999292",
+      "conta": {
+        "saldo": 1000,
+        "gerente": {
+          "id": 1
+        }
+      },
+      "endereco": {
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "nome": "Letícia Galvão",
+      "CPF": "19999999929",
+      "conta": {
+        "saldo": 15900.02,
+        "gerente": {
+          "id": 1
+        }
+      },
+      "endereco": {
+        "cidade": {
+          "municipio": "Curitiba",
+          "estado": {
+            "UF": "PR"
+          }
+        }
+      }
+    },
+    {
+      "nome": "teste bril",
+      "email": "novo@bantads",
+      "CPF": "12341223124",
+      "telefone": "12412342342",
+      "salario": 234.23,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "asdfasfsfsf sdfasd",
+        "numero": 32321,
+        "complemento": "nunca",
+        "bairro": "te falarei",
+        "CEP": "32452331",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 8
+    },
+    {
+      "nome": "eendereco adsds",
+      "email": "teste@endereco",
+      "CPF": "34234352353",
+      "telefone": "45234534254",
+      "salario": 43252.43,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "casa do teste",
+        "numero": 32523,
+        "complemento": "asdfsdf",
+        "bairro": "asdfasdf",
+        "CEP": "34532442",
+        "cidade": {
+          "estado": {}
+        }
+      },
+      "id": 9
+    },
+    {
+      "nome": "com nome",
+      "email": "teste@cadastro",
+      "CPF": "23423142342",
+      "telefone": "32452345432",
+      "salario": 454.32,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "rua rua rua",
+        "numero": 343,
+        "complemento": "nao nao",
+        "bairro": "menos ainda",
+        "CEP": "35255234",
+        "cidade": {
+          "id": "1",
+          "estado": {
+            "id": "2"
+          }
+        },
+        "conta": [
+          {
+            "id": 2,
+            "saldo": 350,
+            "limite": 500,
+            "gerente": {
+              "id": 1,
+              "nome": "Sr. Gerente 2",
+              "email": "gerente1@bantads.com",
+              "CPF": "nnn.nnn.nnn-nn",
+              "telefone": "(xx) xxxxx-xxxx",
+              "perfil": "GERENTE"
+            }
+          }
+        ]
+      },
+      "id": 10
+    },
+    {
+      "nome": "aaaaaa",
+      "email": "teste@teste.com",
+      "CPF": "11111111111",
+      "telefone": "41992848795",
+      "salario": 111111111.11,
+      "endereco": {
+        "tipoEndereco": "Rua",
+        "logradouro": "Rua rua das ruas",
+        "numero": 11111,
+        "complemento": "casa",
+        "bairro": "casa",
+        "CEP": "11111111",
+        "cidade": {
+          "id": "3",
+          "estado": {
+            "id": "3"
+          }
+        }
+      },
+      "conta": {
+        "limite": 55555555.555
+      },
+      "id": 11
     }
   ],
   "gerentes": [
@@ -88,11 +316,24 @@
   "contas": [
     {
       "id": 1,
-      "saldo": 250.0,
-      "limite": 500.0,
+      "saldo": 250,
+      "limite": 500,
       "gerente": {
         "id": 1,
         "nome": "Sr. Gerente 1",
+        "email": "gerente1@bantads.com",
+        "CPF": "nnn.nnn.nnn-nn",
+        "telefone": "(xx) xxxxx-xxxx",
+        "perfil": "GERENTE"
+      }
+    },
+    {
+      "id": 2,
+      "saldo": 350,
+      "limite": 500,
+      "gerente": {
+        "id": 1,
+        "nome": "Sr. Gerente 2",
         "email": "gerente1@bantads.com",
         "CPF": "nnn.nnn.nnn-nn",
         "telefone": "(xx) xxxxx-xxxx",
@@ -103,8 +344,8 @@
   "movimentacoes": [
     {
       "timestamp": "2022-11-21 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
-      "valor": 100.00,
+      "operacao": "SAQUE",
+      "valor": 100,
       "origem": {
         "id": 1,
         "nome": "Cliente Silva"
@@ -113,28 +354,81 @@
         "id": 1,
         "nome": "Cliente Silva"
       }
-    }
-  ],
-  "logins": [
+    },
     {
-      "login": "admin",
-      "senha": "admin"
-    }
-  ],
-  "enderecos": [
-    {
-      "logradouro": "Rua dos Testes",
-      "numero": 0,
-      "complemento": "Ap. 00",
-      "bairro": "Testovânia",
-      "CEP": "xxxxx-xxx",
-      "cidade": {
-        "municipio": "",
-        "estado": {
-          "nome": "",
-          "UF": ""
-        }
+      "timestamp": "2022-11-30 12:00",
+      "operacao": "TRANSFERENCIA",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "TESTE SILVA"
       }
+    },
+    {
+      "timestamp": "2022-09-24 12:00",
+      "operacao": "DEPOSITO",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    },
+    {
+      "timestamp": "2022-10-30 12:00",
+      "operacao": "SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ewrertt"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    },
+    {
+      "timestamp": "2022-11-25 12:00",
+      "operacao": "SAQUE",
+      "valor": 100,
+      "origem": {
+        "id": 1,
+        "nome": "Cliente Silva ass"
+      },
+      "destino": {
+        "id": 1,
+        "nome": "Cliente Silva"
+      }
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "0",
+      "login": "admin@admin",
+      "senha": "admin",
+      "nome": "Senhor Admin",
+      "perfil": "ADMIN"
+    },
+    {
+      "id": "1",
+      "login": "gerente@gerente",
+      "senha": "gerente",
+      "nome": "Senhor Gerente",
+      "perfil": "GERENTE"
+    },
+    {
+      "id": "2",
+      "login": "cliente@cliente",
+      "senha": "cliente",
+      "nome": "Senhor Cliente",
+      "perfil": "CLIENTE"
     }
   ]
 }

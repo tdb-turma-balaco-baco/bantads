@@ -1,12 +1,17 @@
+import { Login } from "../login/login.model";
 import { Perfil } from "./perfil.type";
 
-export class Usuario {
+export class Usuario extends Login {
   constructor(
-    public id?: string,
+    public id?: number,
     public nome?: string,
     public email?: string,
     public CPF?: string,
     public telefone?: string,
-    public perfil?: Perfil
-  ) {}
+    public perfil?: Perfil,
+    login?: string,
+    senha?: string
+  ) {
+    super(login, senha);
+  }
 }

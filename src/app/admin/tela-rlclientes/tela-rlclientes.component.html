@@ -1,0 +1,41 @@
+<div class="row row-cols-1 g-4 p-5">
+
+  <div class="row">
+
+
+    <div class="col">
+
+      <div class="card table-responsive">
+
+        <table class="table table-borderless table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Limite</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Nome do Gerente</th>
+              <th scope="col">Saldo</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+
+
+              <td>{{cliente.nome}}</td>
+              <td>{{cliente.CPF}}</td>
+              <td>{{cliente.conta?.limite}} </td>
+              <td>{{cliente.telefone}} </td>
+              <td>{{cliente.conta?.gerente}} </td>
+              <td>{{cliente.conta?.saldo}}</td>
+
+            </tr>
+
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
