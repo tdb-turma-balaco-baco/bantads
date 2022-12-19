@@ -5,8 +5,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RelatorioClientes } from './relatorio-clientes/relatorio-clientes.component';
 import { EditarGerenteComponent } from './editar-gerente/editar-gerente.component';
-import { SharedModule } from '../shared';
-
+import {  NumericoDirective, SharedModule } from '../shared';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+export const options: Partial<IConfig>  | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared';
     CommonModule,
     RouterModule,
     FormsModule,
-    SharedModule
-  ]
+    SharedModule,
+    NgxMaskModule.forRoot()
+  ],
 })
 export class AdminModule { }

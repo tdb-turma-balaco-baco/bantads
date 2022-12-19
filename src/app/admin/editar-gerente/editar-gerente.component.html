@@ -4,43 +4,52 @@
 
   <form #formGerente="ngForm">
     <div class="form-group">
-      <label for="nome">Nome:</label>
+      <label for="nome">Nome</label>
       <input [(ngModel)]="gerente.nome" #nome="ngModel" type="text" class="form-control" id="nome" name="nome"
-        minlength="2" required>
+        minlength="2" placeholder="Nome" required>
       <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
-        <div [hidden]="!nome.errors?.['required']">Digite o nome da pessoa.</div>
+        <div [hidden]="!nome.errors?.['required']">Digite o nome do gerente.</div>
         <div [hidden]="!nome.errors?.['minlength']">O nome deve conter ao menos dois caracteres.</div>
       </div>
     </div>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input [(ngModel)]="gerente.email" #email="ngModel" type="text" class="form-control" id="email" name="email"
-        numerico minimoValidator valorMinimo="18" required>
+      <label for="email">Email</label>
+      <input [(ngModel)]="gerente.email" #email="ngModel" class="form-control" id="email" name="email"
+      placeholder="E-mail" required minlength="3">
       <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-        <div [hidden]="!email.errors?.['required']">Digite a idade da pessoa.</div>
-        <div [hidden]="!email.errors?.['minimo']">Idade deve ser maior ou igual a 18</div>
+        <div [hidden]="!email.errors['required']">Informe um email.</div>
+        <div [hidden]="!email.errors['minlength']">O email precisa ter no mínimo 3 caracteres.</div>
       </div>
-
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
-      <input  *ngIf="novoGerente"  type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="gerente.CPF"
-      #cpf="ngModel">
-      <input  *ngIf="!novoGerente"  type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="gerente.CPF"
-      #cpf="ngModel" readonly>
+      <div *ngIf="novoGerente" >
+      <input  [(ngModel)]="gerente.CPF" type="text" class="form-control" id="cpf" name="cpf" #cpf="ngModel" mask="000.000.000.00" placeholder="CPF" required>
+      <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
+        <div [hidden]="!cpf.errors?.['required']">Digite o CPF do gerente.</div>
+        <div [hidden]="!cpf.errors?.['mask']">Digite o CPF do gerente completo.</div>
+      </div>
+      </div>
+      <div *ngIf="!novoGerente">
+      <input   type="text" class="form-control" id="cpf" name="cpf" [value]="gerente.CPF ? (gerente.CPF | cpf) : null"
+       readonly> </div>
     </div>
 
     <div class="form-group">
       <label for="telefone">Telefone</label>
-      <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="gerente.telefone"
-      #telefone="ngModel">
+      <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" [(ngModel)]="gerente.telefone"
+      #telefone="ngModel" mask="(00)00000-0000" required>
+      <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger">
+        <div [hidden]="!telefone.errors?.['required']">Digite o telefone</div>
+        <div [hidden]="!telefone.errors?.['mask']">Digite o Telefone do gerente completo.</div>
+      </div>
     </div>
     <div class="form-group">
 
     <button  (click)="salvar()" [disabled]="!formGerente.form.valid" type="button" class="btn btn-primary">
       <i class="fa fa-save" aria-hidden="true"></i>Salvar
     </button>
-    <a class="btn btn-secondary" [routerLink]="['/admin/inicio']">
+    <a class="btn btn-secondary" [routerLink]="['/admin/gerentes']">
       <i class="fa fa-arrow-left" aria-hidden="true"></i>Voltar
     </a>
     </div>

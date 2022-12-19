@@ -24,9 +24,9 @@
               <td>{{cliente.nome}}</td>
               <td>{{cliente.CPF ? (cliente.CPF | cpf) : null}}</td>
               <td>{{cliente.conta?.limite}} </td>
-              <td>{{cliente.telefone}} </td>
+              <td>{{cliente.telefone | telefone}} </td>
               <td>{{cliente.conta?.gerente?.nome}} </td>
-              <td>{{cliente.conta?.saldo}}</td>
+              <td>{{ cliente.conta?.saldo ? (cliente.conta?.saldo! | currency:'BRL':true:'2.2-2') : null }}</td>
             </tr>
           </tbody>
         </table>

@@ -18,7 +18,7 @@
               <th scope="col">Saldos Positivos</th>
               <th scope="col">Saldos Negativos</th>
               <th>
-                <a [routerLink]="['/admin/novo']" href="#" title="Novo" alt="Novo" class="btn btn-outline-success">
+                <a [routerLink]="['/admin/cadastro']" href="#" title="Novo" alt="Novo" class="btn btn-outline-success">
                   <i class="fa fa-plus" aria-hidden="true"></i>
                   Novo
                 </a>
@@ -32,7 +32,7 @@
               <td> {{gerente.CPF ? (gerente.CPF | cpf) : null}}</td>
               <td> {{gerente.email}}</td>
               <td> {{gerente.telefone | telefone}}</td>
-              <td> {{gerente.clientes?.length}}</td>
+              <td > {{gerente.clientes?.length}} 0</td>
               <td>  R$4000,00 </td>
               <td>  R$5000,00 </td>
               <td>
