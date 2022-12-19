@@ -1,0 +1,71 @@
+<div class="container">
+  <form class="row g-3 mt-5">
+    <div class="col-md-6">
+      <label for="nome">Nome</label>
+      <input type="text" disabled class="form-control" id="nome" [value]="cliente.nome">
+    </div>
+    <div class="col-md-6 ">
+      <label for="email">E-mail</label>
+      <input type="email" disabled class="form-control" id="email" [value]="cliente.email">
+    </div>
+    <div class="col-md-6">
+      <label for="cpf" class="form-label">CPF</label>
+      <input type="text" disabled class="form-control" name="CPF" [value]="cliente.CPF ? (cliente.CPF | cpf) : null">
+    </div>
+    <div class="col-md-6">
+      <label for="telefone" class="form-label">Telefone</label>
+      <input type="text" disabled class="form-control" id="telefone" [value]="cliente.telefone | telefone">
+    </div>
+    <div class="col-md-10">
+      <label for="logradouro" class="form-label">Logradouro</label>
+      <input type="text" disabled class="form-control" id="logradouro" [value]="cliente.endereco?.logradouro">
+    </div>
+    <div class="col-md-2">
+      <label for="numero" class="form-label">Número</label>
+      <input type="text" disabled class="form-control" id="numero" [value]="cliente.endereco?.numero">
+    </div>
+    <div class="col-md-4">
+      <label for="estado" class="form-label">Estado</label>
+      <input type="text" disabled class="form-control" id="estado" [value]="cliente.endereco?.cidade?.estado?.nome">
+    </div>
+    <div class="col-md-4">
+      <label for="cidade" class="form-label">Cidade</label>
+      <input type="text" disabled class="form-control" id="cidade" [value]="cliente.endereco?.cidade?.municipio">
+    </div>
+    <div class="col-md-4">
+      <label for="bairro" class="form-label">Bairro</label>
+      <input type="text" disabled class="form-control" id="bairro" [value]="cliente.endereco?.bairro">
+    </div>
+    <div class="col-md-6">
+      <label for="complemento" class="form-label">Complemento</label>
+      <input type="text" disabled class="form-control" id="complemento" [value]="cliente.endereco?.complemento">
+    </div>
+    <div class="col-md-6">
+      <label for="cep" class="form-label">CEP</label>
+      <input type="text" disabled class="form-control" id="cep" [value]="cliente.endereco?.CEP ? (cliente.endereco!.CEP | CEP) : null ">
+    </div>
+    <div class="col-md-6">
+      <label for="renda" class="form-label">Salário</label>
+      <input type="text" disabled class="form-control" id="renda"
+        [value]="cliente.salario | currency:'BRL' :true:'2.2-2'">
+    </div>
+    <div class="col-md-6">
+      <label for="limite">Limite</label>
+      <input type="text" disabled class="form-control" id="limite"
+        [value]="cliente.conta?.limite | currency:'BRL' :true:'2.2-2'">
+    </div>
+    <div class="col-md-6">
+      <label for="saldo">Saldo</label>
+      <input type="text" disabled class="form-control" id="saldo"
+        [value]="cliente.conta?.saldo | currency:'BRL' :true:'2.2-2'">
+    </div>
+    <div class="col-md-6">
+      <label for="nomeGerente">Gerente</label>
+      <input type="text" disabled class="form-control" id="nomeGerente" [value]="cliente.conta?.gerente?.nome">
+    </div>
+  </form>
+  <a class="btn btn-secondary mt-5" type="button" [routerLink]="['/gerente/clientes']">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    Voltar
+  </a>
+</div>
