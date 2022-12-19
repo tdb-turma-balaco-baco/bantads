@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ClienteService {
   BASE_URL = environment.apiURL + 'clientes';
   URL_MOVIMENTACOES = environment.apiURL + 'movimentacoes';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -47,12 +48,15 @@ export class ClienteService {
     );
   }
 
-  listarExtratosPordata(dataInicio: Date, dataFim: Date) {
-    // Post pro back com Datas e ID ?cliente?
-    return this.httpClient.get<RegistroExtrato[]>(
-      this.URL_MOVIMENTACOES,
-      this.httpOptions
-    );
+  listarExtratosPordata( dataInicio : Date, dataFim : Date) {
+    //Post pro back com Datas e ID ?cliente?
+
+    return this.httpClient.get<RegistroExtrato[]>(this.URL_MOVIMENTACOES+"?_sort=timestamp&_order=asc&timestamp_gte=" + dataInicio.toISOString() + "&timestamp_lte=" + dataFim.toISOString(), this.httpOptions);
+  }
+
+  inserirmovimentacao(movimentacao: RegistroExtrato) {
+    const movimentacaoJSON = JSON.stringify(movimentacao);
+    return this.httpClient.post<RegistroExtrato>(this.URL_MOVIMENTACOES, movimentacaoJSON, this.httpOptions);
   }
 
   atualizar(cliente: Cliente) {

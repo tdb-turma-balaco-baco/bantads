@@ -276,7 +276,7 @@
   "movimentacoes": [
     {
       "timestamp": "2022-11-21 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "operacao": "SAQUE",
       "valor": 100,
       "origem": {
         "id": 1,
@@ -289,7 +289,7 @@
     },
     {
       "timestamp": "2022-11-30 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "operacao": "TRANSFERENCIA",
       "valor": 100,
       "origem": {
         "id": 1,
@@ -297,12 +297,12 @@
       },
       "destino": {
         "id": 1,
-        "nome": "Cliente Silva"
+        "nome": "TESTE SILVA"
       }
     },
     {
       "timestamp": "2022-09-24 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "operacao": "DEPOSITO",
       "valor": 100,
       "origem": {
         "id": 1,
@@ -315,7 +315,7 @@
     },
     {
       "timestamp": "2022-10-30 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "operacao": "SAQUE",
       "valor": 100,
       "origem": {
         "id": 1,
@@ -328,7 +328,7 @@
     },
     {
       "timestamp": "2022-11-25 12:00",
-      "operacao": "TRANSFERÊNCIA | DEPÓSITO | SAQUE",
+      "operacao": "SAQUE",
       "valor": 100,
       "origem": {
         "id": 1,
