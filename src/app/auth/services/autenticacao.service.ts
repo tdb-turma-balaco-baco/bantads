@@ -28,7 +28,7 @@ export class AutenticacaoService {
 
   login(login: Login) {
     return this.httpClient.get<Usuario[]>(
-      `${this.BASE_URL}?login=${login.login}&senha=${login.senha}`,
+      `${this.BASE_URL}?login=${login.email}&senha=${login.senha}`,
       this.httpOptions
     );
   }

@@ -5,13 +5,12 @@ export class Usuario extends Login {
   constructor(
     public id?: number,
     public nome?: string,
-    public email?: string,
     public CPF?: string,
     public telefone?: string,
     public perfil?: Perfil,
-    login?: string,
+    email?: string,
     senha?: string
   ) {
-    super(login, senha);
+    super(email, senha);
   }
 }

@@ -1,6 +1,6 @@
 export class Login {
   constructor(
-    public login?: string,
+    public email?: string,
     public senha?: string
   ) {}
 }

@@ -1,6 +1,6 @@
 import { Gerente } from "../gerente/gerente.model";
 
-export class Conta {
+export class ContaBancaria {
   constructor(
     public id?: string,
     public saldo?: number,

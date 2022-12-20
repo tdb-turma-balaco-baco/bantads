@@ -16,7 +16,7 @@
                 class="form-control form-control-lg" required id="conta">
             </div>
             <div *ngIf="conta.errors && (conta.dirty || conta.touched)">
-              <small class="text-danger" [hidden]="!conta.errors?.['required']">Digite a conta destino</small>
+              <small class="text-danger" [hidden]="!conta.errors['required']">Digite a conta destino</small>
             </div>
             <div class="mt-3 input-group input-group-lg">
               <span class="input-group-text" id="inputGroup-sizing-lg">R$</span>
@@ -25,7 +25,7 @@
                 name="valor">
             </div>
             <div *ngIf="valor.errors && (valor.dirty || valor.touched)">
-              <small class="text-danger" [hidden]="!valor.errors?.['required']">Digite um valor para transferir</small>
+              <small class="text-danger" [hidden]="!valor.errors['required']">Digite um valor para transferir</small>
             </div>
             <div class="mt-4">
               <button class="btn btn-success w-100" type="button" (click)="transferir()"
