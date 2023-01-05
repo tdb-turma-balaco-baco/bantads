@@ -3,7 +3,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente.component';
 import { DetalheClienteComponent } from './detalhe-cliente/detalhe-cliente.component';
 import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
-import { TelaInicioComponent } from './tela-inicio/tela-inicio.component';
+import { TelaInicioComponent } from './tela-inicio';
 import { TopClientesComponent } from './top-clientes/top-clientes.component';
 
 export const gerenteRoutes: Routes = [

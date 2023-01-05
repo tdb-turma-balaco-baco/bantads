@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Conta } from 'src/app/shared';
-import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
-import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
-import { environment } from 'src/environments/environment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Cliente, ContaBancaria, RegistroExtrato} from 'src/app/shared';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +16,8 @@ export class ClienteService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   listarTodos() {
     return this.httpClient.get<Cliente[]>(this.BASE_URL, this.httpOptions);
@@ -34,12 +33,16 @@ export class ClienteService {
   }
 
   inserir(cliente: Cliente) {
-    cliente.conta = new Conta;
-    if (cliente.salario && cliente.salario > 0) {
-      cliente.conta!.limite = cliente.salario / 2;
+    cliente.conta = new ContaBancaria();
+
+    // TODO: Essa parte da RN será responsabilidade do backend
+    cliente.conta.id = Date.now().toString();
+    cliente.conta.situacaoConta = 'PENDENTE';
+
+    if (cliente.salario && !isNaN(cliente.salario)) {
+      cliente.conta.limite = this.calcularLimiteConta(cliente.salario);
     } else {
-      cliente.salario = 0;
-      cliente.conta!.limite = 0;
+      cliente.conta.limite = 0;
     }
 
     const clienteJSON = JSON.stringify(cliente);
@@ -50,10 +53,10 @@ export class ClienteService {
     );
   }
 
-  listarExtratosPordata( dataInicio : Date, dataFim : Date) {
+  listarExtratosPordata(dataInicio: Date, dataFim: Date) {
     //Post pro back com Datas e ID ?cliente?
 
-    return this.httpClient.get<RegistroExtrato[]>(this.URL_MOVIMENTACOES+"?_sort=timestamp&_order=asc&timestamp_gte=" + dataInicio.toISOString() + "&timestamp_lte=" + dataFim.toISOString(), this.httpOptions);
+    return this.httpClient.get<RegistroExtrato[]>(this.URL_MOVIMENTACOES + "?_sort=timestamp&_order=asc&timestamp_gte=" + dataInicio.toISOString() + "&timestamp_lte=" + dataFim.toISOString(), this.httpOptions);
   }
 
   inserirmovimentacao(movimentacao: RegistroExtrato) {
@@ -62,23 +65,24 @@ export class ClienteService {
   }
 
   atualizar(cliente: Cliente) {
-    // Atende a regra de negócio de atualizar perfil:
-    // Caso haja alteração do salário, o novo limite deve ser calculado.
-
-    if (cliente.salario && cliente.salario > 0) {
-      // Se o novo limite for menor que o seu saldo negativo neste momento,
-      // então seu limite será ajustado para seu saldo negativo
-      if (cliente.salario < 0) {
-        cliente.conta!.limite = cliente.salario;
-      } else {
-        cliente.conta!.limite = cliente.salario / 2;
-      }
-    } else {
-      cliente.salario = 0;
-      cliente.conta!.limite = 0;
+    // TODO: Essa RN será transferida pro backend
+    if (cliente.salario && !isNaN(cliente.salario)) {
+      cliente.conta!.limite = this.calcularLimiteConta(cliente.salario, cliente.conta!.saldo);
     }
 
     const clienteJSON = JSON.stringify(cliente);
     return this.httpClient.put<Cliente>(`${this.BASE_URL}/${cliente.id!}`, clienteJSON, this.httpOptions);
+  }
+
+  // FIXME: Esse método será desnecessário com o backend funcionando
+  private calcularLimiteConta(salario: number, saldo?: number) {
+    const limiteCalculado = (salario / 2);
+
+    // Se o novo limite for menor que o seu saldo negativo neste momento,
+    // então seu limite será ajustado para seu saldo negativo
+    if (saldo && (limiteCalculado < saldo)) {
+      return saldo;
+    }
+    return limiteCalculado;
   }
 }

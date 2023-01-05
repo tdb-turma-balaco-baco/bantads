@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@an
 import { NgbCalendar, NgbDate, NgbDateAdapter, NgbDateParserFormatter, NgbDatepicker, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
 import { Cliente, Usuario } from 'src/app/shared';
-import { RegistroExtrato } from 'src/app/shared/models/registro-extrato/registro-extrato.model';
+import { RegistroExtrato } from 'src/app/shared/models/conta-bancaria/registro-extrato.model';
 import { ClienteService } from '../services/cliente.service';
 
 @Injectable()

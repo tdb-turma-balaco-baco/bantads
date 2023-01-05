@@ -8,7 +8,6 @@ import { AdminService } from '../services/admin.service';
 @Component({
   selector: 'app-editar-gerente',
   templateUrl: './editar-gerente.component.html',
-  styleUrls: ['./editar-gerente.component.css']
 })
 export class EditarGerenteComponent implements OnInit {
   @ViewChild("formGerente") formGerente!: NgForm;

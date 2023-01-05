@@ -2,19 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Login, Perfil } from 'src/app/shared';
-import { AutenticacaoService } from '../services/autenticacao.service';
+import { AutenticacaoService } from '../services';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm;
+
   login: Login = new Login();
   loading: boolean = false;
-  mensagemErro!: string;
-  exibirErro: boolean = false;
+  mensagem: string = 'E-mail/Senha inválidos';
+  exibirMensagem: boolean = false;
+  alertStyle: string = 'alert alert-danger';
 
   constructor(
     private router: Router,
@@ -31,9 +32,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.mensagemErro = params['error'];
       if (params['error'] && params['error'].length > 0) {
-        this.exibirErro = true;
+        this.exibirMensagem = true;
+        this.mensagem = params['error'];
+      }
+
+      if (params['success'] && params['success'].length > 0) {
+        this.exibirMensagem = true;
+        this.mensagem = params['success'];
+        this.alertStyle = 'alert alert-success';
       }
     });
   }
@@ -51,8 +58,7 @@ export class LoginComponent implements OnInit {
             );
           } else {
             this.loading = false;
-            this.exibirErro = true;
-            this.mensagemErro = 'E-mail/Senha inválidos';
+            this.exibirMensagem = true;
           }
         },
       });
@@ -60,9 +66,14 @@ export class LoginComponent implements OnInit {
   }
 
   definirRotaAutenticada(perfil: Perfil | undefined): String[] {
-    if (perfil === 'ADMIN') return ['/admin'];
-    if (perfil === 'GERENTE') return ['/gerente'];
-    if (perfil === 'CLIENTE') return ['/cliente'];
-    return ['/login'];
+    const rotaPorPerfil = {
+      'ADMIN': ['/admin'],
+      'GERENTE': ['/gerente'],
+      'CLIENTE': ['/cliente'],
+      DEFAULT: ['/login'],
+    };
+
+    if (!perfil) return rotaPorPerfil.DEFAULT;
+    return rotaPorPerfil[perfil];
   }
 }

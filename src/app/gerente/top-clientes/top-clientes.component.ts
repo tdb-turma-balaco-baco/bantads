@@ -5,7 +5,6 @@ import { GerenteService } from '../services/gerente.service';
 @Component({
   selector: 'app-top-clientes',
   templateUrl: './top-clientes.component.html',
-  styleUrls: ['./top-clientes.component.css'],
 })
 export class TopClientesComponent {
   topClientes: Cliente[] = [];

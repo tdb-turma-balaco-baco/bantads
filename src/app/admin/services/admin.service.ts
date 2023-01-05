@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { generate, Observable } from 'rxjs';
 import { Cliente, Gerente } from 'src/app/shared';
 import { environment } from 'src/environments/environment';
 
@@ -24,7 +22,6 @@ export class AdminService {
     return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}`, this.httpOptions);
   }
 
-
   listarTodosGerentes() {
     return this.httpClient.get<Gerente[]>(`${this.GERENTE_API}`, this.httpOptions);
   }
@@ -45,6 +42,4 @@ export class AdminService {
   alterarGerente(gerente: Gerente) {
     return this.httpClient.put<Gerente>(this.GERENTE_API + gerente.id, JSON.stringify(gerente), this.httpOptions)
   }
-
-
 }

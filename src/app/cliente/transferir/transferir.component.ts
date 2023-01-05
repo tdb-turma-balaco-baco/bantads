@@ -1,11 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Movimentacao } from 'src/app/shared';
+import {Component, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Movimentacao} from 'src/app/shared';
 
 @Component({
   selector: 'app-transferir',
   templateUrl: './transferir.component.html',
-  styleUrls: ['./transferir.component.css']
 })
 export class TransferirComponent {
   @ViewChild('formTransferir') formTransferir!: NgForm;
