@@ -6,7 +6,6 @@ import { Cliente } from 'src/app/shared';
 @Component({
   selector: 'app-consultar-cliente',
   templateUrl: './consultar-cliente.component.html',
-  styleUrls: ['./consultar-cliente.component.css'],
 })
 export class ConsultarClienteComponent {
   cliente: Cliente = new Cliente();

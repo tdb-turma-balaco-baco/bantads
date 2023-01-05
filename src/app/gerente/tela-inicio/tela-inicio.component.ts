@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
-import { ClienteService } from 'src/app/cliente/services/cliente.service';
-import { Cliente } from 'src/app/shared/models/cliente/cliente.model';
-import { GerenteService } from '../services/gerente.service';
+import {Component} from '@angular/core';
+import {GerenteService} from '../services';
+import {ClienteService} from "../../cliente";
+import {Cliente} from "../../shared";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalRecusarContaComponent} from "../modal-recusar-conta";
 
 @Component({
   selector: 'app-tela-inicio',
   templateUrl: './tela-inicio.component.html',
-  styleUrls: ['./tela-inicio.component.css'],
 })
 export class TelaInicioComponent {
   clientes: Cliente[] = [];
 
   constructor(
     private clienteService: ClienteService,
-    private gerenteService: GerenteService
-  ) {}
+    private gerenteService: GerenteService,
+    private modalService: NgbModal
+  ) {
+  }
 
   ngOnInit(): void {
     this.listarClientesPendentesAprovacao();
@@ -43,14 +46,16 @@ export class TelaInicioComponent {
     }
   }
 
-  recusarAberturaConta($event: MouseEvent, cliente: Cliente) {
-    $event.preventDefault();
-    if (confirm(`Deseja realmente RECUSAR a abertura de conta do cliente ${cliente.nome}?`)) {
-      this.gerenteService.recusarAberturaConta(cliente).subscribe({
+  recusarAberturaConta(cliente: Cliente) {
+    const modalRef = this.modalService.open(ModalRecusarContaComponent);
+    modalRef.componentInstance.nomeCliente = cliente.nome;
+
+    modalRef.result.then((motivoRecusa: string) => {
+      this.gerenteService.recusarAberturaConta(cliente, motivoRecusa).subscribe({
         complete: () => {
           this.listarClientesPendentesAprovacao();
         }
       });
-    }
+    })
   }
 }

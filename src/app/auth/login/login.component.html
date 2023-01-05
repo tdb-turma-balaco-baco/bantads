@@ -2,47 +2,63 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-5 text-black">
-
-        <div class="px-5 ms-xl-4 mt-5">
-          <i class="fa fa-bank fa-2x me-3 pt-5 mt-xl-4"></i>
+        <header class="px-5 ms-xl-4 mt-5">
+          <i class="fa fa-bank fa-2x me-3"></i>
           <span class="h2">BANTADS</span>
-        </div>
-
-        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        </header>
+        <hr>
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-4">
           <form #formLogin="ngForm" class="form-login">
-            <h4 class="fw-normal mb-3 pb-3">Realize seu login</h4>
-            <div *ngIf="exibirErro" class="alert alert-danger">
-              {{ mensagemErro }}
+            <h4 class="fw-normal mb-3 text-center">Acesse sua conta</h4>
+            <div *ngIf="exibirMensagem" [class]="alertStyle">
+              {{ mensagem }}
             </div>
-            <div class="form-outline mb-4">
-              <label class="form-label" for="email">E-mail</label>
-              <input type="email" id="email" name="email" [(ngModel)]="login.email" #email="ngModel" required
-                class="form-control form-control-lg" />
-
-              <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-                <div [hidden]="!email.errors['required']">Digite seu e-mail</div>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="email">E-mail <span class="text-danger">*</span></label>
+              <input type="email"
+                     id="email"
+                     name="email"
+                     placeholder="seuemail@email.com"
+                     [(ngModel)]="login.email"
+                     #email="ngModel" required
+                     class="form-control"/>
+              <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger mt-2">
+                <span [hidden]="!email.errors['required']">Insira seu e-mail</span>
               </div>
             </div>
-            <div class="form-outline mb-4">
-              <label class="form-label" for="senha">Senha</label>
-              <input type="password" id="senha" name="senha" [(ngModel)]="login.senha" #senha="ngModel" required
-                class="form-control form-control-lg" />
-
-              <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="alert alert-danger">
-                <div [hidden]="!senha.errors['required']">Digite sua senha</div>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="senha">Senha <span class="text-danger">*</span></label>
+              <input type="password"
+                     id="senha"
+                     name="senha"
+                     placeholder="Senha"
+                     [(ngModel)]="login.senha"
+                     #senha="ngModel" required
+                     class="form-control"/>
+              <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="alert alert-danger mt-2">
+                <span [hidden]="!senha.errors['required']">Insira sua senha</span>
               </div>
             </div>
             <div class="mb-4">
-              <button class="btn btn-success btn-lg w-100" type="submit" (click)="autenticar()"
-                [disabled]="!formLogin.form.valid || loading">Acessar</button>
+              <button class="btn btn-success w-100" type="submit" (click)="autenticar()"
+                      [disabled]="!formLogin.form.valid || loading">
+                <span *ngIf="!loading">Acessar</span>
+                <div *ngIf="loading">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Entrando...
+                </div>
+              </button>
             </div>
-            <p>Não possui conta? <a href="#" class="link-info" [routerLink]="['/cadastro']">Cadastre-se</a></p>
+            <p class="text-muted">
+              Não possui uma conta?
+              <a href="#" class="link-info" [routerLink]="['/cadastro']">Solicite a abertura!</a>
+            </p>
           </form>
         </div>
       </div>
       <div class="col-7 px-0 d-none d-sm-block">
         <img src="https://cdn.pixabay.com/photo/2020/08/09/14/25/business-5475660_960_720.jpg" alt="Login image"
-          class="w-100 vh-100 image-login">
+             class="w-100 vh-100 image-login">
       </div>
     </div>
   </div>

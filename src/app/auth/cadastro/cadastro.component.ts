@@ -1,21 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ClienteService } from 'src/app/cliente/services/cliente.service';
-import {
-  Cidade,
-  CidadeService,
-  Cliente,
-  Endereco,
-  Estado,
-  EstadoService,
-} from 'src/app/shared';
+import {Component, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {ClienteService} from 'src/app/cliente/services/cliente.service';
+import {Cidade, CidadeService, Cliente, Endereco, Estado, EstadoService,} from 'src/app/shared';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css'],
 })
 export class CadastroComponent {
   @ViewChild('formCadastro') formCadastro!: NgForm;
@@ -55,11 +47,11 @@ export class CadastroComponent {
       this.clienteService.inserir(this.cliente).subscribe({
         complete: () => {
           this.loading = false;
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'], {
+            queryParams: {success: 'Solicitação de abertura de conta feita com sucesso!'}
+          });
         }
       });
-    } else {
-      console.log(this.formCadastro.form)
     }
 
     this.loading = false;

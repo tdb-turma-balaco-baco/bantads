@@ -1,4 +1,4 @@
-import { Cidade } from "../cidade/cidade.model";
+import { Cidade } from "./cidade.model";
 
 export class Endereco {
   constructor(
