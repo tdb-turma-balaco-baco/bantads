@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modalLabel">Recusar Abertura</h4>
+</div>
+<div class="modal-body text-center">
+  <div>
+    <h5>Cliente: {{nomeCliente}}</h5>
+    <div class="mb-3">
+      <label for="motivoRecusa" class="form-label">Motivo da Recusa</label>
+      <input type="text"
+             class="form-control"
+             id="motivoRecusa"
+             #motivo="ngModel"
+             [(ngModel)]="motivoRecusa"
+             minlength="6"
+             maxlength="60"
+             required>
+      <div *ngIf="motivo.errors && (motivo.dirty || motivo.touched)" class="alert alert-danger mt-2">
+        <div [hidden]="!motivo.errors['required']">Insira um motivo.</div>
+        <div [hidden]="!motivo.errors['minlength']">O motivo precisa ter no mínimo 6 caracteres.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button (click)="activeModal.dismiss()" class="btn btn-outline-dark" type="button">
+    <i aria-hidden="true" class="fa fa-arrow-left"></i>
+    Cancelar
+  </button>
+  <button (click)="onConfirm()" class="btn btn-outline-danger" type="button">
+    <i class="fa fa-times" aria-hidden="true"></i>
+    Recusar
+  </button>
+</div>
