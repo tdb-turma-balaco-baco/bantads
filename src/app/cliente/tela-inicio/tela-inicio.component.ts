@@ -19,7 +19,7 @@ export class TelaInicioComponent {
     this.usuario = this.authService.usuarioAutenticado;
     this.cliente = new Cliente();
 
-    this.clienteService.buscarClientePorId(this.usuario.id!).subscribe({
+    this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
       next: (cliente) => {
         this.cliente = cliente;
       },

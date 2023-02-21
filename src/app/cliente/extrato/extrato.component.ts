@@ -67,7 +67,7 @@ export class ExtratoComponent implements OnInit {
     this.toDate = null;
     this.today = this.calendar.getToday();
     this.usuario = this.authService.usuarioAutenticado;
-    this.clienteService.buscarClientePorId(this.usuario.id!).subscribe({
+    this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
       next: (cliente) => {
         if(cliente){
           this.cliente = cliente;

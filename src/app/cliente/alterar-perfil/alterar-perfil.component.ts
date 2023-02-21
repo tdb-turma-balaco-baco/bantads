@@ -51,7 +51,7 @@ export class AlterarPerfilComponent {
     this.cliente.endereco.cidade = new Cidade();
     this.cliente.endereco.cidade.estado = new Estado();
 
-    this.clienteService.buscarClientePorId(+this.usuario.id!).subscribe({
+    this.clienteService.buscarClientePorCPF(+this.usuario.CPF?).subscribe({
       next: (cliente: Cliente) => {
         this.cliente = cliente;
       },

@@ -24,9 +24,10 @@ export class ClienteService {
     return this.httpClient.get<Cliente[]>(this.BASE_URL, this.httpOptions);
   }
 
-  buscarClientePorId(id: number) {
+/*  buscarClientePorId(id: number) {
     return this.httpClient.get<Cliente>(`${this.BASE_URL}/${id}`, this.httpOptions);
   }
+  */
 
   buscarClientePorCPF(cpf: string) {
     return this.httpClient.get<Cliente[]>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);

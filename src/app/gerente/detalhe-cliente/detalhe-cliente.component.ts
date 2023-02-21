@@ -18,9 +18,9 @@ export class DetalheClienteComponent {
   ) {}
 
   ngOnInit() {
-    const id = +this.activeRoute.snapshot.params['id'];
+    const cpf = +this.activeRoute.snapshot.params['cpf'];
 
-    this.clienteService.buscarClientePorId(id).subscribe({
+    this.clienteService.buscarClientePorCPF('cpf').subscribe({
       next: (cliente) => {
         if (cliente !== null) {
           this.cliente = cliente;
