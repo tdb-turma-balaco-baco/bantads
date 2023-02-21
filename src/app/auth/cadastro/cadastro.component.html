@@ -5,7 +5,7 @@
       <hr>
       <div class="row mb-3">
         <div class="col">
-          <input #email="ngModel" [(ngModel)]="cliente.email" class="form-control" id="email" minlength="3" name="email"
+          <input #email="ngModel" [(ngModel)]="cliente.email" [email]="true" class="form-control" id="email" minlength="3" name="email"
                  placeholder="E-mail *" required type="email">
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!email.errors['required']">Informe um email.</div>
