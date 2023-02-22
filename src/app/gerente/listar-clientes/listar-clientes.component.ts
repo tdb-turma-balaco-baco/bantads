@@ -20,14 +20,14 @@ export class ListarClientesComponent {
   ngOnInit() {
     this.perfilAtual = this.authService.usuarioAutenticado;
 
-    this.listarClientesPorGerenteId(+this.perfilAtual.id!);
+    this.listarClientesPorGerenteCpf(this.perfilAtual.CPF!);
     this.clientes.sort((clienteA, clienteB) =>
       clienteA.nome!.localeCompare(clienteB.nome!)
     );
   }
 
-  listarClientesPorGerenteId(idGerente: number) {
-    this.gerenteService.listarClientesPorGerenteId(idGerente).subscribe({
+  listarClientesPorGerenteCpf(cpf: string) {
+    this.gerenteService.listarClientesPorGerenteCpf(cpf).subscribe({
       next: (data: Cliente[]) => {
         if (data === null) {
           this.clientes = [];

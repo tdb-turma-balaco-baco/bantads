@@ -39,7 +39,7 @@ export class AdminInicioComponent implements OnInit {
   remover($event: any, gerente: Gerente): void {
     $event.preventDefault();
     if (confirm('Deseja realmente remover o Gerente? "' + gerente.nome + '"?')) {
-      this.adminService.removerGerente(gerente.id!).subscribe({
+      this.adminService.removerGerente(gerente.CPF!).subscribe({
         complete: () => {
           this.listarTodos();
         }

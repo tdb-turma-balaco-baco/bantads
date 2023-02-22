@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.formLogin.form.valid) {
       this.loginService.login(this.login).subscribe({
-        next: (usuarios) => {
-          if (usuarios[0] !== null && usuarios[0] !== undefined) {
-            this.loginService.usuarioAutenticado = usuarios[0];
+        next: (usuario) => {
+          if (usuario !== null && usuario !== undefined) {
+            this.loginService.usuarioAutenticado = usuario;
             this.loading = false;
             this.router.navigate(
-              this.definirRotaAutenticada(usuarios[0].perfil)
+              this.definirRotaAutenticada(usuario.perfil)
             );
           } else {
             this.loading = false;

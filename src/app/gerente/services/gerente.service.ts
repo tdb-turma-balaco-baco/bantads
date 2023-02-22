@@ -1,42 +1,36 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cliente } from 'src/app/shared';
+import { Cliente, Usuario } from 'src/app/shared';
+import { httpOptions } from 'src/app/shared/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GerenteService {
-  CLIENTE_API = environment.apiURL + 'clientes';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  }
+  CLIENTE_API = environment.apiURL + 'cliente';
+  GERENTE_API = environment.apiURL + 'gerente';
 
   constructor(private httpClient: HttpClient) { }
 
-  listarClientesPendentesAprovacao() {
-    return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}?conta.situacaoConta=PENDENTE`, this.httpOptions);
+  listarClientesPendentesAprovacao(usuario: Usuario) {
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${usuario.CPF}/pendente`, httpOptions);
   }
 
   aprovarAberturaConta(cliente: Cliente) {
-    cliente.conta!.situacaoConta = "ATIVA";
-    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/${cliente.id}`, cliente, this.httpOptions);
+    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/aprovar/${cliente.conta?.id}`, cliente, httpOptions);
   }
 
   recusarAberturaConta(cliente: Cliente, motivoRecusa: string) {
-    cliente.conta!.situacaoConta = "RECUSADA";
     cliente.conta!.motivoRecusa = motivoRecusa;
-    cliente.conta!.timestampRecusa = new Date();
-    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/${cliente.id}`, cliente, this.httpOptions);
+    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/recusar/${cliente.conta?.id}`, cliente, httpOptions);
   }
 
   listarTopClientesPorSaldo() {
-    return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}?conta.saldo_gte=0&_sort=conta.saldo&_order=desc&_limit=5`, this.httpOptions);
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/top/saldo`, httpOptions);
   }
 
-  listarClientesPorGerenteId(idGerente: number) {
-    return this.httpClient.get<Cliente[]>(`${this.CLIENTE_API}?conta.gerente.id=${idGerente}`, this.httpOptions);
+  listarClientesPorGerenteCpf(cpf: string) {
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${cpf}/clientes`, httpOptions);
   }
 }

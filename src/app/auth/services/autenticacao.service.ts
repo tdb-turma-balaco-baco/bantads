@@ -1,18 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login, Usuario } from 'src/app/shared';
+import { httpOptions } from 'src/app/shared/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticacaoService {
-  BASE_URL = environment.apiURL + 'usuarios';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
+  BASE_URL = environment.apiURL + 'login';
   CHAVE_LS = 'user-session';
 
   constructor(private httpClient: HttpClient) {}
@@ -27,10 +23,7 @@ export class AutenticacaoService {
   }
 
   login(login: Login) {
-    return this.httpClient.get<Usuario[]>(
-      `${this.BASE_URL}?login=${login.email}&senha=${login.senha}`,
-      this.httpOptions
-    );
+    return this.httpClient.post<Usuario>(this.BASE_URL, JSON.stringify(login), httpOptions);
   }
 
   logout() {

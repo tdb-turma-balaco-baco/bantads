@@ -7,7 +7,6 @@ import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service'
 @Component({
   selector: 'app-relatorio-clientes',
   templateUrl: './relatorio-clientes.component.html',
-  styleUrls: ['./relatorio-clientes.component.css']
 })
 export class RelatorioClientes implements OnInit   {
   clientes: Cliente[] = [];

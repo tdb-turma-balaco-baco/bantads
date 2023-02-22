@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {GerenteService} from '../services';
-import {ClienteService} from "../../cliente";
-import {Cliente} from "../../shared";
+import {Cliente, Usuario} from "../../shared";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ModalRecusarContaComponent} from "../modal-recusar-conta";
+import { AutenticacaoService } from 'src/app/auth/services';
 
 @Component({
   selector: 'app-tela-inicio',
@@ -11,20 +11,22 @@ import {ModalRecusarContaComponent} from "../modal-recusar-conta";
 })
 export class TelaInicioComponent {
   clientes: Cliente[] = [];
+  usuario: Usuario = new Usuario();
 
   constructor(
-    private clienteService: ClienteService,
     private gerenteService: GerenteService,
+    private autenticacaoService: AutenticacaoService,
     private modalService: NgbModal
   ) {
   }
 
   ngOnInit(): void {
     this.listarClientesPendentesAprovacao();
+    this.usuario = this.autenticacaoService.usuarioAutenticado;
   }
 
   listarClientesPendentesAprovacao() {
-    return this.gerenteService.listarClientesPendentesAprovacao().subscribe({
+    return this.gerenteService.listarClientesPendentesAprovacao(this.usuario).subscribe({
       next: (data: Cliente[]) => {
         if (data === null) {
           this.clientes = [];

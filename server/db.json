@@ -1,57 +1,5 @@
 {
-  "administradores": [
-    {
-      "id": 1,
-      "login": "admin"
-    }
-  ],
-  "cidades": [
-    {
-      "id": 1,
-      "municipio": "Curitiba",
-      "estado": {
-        "id": 1,
-        "nome": "Paraná",
-        "UF": "PR"
-      }
-    },
-    {
-      "id": 2,
-      "municipio": "Florianópolis",
-      "estado": {
-        "id": 2,
-        "nome": "Santa Catarina",
-        "UF": "SC"
-      }
-    },
-    {
-      "id": 3,
-      "municipio": "Porto Alegre",
-      "estado": {
-        "id": 3,
-        "nome": "Rio Grande do Sul",
-        "UF": "RS"
-      }
-    }
-  ],
-  "estados": [
-    {
-      "id": 1,
-      "nome": "Paraná",
-      "UF": "PR"
-    },
-    {
-      "id": 2,
-      "nome": "Santa Catarina",
-      "UF": "SC"
-    },
-    {
-      "id": 3,
-      "nome": "Rio Grande do Sul",
-      "UF": "RS"
-    }
-  ],
-  "clientes": [
+  "cliente": [
     {
       "nome": "TESTE SILVA",
       "email": "dsfas@dafsd",
@@ -413,7 +361,7 @@
       "id": 15
     }
   ],
-  "gerentes": [
+  "gerente": [
     {
       "id": 1,
       "nome": "Sr. Gerente 1",
@@ -423,7 +371,7 @@
       "perfil": "GERENTE"
     }
   ],
-  "contas": [
+  "conta": [
     {
       "id": 1,
       "saldo": 250,
@@ -451,7 +399,7 @@
       }
     }
   ],
-  "movimentacoes": [
+  "movimentacao": [
     {
       "timestamp": "2022-11-21 12:00",
       "operacao": "SAQUE",
@@ -518,7 +466,7 @@
       }
     }
   ],
-  "usuarios": [
+  "login": [
     {
       "id": "0",
       "login": "admin@admin",

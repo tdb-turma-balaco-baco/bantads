@@ -40,7 +40,7 @@
 
         <div class="form-group">
           <label for="telefone">Telefone</label>
-          <input type="text" class="form-control" id="telefone" name="telefone" [value]="gerente.telefone"
+          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone"
             [(ngModel)]="gerente.telefone" #telefone="ngModel" mask="(00) 00000-0000" required>
           <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger">
             <div [hidden]="!telefone.errors['required']">Digite o telefone</div>
