@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import {
-  CidadeService,
-  EstadoService,
   NumericoDirective,
   SharedModule,
 } from '../shared';
@@ -33,6 +31,6 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     NgxCurrencyModule
   ],
-  providers: [CidadeService, EstadoService, ClienteService],
+  providers: [ClienteService],
 })
 export class AuthModule {}

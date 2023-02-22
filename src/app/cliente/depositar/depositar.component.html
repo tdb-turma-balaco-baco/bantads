@@ -16,7 +16,7 @@
                 id="valor" #valor="ngModel" [(ngModel)]="deposito.valor" name="valor" class="form-control" required>
             </div>
             <div *ngIf="valor.errors && (valor.dirty || valor.touched)">
-              <small class="text-danger" [hidden]="!valor.errors?.['required']">Digite um valor para depósito</small>
+              <small class="text-danger" [hidden]="!valor.errors['required']">Digite um valor para depósito</small>
             </div>
             <div class="mt-4">
               <button class="btn btn-success w-100" type="button" (click)="depositar()">DEPOSITAR</button>

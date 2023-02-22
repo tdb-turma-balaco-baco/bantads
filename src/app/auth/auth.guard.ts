@@ -1,13 +1,7 @@
-import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { Observable } from 'rxjs';
-import { AutenticacaoService } from './services/autenticacao.service';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AutenticacaoService} from './services';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +10,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private loginService: AutenticacaoService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -31,7 +26,7 @@ export class AuthGuard implements CanActivate {
 
     if (!usuarioAutenticado) {
       this.router.navigate(['/login'], {
-        queryParams: { error: `Você precisa se autenticar para acessar a rota: ${returnURL}` },
+        queryParams: {error: `Você precisa estar autenticado.`},
       });
       return false;
     }
@@ -43,7 +38,7 @@ export class AuthGuard implements CanActivate {
       // Se o perfil do usuário não está no perfil da rota
       // redireciona p/ login
       this.router.navigate(['/login'], {
-        queryParams: { error: `Acesso proibido à rota: ${returnURL}` },
+        queryParams: {error: `Acesso proibido à rota: ${returnURL}`},
       });
       return false;
     }

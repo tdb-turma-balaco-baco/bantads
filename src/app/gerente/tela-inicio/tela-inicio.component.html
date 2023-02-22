@@ -2,27 +2,29 @@
   <table class="table table-hover table-bordered">
     <caption class="caption-top display-5 text-dark">Clientes Pendentes de Aprovação</caption>
     <thead class="table-light">
-      <tr>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>Salário</th>
-        <th>Ações</th>
-      </tr>
+    <tr>
+      <th>CPF</th>
+      <th>Nome</th>
+      <th>Salário</th>
+      <th>Ações</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{cliente.CPF ? ( cliente.CPF | cpf): null}}</td>
-        <td>{{cliente.nome}}</td>
-        <td>{{cliente.salario | currency:'BRL' :true: '2.2-2' }}</td>
-        <td class="text-center">
-          <button class="btn btn-outline-success" (click)="aprovarAberturaConta($event, cliente)">
-            <i class="fa fa-check" aria-hidden="true"></i>
-            Aprovar</button>
-          <button class="btn btn-outline-danger offset-sm-3" (click)="recusarAberturaConta($event, cliente)">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            Recusar</button>
-        </td>
-      </tr>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{cliente.CPF ? (cliente.CPF | cpf) : null}}</td>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.salario | currency:'BRL' :true: '2.2-2' }}</td>
+      <td class="text-center">
+        <button (click)="aprovarAberturaConta($event, cliente)" class="btn btn-outline-success">
+          <i aria-hidden="true" class="fa fa-check"></i>
+          Aprovar
+        </button>
+        <button (click)="recusarAberturaConta(cliente)" class="btn btn-outline-danger offset-sm-3">
+          <i aria-hidden="true" class="fa fa-times"></i>
+          Recusar
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </section>

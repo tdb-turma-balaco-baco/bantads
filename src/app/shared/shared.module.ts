@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CpfPipe } from './pipes/cpf.pipe';
-import { BuscarClientesPipe } from './pipes/buscar-clientes.pipe';
-import { CepPipe } from './pipes/cep.pipe';
-import { TelefonePipe } from './pipes/telefone.pipe';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {CpfPipe} from './pipes';
+import {BuscarClientesPipe} from './pipes';
+import {CepPipe} from './pipes';
+import {TelefonePipe} from './pipes';
 
 @NgModule({
   declarations: [CpfPipe, BuscarClientesPipe, CepPipe, TelefonePipe],

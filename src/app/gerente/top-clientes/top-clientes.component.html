@@ -37,8 +37,8 @@
         <tr *ngFor="let cliente of topClientes; index as i">
           <th class="text-center">{{i + 1}}</th>
           <td>{{cliente.nome}}</td>
-          <td>{{cliente.endereco?.cidade?.municipio}}</td>
-          <td>{{cliente.endereco?.cidade?.estado?.UF}}</td>
+          <td>{{cliente.endereco?.cidade}}</td>
+          <td>{{cliente.endereco?.estado}}</td>
           <td>{{cliente.CPF ? (cliente.CPF | cpf) : null}}</td>
           <td>{{cliente.conta?.saldo | currency: 'BRL':true:'2.2-2' }}</td>
         </tr>

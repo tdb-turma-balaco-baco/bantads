@@ -26,15 +26,11 @@
     </div>
     <div class="col-md-4">
       <label for="estado" class="form-label">Estado</label>
-      <input type="text" disabled class="form-control" id="estado" [value]="cliente.endereco?.cidade?.estado?.nome">
+      <input type="text" disabled class="form-control" id="estado" [value]="cliente.endereco?.estado">
     </div>
     <div class="col-md-4">
       <label for="cidade" class="form-label">Cidade</label>
-      <input type="text" disabled class="form-control" id="cidade" [value]="cliente.endereco?.cidade?.municipio">
-    </div>
-    <div class="col-md-4">
-      <label for="bairro" class="form-label">Bairro</label>
-      <input type="text" disabled class="form-control" id="bairro" [value]="cliente.endereco?.bairro">
+      <input type="text" disabled class="form-control" id="cidade" [value]="cliente.endereco?.cidade">
     </div>
     <div class="col-md-6">
       <label for="complemento" class="form-label">Complemento</label>
@@ -42,7 +38,7 @@
     </div>
     <div class="col-md-6">
       <label for="cep" class="form-label">CEP</label>
-      <input type="text" disabled class="form-control" id="cep" [value]="cliente.endereco?.CEP ? (cliente.endereco!.CEP | CEP) : null ">
+      <input type="text" disabled class="form-control" id="cep" [value]="cliente.endereco?.cep ? (cliente.endereco!.cep | CEP) : null ">
     </div>
     <div class="col-md-6">
       <label for="renda" class="form-label">Salário</label>
