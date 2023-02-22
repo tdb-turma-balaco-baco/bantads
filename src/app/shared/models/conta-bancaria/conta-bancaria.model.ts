@@ -3,7 +3,7 @@ import {SituacaoConta} from "./situacao-conta.type";
 
 export class ContaBancaria {
   constructor(
-    public id?: string,
+    public id?: number,
     public saldo?: number,
     public limite?: number,
     public gerente?: Gerente,

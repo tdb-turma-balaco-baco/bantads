@@ -1,5 +1,19 @@
-import { ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
-import { NgbCalendar, NgbDate, NgbDateAdapter, NgbDateParserFormatter, NgbDatepicker, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injectable,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  NgbCalendar,
+  NgbDate,
+  NgbDateAdapter,
+  NgbDateParserFormatter,
+  NgbDatepicker,
+  NgbDateStruct,
+  NgbInputDatepicker,
+} from '@ng-bootstrap/ng-bootstrap';
 import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
 import { Cliente, Usuario } from 'src/app/shared';
 import { RegistroExtrato } from 'src/app/shared/models/conta-bancaria/registro-extrato.model';
@@ -22,10 +36,15 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   }
 
   format(date: NgbDateStruct | null): string {
-    return date ? (date.day < 10 ? "0" + date.day : date.day) + this.DELIMITER + (date.month < 10 ? "0" + date.month : date.month) + this.DELIMITER + date.year : '';
+    return date
+      ? (date.day < 10 ? '0' + date.day : date.day) +
+          this.DELIMITER +
+          (date.month < 10 ? '0' + date.month : date.month) +
+          this.DELIMITER +
+          date.year
+      : '';
   }
 }
-
 
 @Component({
   selector: 'app-extrato',
@@ -33,15 +52,10 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   styleUrls: ['./extrato.component.css'],
 
   providers: [
-
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
   ],
 })
-
 export class ExtratoComponent implements OnInit {
-  ngOnInit(): void {
-    this.listarExtratosPorData(this.calendar.getNext(this.calendar.getToday(), 'd', -10), this.calendar.getToday())
-  }
   @ViewChild('datepicker') ngbDatepicker: NgbInputDatepicker | null;
 
   usuario: Usuario;
@@ -52,16 +66,15 @@ export class ExtratoComponent implements OnInit {
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
   today: NgbDate = this.calendar.getToday();
-  startDate: NgbDate = this.calendar.getNext(this.calendar.getToday(), 'm', -1)
+  startDate: NgbDate = this.calendar.getNext(this.calendar.getToday(), 'm', -1);
   extratos: RegistroExtrato[] = [];
 
   constructor(
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     public clienteService: ClienteService,
-    private authService: AutenticacaoService,
-
-    ) {
+    private authService: AutenticacaoService
+  ) {
     this.fromDate = null;
     this.ngbDatepicker = null;
     this.toDate = null;
@@ -69,22 +82,32 @@ export class ExtratoComponent implements OnInit {
     this.usuario = this.authService.usuarioAutenticado;
     this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
       next: (cliente) => {
-        if(cliente){
+        if (cliente) {
           this.cliente = cliente;
         }
-      }
+      },
     });
+  }
 
+  ngOnInit(): void {
+    this.listarExtratosPorData(
+      this.calendar.getNext(this.calendar.getToday(), 'd', -10),
+      this.calendar.getToday(),
+    );
   }
 
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
-    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+    } else if (
+      this.fromDate &&
+      !this.toDate &&
+      date &&
+      date.after(this.fromDate)
+    ) {
       this.ngbDatepicker?.close();
       this.toDate = date;
       this.listarExtratosPorData(this.fromDate, this.toDate);
-
     } else {
       this.toDate = null;
       this.fromDate = date;
@@ -93,7 +116,11 @@ export class ExtratoComponent implements OnInit {
 
   isHovered(date: NgbDate) {
     return (
-      this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
+      this.fromDate &&
+      !this.toDate &&
+      this.hoveredDate &&
+      date.after(this.fromDate) &&
+      date.before(this.hoveredDate)
     );
   }
 
@@ -110,54 +137,70 @@ export class ExtratoComponent implements OnInit {
     );
   }
   isSaida(registro: RegistroExtrato) {
-
-    if(registro.operacao == "SAQUE"){
+    if (registro.operacao == 'SAQUE') {
       return true;
-    }else if (registro.operacao == "TRANSFERENCIA" && registro.destino?.nome != this.cliente?.nome){
+    } else if (
+      registro.operacao == 'TRANSFERENCIA' &&
+      registro.destino?.nome != this.cliente?.nome
+    ) {
       return true;
-    }else{
-      return false
+    } else {
+      return false;
     }
   }
   isEntrada(registro: RegistroExtrato) {
-
-    if(registro.operacao == "DEPOSITO"){
+    if (registro.operacao == 'DEPOSITO') {
       return true;
-    }else if (registro.operacao == "TRANSFERENCIA" && registro.destino?.nome == this.cliente?.nome){
+    } else if (
+      registro.operacao == 'TRANSFERENCIA' &&
+      registro.destino?.nome == this.cliente?.nome
+    ) {
       return true;
-    }else{
-      return false
+    } else {
+      return false;
     }
   }
   validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
     const parsed = this.formatter.parse(input);
-    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+    return parsed && this.calendar.isValid(NgbDate.from(parsed))
+      ? NgbDate.from(parsed)
+      : currentValue;
   }
 
-
   listarExtratosPorData(fromDate: NgbDate, toDate: NgbDate) {
-    const dataInicioConvertida: Date = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
-    const dataFimConvertida: Date = new Date(toDate.year, toDate.month - 1, toDate.day);
+    const dataInicioConvertida: Date = new Date(
+      fromDate.year,
+      fromDate.month - 1,
+      fromDate.day
+    );
+    const dataFimConvertida: Date = new Date(
+      toDate.year,
+      toDate.month - 1,
+      toDate.day
+    );
 
-    this.clienteService.listarExtratosPordata(dataInicioConvertida, dataFimConvertida).subscribe(
-      {
+    this.clienteService
+      .listarExtratosPorData(dataInicioConvertida, dataFimConvertida, this.usuario)
+      .subscribe({
         next: (data: RegistroExtrato[]) => {
           if (data === null) {
             this.extratos = [];
           } else {
-            this.extratos = data.sort((a, b) => a.timestamp!.valueOf() - b.timestamp!.valueOf());
+            this.extratos = data.sort(
+              (a, b) => a.timestamp!.valueOf() - b.timestamp!.valueOf()
+            );
           }
-        }
+        },
       });
   }
 
-  isDisabled(date: NgbDateStruct, curent: { year: number; month: number } | undefined) {
+  isDisabled(
+    date: NgbDateStruct,
+    curent: { year: number; month: number } | undefined
+  ) {
     if (curent == undefined) {
       return false;
     }
     return date > curent;
   }
 }
-
-
-
