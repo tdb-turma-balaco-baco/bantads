@@ -8,29 +8,29 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class GerenteService {
-  CLIENTE_API = environment.apiURL + 'cliente';
-  GERENTE_API = environment.apiURL + 'gerente';
+  CLIENTE_API = environment.apiURL + '/client';
+  GERENTE_API = environment.apiURL + '/manager';
 
   constructor(private httpClient: HttpClient) { }
 
   listarClientesPendentesAprovacao(usuario: Usuario) {
-    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${usuario.CPF}/pendente`, httpOptions);
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${usuario.CPF}/pendingAccounts`, httpOptions);
   }
 
   aprovarAberturaConta(cliente: Cliente) {
-    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/aprovar/${cliente.conta?.id}`, cliente, httpOptions);
+    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/approve`, JSON.stringify(cliente), httpOptions);
   }
 
   recusarAberturaConta(cliente: Cliente, motivoRecusa: string) {
     cliente.conta!.motivoRecusa = motivoRecusa;
-    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/recusar/${cliente.conta?.id}`, cliente, httpOptions);
+    return this.httpClient.put<Cliente>(`${this.CLIENTE_API}/reject`, JSON.stringify(cliente), httpOptions);
   }
 
-  listarTopClientesPorSaldo() {
-    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/top/saldo`, httpOptions);
+  listarTopClientesPorSaldo(cpf: string) {
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${cpf}/topFiveClients`, httpOptions);
   }
 
   listarClientesPorGerenteCpf(cpf: string) {
-    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${cpf}/clientes`, httpOptions);
+    return this.httpClient.get<Cliente[]>(`${this.GERENTE_API}/${cpf}/clients`, httpOptions);
   }
 }

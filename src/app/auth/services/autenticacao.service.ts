@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AutenticacaoService {
-  BASE_URL = environment.apiURL + 'login';
+  BASE_URL = environment.apiURL;
   CHAVE_LS = 'user-session';
 
   constructor(private httpClient: HttpClient) {}
@@ -23,7 +23,7 @@ export class AutenticacaoService {
   }
 
   login(login: Login) {
-    return this.httpClient.post<Usuario>(this.BASE_URL, JSON.stringify(login), httpOptions);
+    return this.httpClient.post<Usuario>(`${this.BASE_URL}/login`, JSON.stringify(login), httpOptions);
   }
 
   logout() {

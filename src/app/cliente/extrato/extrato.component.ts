@@ -180,7 +180,7 @@ export class ExtratoComponent implements OnInit {
     );
 
     this.clienteService
-      .listarExtratosPorData(dataInicioConvertida, dataFimConvertida, this.usuario)
+      .listarExtratosPorData(dataInicioConvertida, dataFimConvertida, this.cliente ?? new Cliente())
       .subscribe({
         next: (data: RegistroExtrato[]) => {
           if (data === null) {

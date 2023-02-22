@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Cliente, Movimentacao, RegistroExtrato, Usuario} from 'src/app/shared';
+import {Cliente, Movimentacao, OperacaoEnum, RegistroExtrato} from 'src/app/shared';
 import { httpOptions } from 'src/app/shared/http';
 import {environment} from 'src/environments/environment';
 
@@ -8,42 +8,54 @@ import {environment} from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ClienteService {
-  CLIENTE_URL = environment.apiURL + 'cliente';
-  MOVIMENTACAO_URL = environment.apiURL + 'movimentacao';
+  CLIENTE_URL = environment.apiURL + '/client';
+  MOVIMENTACAO_URL = environment.apiURL;
 
   constructor(private httpClient: HttpClient) {
   }
 
   listarTodos() {
-    return this.httpClient.get<Cliente[]>(this.CLIENTE_URL, httpOptions);
+    return this.httpClient.get<Cliente[]>(`${this.CLIENTE_URL}/list`, httpOptions);
   }
 
   buscarClientePorCPF(cpf: string) {
-    return this.httpClient.get<Cliente>(`${this.CLIENTE_URL}/${cpf}`, httpOptions);
+    return this.httpClient.get<Cliente>(`${this.CLIENTE_URL}/${cpf}/details`, httpOptions);
   }
 
   inserir(cliente: Cliente) {
-    return this.httpClient.post<Cliente>(
-      this.CLIENTE_URL,
-      JSON.stringify(cliente),
-      httpOptions
-    );
+    return this.httpClient.post<Cliente>(`${this.CLIENTE_URL}/save`, JSON.stringify(cliente), httpOptions);
   }
 
-  listarExtratosPorData(dataInicio: Date, dataFim: Date, usuario: Usuario) {
+  listarExtratosPorData(dataInicio: Date, dataFim: Date, cliente: Cliente) {
     const request = {
       dataInicio,
       dataFim,
-      usuario
     }
-    return this.httpClient.post<RegistroExtrato[]>(`${this.MOVIMENTACAO_URL}/extrato`, JSON.stringify(request), httpOptions);
+    return this.httpClient.post<RegistroExtrato[]>(`${this.MOVIMENTACAO_URL}/${cliente.conta!.id}/transactionsHistory`, JSON.stringify(request), httpOptions);
   }
 
   inserirMovimentacao(movimentacao: Movimentacao) {
-    return this.httpClient.post<Movimentacao>(this.MOVIMENTACAO_URL, JSON.stringify(movimentacao), httpOptions);
+    let endpoint: string;
+
+    switch(movimentacao.operacao) {
+      case (OperacaoEnum.TRANSFERENCIA):
+        endpoint = `${this.MOVIMENTACAO_URL}/transfer`;
+        break;
+      case (OperacaoEnum.DEPOSITO):
+        endpoint = `${this.MOVIMENTACAO_URL}/deposit`;
+        break;
+      case (OperacaoEnum.SAQUE):
+        endpoint = `${this.MOVIMENTACAO_URL}/withdraw`;
+        break;
+      default:
+        endpoint = this.MOVIMENTACAO_URL;
+        break;
+    }
+
+    return this.httpClient.post<Movimentacao>(endpoint, JSON.stringify(movimentacao), httpOptions);
   }
 
   atualizar(cliente: Cliente) {
-    return this.httpClient.put<Cliente>(`${this.CLIENTE_URL}/${cliente.id!}`, JSON.stringify(cliente), httpOptions);
+    return this.httpClient.put<Cliente>(`${this.CLIENTE_URL}/update`, JSON.stringify(cliente), httpOptions);
   }
 }

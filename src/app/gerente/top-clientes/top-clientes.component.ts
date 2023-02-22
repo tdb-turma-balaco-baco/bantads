@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Cliente } from 'src/app/shared';
+import { AutenticacaoService } from 'src/app/auth/services';
+import { Cliente, Usuario } from 'src/app/shared';
 import { GerenteService } from '../services/gerente.service';
 
 @Component({
@@ -8,15 +9,17 @@ import { GerenteService } from '../services/gerente.service';
 })
 export class TopClientesComponent {
   topClientes: Cliente[] = [];
+  usuario: Usuario = new Usuario();
 
-  constructor(private gerenteService: GerenteService) {}
+  constructor(private gerenteService: GerenteService, private autenticacaoService: AutenticacaoService) {}
 
   ngOnInit(): void {
     this.listarTopClientes();
+    this.usuario = this.autenticacaoService.usuarioAutenticado;
   }
 
   listarTopClientes() {
-    this.gerenteService.listarTopClientesPorSaldo().subscribe({
+    this.gerenteService.listarTopClientesPorSaldo(this.usuario.CPF!).subscribe({
       next: (data: Cliente[]) => {
         if (data === null) {
           this.topClientes = [];

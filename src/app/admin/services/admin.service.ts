@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  GERENTE_API = environment.apiURL + 'gerente/';
-  CLIENTE_API = environment.apiURL + 'cliente/'
+  GERENTE_API = environment.apiURL + '/manager';
+  CLIENTE_API = environment.apiURL + '/cliente'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class AdminService {
   }
 
   listarTodosGerentes() {
-    return this.httpClient.get<Gerente[]>(this.GERENTE_API, httpOptions);
+    return this.httpClient.get<Gerente[]>(`${this.GERENTE_API}/list`, httpOptions);
   }
 
   buscarPorId(idGerente: number) {
@@ -27,14 +27,14 @@ export class AdminService {
   }
 
   inserirGerente(gerente: Gerente) {
-    return this.httpClient.post<Gerente>(this.GERENTE_API, JSON.stringify(gerente), httpOptions);
+    return this.httpClient.post<Gerente>(`${this.GERENTE_API}/save`, JSON.stringify(gerente), httpOptions);
   }
 
   removerGerente(cpf: string) {
-    return this.httpClient.delete<Gerente>(this.GERENTE_API + cpf, httpOptions);
+    return this.httpClient.delete<Gerente>(`${this.GERENTE_API}/${cpf}/remove`, httpOptions);
   }
 
   alterarGerente(gerente: Gerente) {
-    return this.httpClient.put<Gerente>(this.GERENTE_API + gerente.id, JSON.stringify(gerente), httpOptions)
+    return this.httpClient.put<Gerente>(`${this.GERENTE_API}/update`, JSON.stringify(gerente), httpOptions)
   }
 }
