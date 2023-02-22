@@ -29,8 +29,7 @@ export class ClienteService {
   */
 
   buscarClientePorCPF(cpf: string) {
-    return this.httpClient.get<Cliente[]>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);
-    // CORRETO: return this.httpClient.get<Cliente>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);
+    return this.httpClient.get<Cliente>(`${this.BASE_URL}?CPF=${cpf}`, this.httpOptions);
   }
 
   inserir(cliente: Cliente) {

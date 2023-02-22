@@ -32,7 +32,7 @@ export class AlterarPerfilComponent {
     this.cliente = new Cliente();
     this.cliente.endereco = new Endereco();
 
-    this.clienteService.buscarClientePorCPF(+this.usuario.CPF?).subscribe({
+    this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
       next: (cliente: Cliente) => {
         this.cliente = cliente;
       },

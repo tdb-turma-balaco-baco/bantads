@@ -32,9 +32,9 @@ export class ConsultarClienteComponent {
 
     if (CPFnormalizado.length === 11) {
       this.clienteService.buscarClientePorCPF(CPFnormalizado).subscribe({
-        next: (clientes: Cliente[]) => {
-          if (clientes.length > 0) {
-            this.cliente = clientes[0];
+        next: (cliente: Cliente) => {
+          if (cliente !== null && cliente !== undefined) {
+            this.cliente = cliente;
             this.exibirDados = true;
           } else {
             this.resultadoInvalido = true;

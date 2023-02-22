@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
-import { Gerente, Usuario } from 'src/app/shared';
-import { AdminService } from '../services/admin.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AutenticacaoService } from "src/app/auth/services";
+import { Gerente, Usuario } from "src/app/shared";
+import { AdminService } from "../services/admin.service";
 
 @Component({
   selector: 'app-editar-gerente',
