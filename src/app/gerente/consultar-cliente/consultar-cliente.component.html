@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="input-group rounded mt-3">
-      <input type="text" class="form-control form-control-lg rounded" name="consultarCPF"
-        placeholder="Digite o CPF do cliente" [(ngModel)]="campoConsultarCPF" mask="000.000.000-00" />
-      <button class="input-group-text btn btn-primary" id="buscar" (click)="consultarCliente()" [disabled]="loading">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
+  <div class="input-group rounded mt-3">
+    <input type="text" class="form-control form-control-lg rounded" name="consultarCPF"
+      placeholder="Digite o CPF do cliente" [(ngModel)]="campoConsultarCPF" mask="000.000.000-00" />
+    <button class="input-group-text btn btn-primary" id="buscar" (click)="consultarCliente()" [disabled]="loading">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
 
   <div *ngIf="loading" class="text-center m-5">
     <div class="spinner-border" role="status">
@@ -45,15 +45,11 @@
       </div>
       <div class="col-md-4">
         <label for="estado" class="form-label">Estado</label>
-        <input type="text" disabled class="form-control" id="estado" [value]="cliente.endereco?.cidade?.estado?.nome">
+        <input type="text" disabled class="form-control" id="estado" [value]="cliente.endereco?.estado">
       </div>
       <div class="col-md-4">
         <label for="cidade" class="form-label">Cidade</label>
-        <input type="text" disabled class="form-control" id="cidade" [value]="cliente.endereco?.cidade?.municipio">
-      </div>
-      <div class="col-md-4">
-        <label for="bairro" class="form-label">Bairro</label>
-        <input type="text" disabled class="form-control" id="bairro" [value]="cliente.endereco?.bairro">
+        <input type="text" disabled class="form-control" id="cidade" [value]="cliente.endereco?.cidade">
       </div>
       <div class="col-md-6">
         <label for="complemento" class="form-label">Complemento</label>
@@ -61,7 +57,8 @@
       </div>
       <div class="col-md-6">
         <label for="cep" class="form-label">CEP</label>
-        <input type="text" disabled class="form-control" id="cep" [value]="cliente.endereco?.CEP ? (cliente.endereco!.CEP | CEP) : null ">
+        <input type="text" disabled class="form-control" id="cep"
+          [value]="cliente.endereco?.cep ? (cliente.endereco!.cep | CEP) : null ">
       </div>
       <div class="col-md-6">
         <label for="renda" class="form-label">Salário</label>

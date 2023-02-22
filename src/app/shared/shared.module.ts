@@ -10,5 +10,4 @@ import {TelefonePipe} from './pipes';
   imports: [CommonModule],
   exports: [CpfPipe, BuscarClientesPipe, CepPipe, TelefonePipe],
 })
-export class SharedModule {
-}
+export class SharedModule {}

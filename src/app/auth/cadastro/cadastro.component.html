@@ -5,8 +5,8 @@
       <hr>
       <div class="row mb-3">
         <div class="col">
-          <input #email="ngModel" [(ngModel)]="cliente.email" [email]="true" class="form-control" id="email" minlength="3" name="email"
-                 placeholder="E-mail *" required type="email">
+          <input #email="ngModel" [(ngModel)]="cliente.email" [email]="true" class="form-control" id="email"
+            minlength="3" name="email" placeholder="E-mail *" required type="email">
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!email.errors['required']">Informe um email.</div>
             <div [hidden]="!email.errors['minlength']">O email precisa ter no mínimo 3 caracteres.</div>
@@ -16,7 +16,7 @@
       <div class="row mb-3">
         <div class="col-7">
           <input #nome="ngModel" [(ngModel)]="cliente.nome" class="form-control" id="nome" minlength="6" name="nome"
-                 placeholder="Nome *" required type="text">
+            placeholder="Nome *" required type="text">
           <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!nome.errors['required']">Informe o nome.</div>
             <div [hidden]="!nome.errors['minlength']">O nome precisa ter no mínimo 6 caracteres.</div>
@@ -24,7 +24,7 @@
         </div>
         <div class="col">
           <input #CPF="ngModel" [(ngModel)]="cliente.CPF" class="form-control" id="CPF" mask="000.000.000-00" name="CPF"
-                 placeholder="CPF *" required type="text">
+            placeholder="CPF *" required type="text">
           <div *ngIf="CPF.errors && (CPF.dirty || CPF.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!CPF.errors['required']">Informe o CPF.</div>
           </div>
@@ -32,8 +32,8 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <input #telefone="ngModel" [(ngModel)]="cliente.telefone" class="form-control" id="telefone" mask="(00) 00000-0000"
-                 name="telefone" placeholder="Telefone *" required type="text">
+          <input #telefone="ngModel" [(ngModel)]="cliente.telefone" class="form-control" id="telefone"
+            mask="(00) 00000-0000" name="telefone" placeholder="Telefone *" required type="text">
           <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!telefone.errors['required']">Informe um telefone.</div>
           </div>
@@ -41,9 +41,9 @@
         <div class="col">
           <div class="input-group">
             <span class="input-group-text">R$</span>
-            <input #salario="ngModel" [(ngModel)]="cliente.salario" [options]="{ prefix: '', thousands: '.', decimal: ',', nullable: true }"
-                   class="form-control" currencyMask id="salario" name="salario" placeholder="Renda Mensal *"
-                   required type="text">
+            <input #salario="ngModel" [(ngModel)]="cliente.salario"
+              [options]="{ prefix: '', thousands: '.', decimal: ',', nullable: true }" class="form-control" currencyMask
+              id="salario" name="salario" placeholder="Renda Mensal *" required type="text">
           </div>
           <div *ngIf="salario.errors && (salario.dirty || salario.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!salario.errors['required']">Informe a renda.</div>
@@ -53,33 +53,19 @@
       <hr>
       <div class="row mb-3">
         <div class="col">
-          <select #estado="ngModel"
-                  [(ngModel)]="cliente.endereco?.cidade?.estado!.id"
-                  class="form-select"
-                  name="estado"
-                  required>
-            <option disabled>Selecione um estado *</option>
-            <option *ngFor="let estado of estados$ | async" [value]="estado.id">
-              {{estado.nome}}
-            </option>
-          </select>
-          <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="alert alert-danger mt-2">
-            <div [hidden]="!estado.errors['required']">Selecione um estado.</div>
+          <input #cidade="ngModel" [(ngModel)]="cliente.endereco!.cidade" class="form-control" id="cidade" minlength="6"
+            name="cidade" placeholder="Cidade *" required type="text">
+          <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger mt-2">
+            <div [hidden]="!cidade.errors['required']">Insira uma cidade.</div>
+            <div [hidden]="!cidade.errors['minlength']">A cidade precisa ter no mínimo 6 caracteres.</div>
           </div>
         </div>
         <div class="col">
-          <select #cidade="ngModel"
-                  [(ngModel)]="cliente.endereco?.cidade!.id"
-                  class="form-select"
-                  name="cidade"
-                  required>
-            <option disabled>Selecione uma cidade *</option>
-            <option *ngFor="let cidade of cidades$ | async" [value]="cidade.id">
-              {{cidade.municipio}}
-            </option>
-          </select>
-          <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger mt-2">
-            <div [hidden]="!cidade.errors['required']">Selecione uma cidade.</div>
+          <input #estado="ngModel" [(ngModel)]="cliente.endereco!.estado" class="form-control" id="estado" minlength="6"
+            name="estado" placeholder="Estado *" required type="text">
+          <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="alert alert-danger mt-2">
+            <div [hidden]="!estado.errors['required']">Insira um estado.</div>
+            <div [hidden]="!estado.errors['minlength']">O estado precisa ter no mínimo 6 caracteres.</div>
           </div>
         </div>
       </div>
@@ -88,17 +74,17 @@
         <div class="col">
           <div class="form-check">
             <input #tipo1="ngModel" [(ngModel)]="cliente.endereco!.tipoEndereco" class="form-check-input" id="tipo1"
-                   name="tipo" type="radio" value="Rua">
+              name="tipo" type="radio" value="Rua">
             <label class="form-check-label" for="tipo1">Rua</label>
           </div>
           <div class="form-check">
             <input #tipo2="ngModel" [(ngModel)]="cliente.endereco!.tipoEndereco" class="form-check-input" id="tipo2"
-                   name="tipo" type="radio" value="Avenida">
+              name="tipo" type="radio" value="Avenida">
             <label class="form-check-label" for="tipo2">Avenida</label>
           </div>
           <div class="form-check">
             <input #tipo3="ngModel" [(ngModel)]="cliente.endereco!.tipoEndereco" class="form-check-input" id="tipo3"
-                   name="tipo" type="radio" value="Travessa">
+              name="tipo" type="radio" value="Travessa">
             <label class="form-check-label" for="tipo3">Travessa</label>
           </div>
         </div>
@@ -106,8 +92,7 @@
       <div class="row mb-3">
         <div class="col-8">
           <input #logradouro="ngModel" [(ngModel)]="cliente.endereco!.logradouro" class="form-control" id="logradouro"
-                 minlength="6" name="logradouro" placeholder="Logradouro *" required
-                 type="text">
+            minlength="6" name="logradouro" placeholder="Logradouro *" required type="text">
           <div *ngIf="logradouro.errors && (logradouro.dirty || logradouro.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!logradouro.errors['required']">Insira um logradouro.</div>
             <div [hidden]="!logradouro.errors['minlength']">O logradouro precisa ter no mínimo 6 caracteres.</div>
@@ -115,7 +100,7 @@
         </div>
         <div class="col-4">
           <input #numero="ngModel" [(ngModel)]="cliente.endereco!.numero" class="form-control" id="numero" name="numero"
-                 placeholder="Número *" required type="number">
+            placeholder="Número *" required type="number">
           <div *ngIf="numero.errors && (numero.dirty || numero.touched)" class="alert alert-danger mt-2">
             <div [hidden]="!numero.errors['required']">Insira um número.</div>
           </div>
@@ -123,22 +108,14 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <input #complemento="ngModel" [(ngModel)]="cliente.endereco!.complemento" class="form-control" id="complemento"
-                 name="complemento" placeholder="Complemento" type="text">
+          <input #complemento="ngModel" [(ngModel)]="cliente.endereco!.complemento" class="form-control"
+            id="complemento" name="complemento" placeholder="Complemento" type="text">
         </div>
         <div class="col">
-          <input #bairro="ngModel" [(ngModel)]="cliente.endereco!.bairro" class="form-control" id="bairro" minlength="4"
-                 name="bairro" placeholder="Bairro *" required type="text">
-          <div *ngIf="bairro.errors && (bairro.dirty || bairro.touched)" class="alert alert-danger mt-2">
-            <div [hidden]="!bairro.errors['required']">Insira um bairro.</div>
-            <div [hidden]="!bairro.errors['minlength']">O bairro precisa ter no mínimo 4 caracteres.</div>
-          </div>
-        </div>
-        <div class="col">
-          <input #CEP="ngModel" [(ngModel)]="cliente.endereco!.CEP" class="form-control" id="CEP" mask="00000-000" name="CEP"
-                 placeholder="CEP *" required type="text">
-          <div *ngIf="CEP.errors && (CEP.dirty || CEP.touched)" class="alert alert-danger mt-2">
-            <div [hidden]="!CEP.errors['required']">Insira o CEP.</div>
+          <input #cep="ngModel" [(ngModel)]="cliente.endereco!.cep" class="form-control" id="cep" mask="00000-000"
+            name="cep" placeholder="CEP *" required type="text">
+          <div *ngIf="cep.errors && (cep.dirty || cep.touched)" class="alert alert-danger mt-2">
+            <div [hidden]="!cep.errors['required']">Insira o CEP.</div>
           </div>
         </div>
       </div>

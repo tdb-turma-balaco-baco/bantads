@@ -388,6 +388,29 @@
         "situacaoConta": "ATIVA"
       },
       "id": 14
+    },
+    {
+      "email": "teste@teste",
+      "nome": "Teste Cliente DTO",
+      "CPF": "32412341242",
+      "telefone": "32141234321",
+      "perfil": "CLIENTE",
+      "salario": 32432.14,
+      "endereco": {
+        "tipoEndereco": "Travessa",
+        "logradouro": "TRAVESSA ESSA KKKKKKKKKKK",
+        "numero": 2323,
+        "complemento": "ui ui",
+        "cep": "32421342",
+        "cidade": "MUNICIOPOLIS DE PARAISOPOLIS",
+        "estado": "RIO DE JANISIO"
+      },
+      "conta": {
+        "id": "1677036099071",
+        "limite": 16216.07,
+        "situacaoConta": "PENDENTE"
+      },
+      "id": 15
     }
   ],
   "gerentes": [

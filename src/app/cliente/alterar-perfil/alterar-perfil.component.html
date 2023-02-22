@@ -50,29 +50,19 @@
       <hr>
       <div class="row mb-3">
         <div class="col">
-          <select name="estado" id="estado" #estado="ngModel" class="form-select"
-            [(ngModel)]="cliente.endereco?.cidade?.estado!.id" required>
-            <option value disabled>Selecione um estado</option>
-            <option *ngFor="let estado of estados$ | async" [value]="estado.id"
-              [selected]="estado.id === cliente.endereco?.cidade?.estado?.id">
-              {{estado.nome}}
-            </option>
-          </select>
-          <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="alert alert-danger">
-            <div [hidden]="!estado.errors['required']">Selecione um estado.</div>
+          <input type="text" class="form-control" id="cidade" name="cidade" [(ngModel)]="cliente.endereco!.cidade"
+            #cidade="ngModel" placeholder="Cidade" required minlength="6">
+          <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger">
+            <div [hidden]="!cidade.errors['required']">Insira uma cidade.</div>
+            <div [hidden]="!cidade.errors['minlength']">A cidade precisa ter no mínimo 6 caracteres.</div>
           </div>
         </div>
         <div class="col">
-          <select name="cidade" id="cidade" #cidade="ngModel" class="form-select"
-            [(ngModel)]="cliente.endereco?.cidade!.id" required>
-            <option value disabled>Selecione uma cidade</option>
-            <option *ngFor="let cidade of cidades$ | async" [value]="cidade.id"
-              [selected]="cidade.id === cliente.endereco?.cidade?.id">
-              {{cidade.municipio}}
-            </option>
-          </select>
-          <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger">
-            <div [hidden]="!cidade.errors['required']">Selecione uma cidade.</div>
+          <input type="text" class="form-control" id="estado" name="estado" [(ngModel)]="cliente.endereco!.estado"
+            #estado="ngModel" placeholder="Estado" required minlength="6">
+          <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="alert alert-danger">
+            <div [hidden]="!estado.errors['required']">Insira um estado.</div>
+            <div [hidden]="!estado.errors['minlength']">O estado precisa ter no mínimo 6 caracteres.</div>
           </div>
         </div>
       </div>
@@ -120,15 +110,7 @@
             [(ngModel)]="cliente.endereco!.complemento" #complemento="ngModel" placeholder="Complemento">
         </div>
         <div class="col">
-          <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="cliente.endereco!.bairro"
-            #bairro="ngModel" placeholder="Bairro" required minlength="4">
-          <div *ngIf="bairro.errors && (bairro.dirty || bairro.touched)" class="alert alert-danger">
-            <div [hidden]="!bairro.errors['required']">Insira um bairro.</div>
-            <div [hidden]="!bairro.errors['minlength']">O bairro precisa ter no mínimo 4 caracteres.</div>
-          </div>
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" id="CEP" name="CEP" [(ngModel)]="cliente.endereco!.CEP" #CEP="ngModel"
+          <input type="text" class="form-control" id="CEP" name="CEP" [(ngModel)]="cliente.endereco!.cep" #CEP="ngModel"
             mask="00000-000" placeholder="CEP" required>
           <div *ngIf="CEP.errors && (CEP.dirty || CEP.touched)" class="alert alert-danger">
             <div [hidden]="!CEP.errors['required']">Insira o CEP.</div>

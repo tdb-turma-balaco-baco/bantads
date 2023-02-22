@@ -3,21 +3,12 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
-import {
-  Cliente,
-  Cidade,
-  Estado,
-  CidadeService,
-  EstadoService,
-  Usuario,
-  Endereco,
-} from 'src/app/shared';
+import { Cliente, Usuario, Endereco } from 'src/app/shared';
 import { ClienteService } from '../services';
 
 @Component({
   selector: 'app-alterar-perfil',
   templateUrl: './alterar-perfil.component.html',
-  styleUrls: ['./alterar-perfil.component.css'],
 })
 export class AlterarPerfilComponent {
   @ViewChild('formAlterarPerfil') formAlterarPerfil!: NgForm;
@@ -26,19 +17,11 @@ export class AlterarPerfilComponent {
   public cliente!: Cliente;
   loading!: boolean;
 
-  public estados$!: Observable<Estado[]>;
-  public cidades$!: Observable<Cidade[]>;
-
   constructor(
-    private cidadeService: CidadeService,
-    private estadoService: EstadoService,
     private clienteService: ClienteService,
     private authService: AutenticacaoService,
     public router: Router
-  ) {
-    this.estados$ = this.estadoService.listarTodosEstados();
-    this.cidades$ = this.cidadeService.listarTodasCidades();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.usuario = this.authService.usuarioAutenticado;
@@ -48,8 +31,6 @@ export class AlterarPerfilComponent {
     // os valores corretos
     this.cliente = new Cliente();
     this.cliente.endereco = new Endereco();
-    this.cliente.endereco.cidade = new Cidade();
-    this.cliente.endereco.cidade.estado = new Estado();
 
     this.clienteService.buscarClientePorId(+this.usuario.id!).subscribe({
       next: (cliente: Cliente) => {
