@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {GerenteService} from '../services';
-import {Cliente, Usuario} from "../../shared";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalRecusarContaComponent} from "../modal-recusar-conta";
+import { Component } from '@angular/core';
+import { GerenteService } from '../services';
+import { Cliente, Usuario } from '../../shared';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalRecusarContaComponent } from '../modal-recusar-conta';
 import { AutenticacaoService } from 'src/app/auth/services';
 
 @Component({
@@ -17,8 +17,7 @@ export class TelaInicioComponent {
     private gerenteService: GerenteService,
     private autenticacaoService: AutenticacaoService,
     private modalService: NgbModal
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.usuario = this.autenticacaoService.usuarioAutenticado;
@@ -27,24 +26,31 @@ export class TelaInicioComponent {
   }
 
   listarClientesPendentesAprovacao() {
-    return this.gerenteService.listarClientesPendentesAprovacao(this.usuario).subscribe({
-      next: (data: Cliente[]) => {
-        if (data === null) {
-          this.clientes = [];
-        } else {
-          this.clientes = data;
-        }
-      },
-    });
+    return this.gerenteService
+      .listarClientesPendentesAprovacao(this.usuario)
+      .subscribe({
+        next: (data: Cliente[]) => {
+          if (data === null) {
+            this.clientes = [];
+          } else {
+            this.clientes = data;
+            console.log(this.clientes);
+          }
+        },
+      });
   }
 
   aprovarAberturaConta($event: MouseEvent, cliente: Cliente) {
     $event.preventDefault();
-    if (confirm(`Deseja realmente APROVAR a abertura de conta do cliente ${cliente.nome}?`)) {
+    if (
+      confirm(
+        `Deseja realmente APROVAR a abertura de conta do cliente ${cliente.nome}?`
+      )
+    ) {
       this.gerenteService.aprovarAberturaConta(cliente).subscribe({
         complete: () => {
           this.listarClientesPendentesAprovacao();
-        }
+        },
       });
     }
   }
@@ -54,11 +60,13 @@ export class TelaInicioComponent {
     modalRef.componentInstance.nomeCliente = cliente.nome;
 
     modalRef.result.then((motivoRecusa: string) => {
-      this.gerenteService.recusarAberturaConta(cliente, motivoRecusa).subscribe({
-        complete: () => {
-          this.listarClientesPendentesAprovacao();
-        }
-      });
-    })
+      this.gerenteService
+        .recusarAberturaConta(cliente, motivoRecusa)
+        .subscribe({
+          complete: () => {
+            this.listarClientesPendentesAprovacao();
+          },
+        });
+    });
   }
 }
