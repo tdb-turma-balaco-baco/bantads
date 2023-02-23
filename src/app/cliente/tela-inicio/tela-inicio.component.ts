@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
 import { Cliente, Usuario } from 'src/app/shared';
 import { ClienteService } from '../services';
@@ -6,23 +7,21 @@ import { ClienteService } from '../services';
 @Component({
   selector: 'app-tela-inicio',
   templateUrl: './tela-inicio.component.html',
-  styleUrls: ['./tela-inicio.component.css'],
 })
 export class TelaInicioComponent {
-  public usuario!: Usuario;
-  public cliente!: Cliente;
+  public usuario: Usuario = new Usuario();
+  public cliente$!: Observable<Cliente>;
 
   constructor(
     private authService: AutenticacaoService,
     private clienteService: ClienteService
-  ) {
-    this.usuario = this.authService.usuarioAutenticado;
-    this.cliente = new Cliente();
+  ) {}
 
-    this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
-      next: (cliente) => {
-        this.cliente = cliente;
-      },
-    });
+  ngOnInit() {
+    this.usuario = this.authService.usuarioAutenticado;
+
+    if (this.usuario.CPF) {
+      this.cliente$ = this.clienteService.buscarClientePorCPF(this.usuario.CPF)
+    }
   }
 }

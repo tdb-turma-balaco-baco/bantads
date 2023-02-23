@@ -34,6 +34,7 @@ export class SacarComponent implements OnInit {
     if (this.formSacar.form.valid) {
       this.saque.operacao = 'SAQUE';
       this.saque.idContaOrigem = this.cliente.conta?.id;
+
       this.clienteService.inserirMovimentacao(this.saque).subscribe({
         next: (data) => {
           if (data !== null) {

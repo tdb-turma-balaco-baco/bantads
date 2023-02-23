@@ -13,7 +13,7 @@ export class DepositarComponent implements OnInit {
   @ViewChild('formDeposito') formDeposito!: NgForm;
   deposito: Movimentacao = new Movimentacao();
   usuario: Usuario = new Usuario();
-  cliente: Cliente = new Cliente();
+  cliente!: Cliente;
 
   constructor(
     private autenticacaoService: AutenticacaoService,
@@ -23,6 +23,7 @@ export class DepositarComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.autenticacaoService.usuarioAutenticado;
+
     this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
       next: (data) => {
         if (data !== null) {
@@ -36,6 +37,7 @@ export class DepositarComponent implements OnInit {
     if (this.formDeposito.form.valid) {
       this.deposito.operacao = 'DEPOSITO';
       this.deposito.idContaOrigem = this.cliente.conta?.id;
+
       this.clienteService.inserirMovimentacao(this.deposito).subscribe({
         next: (data) => {
           if (data !== null) {

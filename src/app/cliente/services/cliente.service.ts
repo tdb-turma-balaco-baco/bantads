@@ -39,18 +39,20 @@ export class ClienteService {
 
     switch(movimentacao.operacao) {
       case (OperacaoEnum.TRANSFERENCIA):
-        endpoint = `${this.MOVIMENTACAO_URL}/transfer`;
+        endpoint = `${this.MOVIMENTACAO_URL}/transaction/transfer`;
         break;
       case (OperacaoEnum.DEPOSITO):
-        endpoint = `${this.MOVIMENTACAO_URL}/deposit`;
+        endpoint = `${this.MOVIMENTACAO_URL}/transaction/deposit`;
         break;
       case (OperacaoEnum.SAQUE):
-        endpoint = `${this.MOVIMENTACAO_URL}/withdraw`;
+        endpoint = `${this.MOVIMENTACAO_URL}/transaction/withdraw`;
         break;
       default:
         endpoint = this.MOVIMENTACAO_URL;
         break;
     }
+
+    console.log(JSON.stringify(movimentacao));
 
     return this.httpClient.post<Movimentacao>(endpoint, JSON.stringify(movimentacao), httpOptions);
   }

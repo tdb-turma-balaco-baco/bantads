@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AutenticacaoService } from 'src/app/auth/services/autenticacao.service';
-import { Cliente, Usuario, Endereco } from 'src/app/shared';
+import { Cliente, Usuario } from 'src/app/shared';
 import { ClienteService } from '../services';
 
 @Component({
@@ -13,30 +12,25 @@ import { ClienteService } from '../services';
 export class AlterarPerfilComponent {
   @ViewChild('formAlterarPerfil') formAlterarPerfil!: NgForm;
 
-  usuario!: Usuario;
   public cliente!: Cliente;
+  usuario!: Usuario;
   loading!: boolean;
 
   constructor(
     private clienteService: ClienteService,
     private authService: AutenticacaoService,
     public router: Router
-  ) {}
+  ) {
+    this.usuario = this.authService.usuarioAutenticado;
+  }
 
   ngOnInit(): void {
-    this.usuario = this.authService.usuarioAutenticado;
-
-    // inicialização padrão dos objetos, pra evitar erros
-    // em runtime o service já preenche os objetos com
-    // os valores corretos
-    this.cliente = new Cliente();
-    this.cliente.endereco = new Endereco();
-
-    this.clienteService.buscarClientePorCPF(this.usuario.CPF!).subscribe({
-      next: (cliente: Cliente) => {
-        this.cliente = cliente;
-      },
-    });
+    if (this.usuario.CPF)
+      this.clienteService
+        .buscarClientePorCPF(this.usuario.CPF)
+        .subscribe((cliente: Cliente) => {
+          this.cliente = cliente;
+        });
 
     this.loading = false;
   }
@@ -44,8 +38,9 @@ export class AlterarPerfilComponent {
   atualizar() {
     this.loading = true;
 
-    if (this.formAlterarPerfil.form.valid) {
-      this.clienteService.atualizar(this.cliente).subscribe({
+    if (this.formAlterarPerfil.form.valid && this.cliente) {
+      const clienteAtualizado = this.cliente;
+      this.clienteService.atualizar(clienteAtualizado).subscribe({
         complete: () => {
           this.loading = false;
           this.router.navigate(['/login']);
