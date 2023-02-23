@@ -52,17 +52,16 @@ export class LoginComponent implements OnInit {
         next: (usuario) => {
           if (usuario !== null && usuario !== undefined) {
             this.loginService.usuarioAutenticado = usuario;
-            this.loading = false;
             this.router.navigate(
               this.definirRotaAutenticada(usuario.perfil)
             );
           } else {
-            this.loading = false;
             this.exibirMensagem = true;
           }
         },
       });
     }
+    this.loading = false;
   }
 
   definirRotaAutenticada(perfil: Perfil | undefined): String[] {

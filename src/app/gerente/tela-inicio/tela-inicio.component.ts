@@ -21,8 +21,9 @@ export class TelaInicioComponent {
   }
 
   ngOnInit(): void {
-    this.listarClientesPendentesAprovacao();
     this.usuario = this.autenticacaoService.usuarioAutenticado;
+    console.log(this.usuario);
+    this.listarClientesPendentesAprovacao();
   }
 
   listarClientesPendentesAprovacao() {
