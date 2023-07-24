@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <mat-card-title>Entrar</mat-card-title>
+    <mat-card-subtitle>Acesse sua conta no BANTADS</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Informe seu e-mail</mat-label>
+        <input matInput type="email" id="email" placeholder="seuemail@exemplo.com" formControlName="email" name="email"
+               required>
+        <mat-error *ngIf="email?.hasError('email') && !email?.hasError('required')">
+          O e-mail informado é inválido
+        </mat-error>
+        <mat-error *ngIf="email?.hasError('required') && !email?.hasError('email')">
+          O e-mail é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Informe sua senha</mat-label>
+        <input matInput [type]=" isHidding ? 'text' : 'password'" id="password" placeholder="Sua senha"
+               formControlName="password" name="password" required>
+        <button mat-icon-button type="button" matSuffix (click)="isHidding = !isHidding">
+          <mat-icon>{{isHidding ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.hasError('minlength') && !password?.hasError('required')">
+          A senha informada é curta demais
+        </mat-error>
+        <mat-error *ngIf="password?.hasError('required') && !password?.hasError('minlength')">
+          A senha é <strong>obrigatória</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        <mat-icon>exit_to_app</mat-icon>
+        {{ isLoading ? 'Aguarde...' : 'Entrar' }}
+      </button>
+    </form>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

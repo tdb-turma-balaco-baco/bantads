@@ -1,0 +1,74 @@
+<form [formGroup]="managerFormGroup">
+  <mat-form-field appearance="outline">
+    <mat-label>Informe seu e-mail</mat-label>
+    <input matInput
+           type="email"
+           id="email"
+           placeholder="seuemail@exemplo.com"
+           formControlName="email"
+           name="email"
+           required>
+    <mat-error *ngIf="email?.hasError('email') && !email?.hasError('required')">
+      O e-mail informado é inválido
+    </mat-error>
+    <mat-error *ngIf="email?.hasError('required') && !email?.hasError('email')">
+      O e-mail é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Informe seu nome</mat-label>
+    <input matInput
+           type="text"
+           id="nome"
+           placeholder="Nome completo"
+           formControlName="name"
+           name="nome"
+           required>
+    <mat-error *ngIf="name?.hasError('minlength') && !name?.hasError('required')">
+      O nome informado é muito curto
+    </mat-error>
+    <mat-error *ngIf="name?.hasError('required') && !name?.hasError('minlength')">
+      O nome é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Informe seu CPF</mat-label>
+    <input
+      matInput
+      mask="000.000.000-00"
+      type="text"
+      id="cpf"
+      placeholder="Ex.: 000.000.000-00"
+      formControlName="cpf"
+      name="cpf"
+      required
+    >
+    <mat-hint align="end">{{cpf?.value?.length}} / 11</mat-hint>
+    <mat-error *ngIf="cpf?.hasError('length') && !cpf?.hasError('required')">
+      O CPF informado está incompleto
+    </mat-error>
+    <mat-error *ngIf="cpf?.hasError('required') && !cpf?.hasError('length')">
+      O CPF é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Informe seu telefone</mat-label>
+    <input
+      matInput
+      mask="(00) 00000-0000"
+      type="text"
+      id="phonenumber"
+      placeholder="Ex.: (00) 00000-0000"
+      formControlName="phonenumber"
+      name="phonenumber"
+      required
+    >
+    <mat-hint align="end">{{phonenumber?.value?.length}} / 11</mat-hint>
+    <mat-error *ngIf="phonenumber?.hasError('length') && !phonenumber?.hasError('required')">
+      O telefone informado está incompleto
+    </mat-error>
+    <mat-error *ngIf="phonenumber?.hasError('required') && !phonenumber?.hasError('length')">
+      O telefone é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+</form>

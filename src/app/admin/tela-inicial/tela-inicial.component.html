@@ -1,0 +1,31 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome do Gerente </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalClients">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantidade de Clientes </th>
+      <td mat-cell *matCellDef="let row"> {{row.totalClients}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="positiveBalanceSum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total de Saldo Positivo </th>
+      <td mat-cell *matCellDef="let row"> {{row.positiveBalanceSum}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="negativeBalanceSum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total de Saldo Negativo </th>
+      <td mat-cell *matCellDef="let row"> {{row.negativeBalanceSum}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons>
+  </mat-paginator>
+</div>

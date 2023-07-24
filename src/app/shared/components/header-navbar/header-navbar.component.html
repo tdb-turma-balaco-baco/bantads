@@ -1,0 +1,15 @@
+<nav>
+  <mat-toolbar color="primary">
+    <mat-icon>account_balance</mat-icon>
+    <span>
+        <a routerLink="/">BANTADS</a>
+    </span>
+    <span class="spacer"></span>
+    <div class="actions">
+      <button *ngFor="let action of headerActions" mat-stroked-button (click)="navigate(action.page)">
+        <mat-icon>{{action.icon}}</mat-icon>
+        {{action.label}}
+      </button>
+    </div>
+  </mat-toolbar>
+</nav>
