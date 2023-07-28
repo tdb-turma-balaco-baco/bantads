@@ -1,14 +1,18 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AutenticacaoService} from './services';
+import {AuthService} from "../services/auth.service";
+import {UserType} from "../shared/models/user-type.enum";
+
+const NOT_AUTHENTICATED = 'Você precisa estar autenticado';
+const NOT_AUTHORIZED = 'Você nao pode acessar essa pagina';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private loginService: AutenticacaoService,
+    private authService: AuthService,
     private router: Router
   ) {
   }
@@ -21,29 +25,27 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const usuarioAutenticado = this.loginService.usuarioAutenticado;
-    const returnURL = state.url;
+    const isLoggedIn = this.authService.isLoggedIn;
 
-    if (!usuarioAutenticado) {
-      this.router.navigate(['/login'], {
-        queryParams: {error: `Você precisa estar autenticado.`},
-      });
-      return false;
+    if (!isLoggedIn) {
+      return this.redirectToLoginWithError(NOT_AUTHENTICATED);
+    } else if (!this.authService.userType || !this.validUserAuthorization(route,this.authService.userType)) {
+      return this.redirectToLoginWithError(NOT_AUTHORIZED);
     }
 
-    if (
-      route.data['role'] &&
-      route.data['role'].indexOf(usuarioAutenticado.perfil) === -1
-    ) {
-      // Se o perfil do usuário não está no perfil da rota
-      // redireciona p/ login
-      this.router.navigate(['/login'], {
-        queryParams: {error: `Acesso proibido à rota: ${returnURL}`},
-      });
-      return false;
-    }
-
-    // Se tiver o perfil da rota e está logado, garante acesso
     return true;
+  }
+
+  private validUserAuthorization(route: ActivatedRouteSnapshot, userType: UserType): boolean {
+    console.log(route.data['role'] && route.data['role'].indexOf(userType) !== -1)
+    console.log(route.data['role'] + userType)
+    return route.data['role'] && route.data['role'].indexOf(userType) !== -1;
+  }
+
+  private redirectToLoginWithError(message: string) {
+    this.router.navigate(['/login'], {
+      queryParams: {error: message},
+    });
+    return false;
   }
 }

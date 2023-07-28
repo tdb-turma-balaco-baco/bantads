@@ -23,7 +23,7 @@ export class AutenticacaoService {
   }
 
   login(login: Login) {
-    return this.httpClient.post<Usuario>(`${this.BASE_URL}/auth/login`, JSON.stringify(login), httpOptions);
+    return this.httpClient.post<Usuario>(`${this.BASE_URL}/api/auth/login`, JSON.stringify(login), httpOptions);
   }
 
   logout() {

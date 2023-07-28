@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Login, Perfil } from 'src/app/shared';
-import { AutenticacaoService } from '../services';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Login} from 'src/app/shared';
+import {AuthService} from "../../services/auth.service";
+import {UserType} from "../../shared/models/user-type.enum";
 
 @Component({
   selector: 'app-login',
@@ -12,67 +13,70 @@ export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm;
 
   login: Login = new Login();
-  loading: boolean = false;
-  mensagem: string = 'E-mail/Senha inválidos';
-  exibirMensagem: boolean = false;
+  isLoading: boolean = false;
+  errorMessage: string = '';
+  isErrorMessageVisible: boolean = false;
   alertStyle: string = 'alert alert-danger';
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private loginService: AutenticacaoService
+    private authService: AuthService
   ) {
-    // Validar se usuário já está logado
-    if (this.loginService.usuarioAutenticado) {
-      this.router.navigate(
-        this.definirRotaAutenticada(this.loginService.usuarioAutenticado.perfil)
-      );
+    if (this.authService.isLoggedIn) {
+      console.log("fn")
+      const userType = this.authService.userType;
+      if (userType) {
+        this.redirectToUserLandingPage(userType);
+      } else {
+        this.authService.logout();
+      }
     }
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       if (params['error'] && params['error'].length > 0) {
-        this.exibirMensagem = true;
-        this.mensagem = params['error'];
+        this.isErrorMessageVisible = true;
+        this.errorMessage = params['error'];
       }
 
       if (params['success'] && params['success'].length > 0) {
-        this.exibirMensagem = true;
-        this.mensagem = params['success'];
+        this.isErrorMessageVisible = true;
+        this.errorMessage = params['success'];
         this.alertStyle = 'alert alert-success';
       }
     });
   }
 
-  autenticar(): void {
-    this.loading = true;
+  authenticate(): void {
     if (this.formLogin.form.valid) {
-      this.loginService.login(this.login).subscribe({
-        next: (usuario) => {
-          if (usuario !== null && usuario !== undefined) {
-            this.loginService.usuarioAutenticado = usuario;
-            this.router.navigate(
-              this.definirRotaAutenticada(usuario.perfil)
-            );
-          } else {
-            this.exibirMensagem = true;
-          }
+      const email = this.login.email ?? "";
+      const password = this.login.password ?? "";
+
+      this.isLoading = true;
+      this.authService.login({email, password}).subscribe({
+        next: (res) => {
+          this.authService.saveAuthenticationResponse(res);
+          this.redirectToUserLandingPage(res.userType);
         },
+        error: (err) => {
+          this.isErrorMessageVisible = true;
+          this.errorMessage = err.status === 403 ? "Credenciais invalidas" : "Erro inesperado";
+        }
       });
+      this.isLoading = false;
     }
-    this.loading = false;
   }
 
-  definirRotaAutenticada(perfil: Perfil | undefined): String[] {
-    const rotaPorPerfil = {
-      'ADMIN': ['/admin'],
-      'GERENTE': ['/gerente'],
-      'CLIENTE': ['/cliente'],
-      DEFAULT: ['/login'],
-    };
+  redirectToUserLandingPage(userType: UserType) {
+    const routes: { [T in UserType]: string } = {
+      [UserType.ADMIN]: '/admin',
+      [UserType.MANAGER]: '/gerente',
+      [UserType.CLIENT]: '/cliente'
+    }
 
-    if (!perfil) return rotaPorPerfil.DEFAULT;
-    return rotaPorPerfil[perfil];
+    const landingPage = routes[userType];
+    return this.router.navigate([landingPage]);
   }
 }

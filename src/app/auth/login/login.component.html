@@ -10,8 +10,8 @@
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-4">
           <form #formLogin="ngForm" class="form-login">
             <h4 class="fw-normal mb-3 text-center">Acesse sua conta</h4>
-            <div *ngIf="exibirMensagem" [class]="alertStyle">
-              {{ mensagem }}
+            <div *ngIf="isErrorMessageVisible" [class]="alertStyle">
+              {{ errorMessage }}
             </div>
             <div class="form-outline mb-3">
               <label class="form-label" for="email">E-mail <span class="text-danger">*</span></label>
@@ -32,7 +32,7 @@
                      id="senha"
                      name="senha"
                      placeholder="Senha"
-                     [(ngModel)]="login.senha"
+                     [(ngModel)]="login.password"
                      #senha="ngModel" required
                      class="form-control"/>
               <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="alert alert-danger mt-2">
@@ -40,10 +40,10 @@
               </div>
             </div>
             <div class="mb-4">
-              <button class="btn btn-success w-100" type="submit" (click)="autenticar()"
-                      [disabled]="!formLogin.form.valid || loading">
-                <span *ngIf="!loading">Acessar</span>
-                <div *ngIf="loading">
+              <button class="btn btn-success w-100" type="submit" (click)="authenticate()"
+                      [disabled]="!formLogin.form.valid || isLoading">
+                <span *ngIf="!isLoading">Acessar</span>
+                <div *ngIf="isLoading">
                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   Entrando...
                 </div>
