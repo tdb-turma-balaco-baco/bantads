@@ -37,8 +37,6 @@ export class AuthGuard implements CanActivate {
   }
 
   private validUserAuthorization(route: ActivatedRouteSnapshot, userType: UserType): boolean {
-    console.log(route.data['role'] && route.data['role'].indexOf(userType) !== -1)
-    console.log(route.data['role'] + userType)
     return route.data['role'] && route.data['role'].indexOf(userType) !== -1;
   }
 

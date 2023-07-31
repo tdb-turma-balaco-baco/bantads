@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     if (this.authService.isLoggedIn) {
-      console.log("fn")
       const userType = this.authService.userType;
+
       if (userType) {
         this.redirectToUserLandingPage(userType);
       } else {

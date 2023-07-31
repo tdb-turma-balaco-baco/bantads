@@ -1,67 +1,51 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AutenticacaoService } from "src/app/auth/services";
-import { Gerente, Usuario } from "src/app/shared";
-import { AdminService } from "../services/admin.service";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-editar-gerente',
   templateUrl: './editar-gerente.component.html',
 })
 export class EditarGerenteComponent implements OnInit {
-  @ViewChild("formGerente") formGerente!: NgForm;
-  novoGerente: boolean = true;
-  gerente: Gerente = new Gerente();
-  id!: string;
-  loading!: boolean;
-  perfilAtual!: Usuario;
+  managerForm = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    email: ['', [Validators.email, Validators.required]],
+    cpf: ['', [Validators.required]],
+    phonenumber: ['', [Validators.required]]
+  });
+  managerId!: number;
+  isUpdate: boolean = false;
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router, private authService: AutenticacaoService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-    this.perfilAtual = this.authService.usuarioAutenticado;
-
-    this.gerente = new Gerente();
-    this.loading = false;
-
-
-
-    this.id = this.route.snapshot.params['id'];
-    this.novoGerente = !this.id;
-
-    if (!this.novoGerente) {
-      this.adminService.buscarPorId(+this.id).subscribe(
-        gerente => {
-          this.gerente = gerente;
-        }
-      )
+    this.managerId = +this.route.snapshot.params['id'];
+    if (this.managerId) {
+      this.isUpdate = true;
     }
   }
 
-  salvar(): void {
-    this.loading = true;
-    if (this.formGerente.form.valid) {
-      if (this.novoGerente) {
-        this.adminService.inserirGerente(this.gerente).subscribe(
-          gerente => {
-            this.loading = false;
-            this.router.navigate(["/admin"])
-          }
-        );
-      }
-      else {
-        this.adminService.alterarGerente(this.gerente).subscribe(
-          gerente => {
-            this.loading = false;
-            this.router.navigate( ["/admin"] );
-          }
-        );
-      }
-      this.loading = false;
-    }
+  save() {
+    console.log(this.managerForm.value);
+  }
 
+  get name() {
+    return this.managerForm.get('name');
+  }
+
+  get email() {
+    return this.managerForm.get('email');
+  }
+
+  get cpf() {
+    return this.managerForm.get('cpf');
+  }
+
+  get phonenumber() {
+    return this.managerForm.get('phonenumber');
   }
 }
-
-

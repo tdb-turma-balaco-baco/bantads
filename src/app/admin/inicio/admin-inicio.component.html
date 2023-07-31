@@ -1,51 +1,43 @@
-<div class="row row-cols-1 g-4 p-5">
-  <div class="row">
-    <div class="col">
-      <div class="card table-responsive">
-        <table class="table table-borderless table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">CPF</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Telefone</th>
-              <th scope="col">Qnt Clientes</th>
-              <th scope="col">Saldos Positivos</th>
-              <th scope="col">Saldos Negativos</th>
-              <th>
-                <a [routerLink]="['/admin/cadastro']" href="#" title="Novo" alt="Novo" class="btn btn-outline-success">
-                  <i class="fa fa-plus" aria-hidden="true"></i>
-                  Novo
-                </a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let gerente of gerentes">
-              <td> {{gerente.nome}} </td>
-              <td> {{gerente.CPF ? (gerente.CPF | cpf) : null}}</td>
-              <td> {{gerente.email}}</td>
-              <td> {{gerente.telefone}}</td>
-              <td> {{gerente.clientes?.length}} 0</td>
-              <td> R$4000,00 </td>
-              <td> R$5000,00 </td>
-              <td>
-                <a [routerLink]="['/admin/editar-gerentes', gerente.id]" href="#" title="Editar" alt="Editar"
-                  class="btn btn-outline-info">
-                  <i class="fa fa-edit" aria-hidden="true"></i>
-                  Editar
-                </a>
-                <a href="#" title="Excluir" alt="Excluir" class="btn btn-outline-danger offset-sm-2"
-                  (click)="remover($event, gerente)">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                  Excluir
-                </a>
-              </td>
-              <p *ngIf="gerentes.length === 0">Nenhum gerente no momento.</p>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<table>
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>CPF</th>
+    <th>E-mail</th>
+    <th>Telefone</th>
+    <th>Quantidade de Clientes</th>
+    <th>Saldos Positivos</th>
+    <th>Saldos Negativos</th>
+    <th>
+      <a [routerLink]="['/admin/gerente']" href="#" class="btn btn-outline-success">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Novo
+      </a>
+    </th>
+  </tr>
+  </thead>
+  <tbody *ngIf="(managers$ | async) as managers; else loading">
+  <tr *ngFor="let manager of managers">
+    <td>{{manager.name}} </td>
+    <td>{{manager.cpf}}</td>
+    <td>{{manager.email}} </td>
+    <td>{{manager.phonenumber}}</td>
+    <td>{{manager.clientsTotal}}</td>
+    <td>{{manager.positiveBalanceTotal}}</td>
+    <td>{{manager.negativeBalanceTotal}}</td>
+    <td>
+      <a [routerLink]="['/admin/gerente', manager.id]" href="#" class="btn btn-outline-info">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+        Editar
+      </a>
+      <button class="btn btn-outline-danger" (click)="disableManager($event, manager.id)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        Excluir
+      </button>
+    </td>
+  </tr>
+  </tbody>
+  <ng-template #loading>
+    <p>Nenhum gerente no momento.</p>
+  </ng-template>
+</table>

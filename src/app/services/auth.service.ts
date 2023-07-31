@@ -4,7 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {httpOptions} from "../shared/http";
 import {LoginResponse} from "../shared/models/login-response.model";
 import {LoginRequest} from "../shared/models/login-request.model";
-import {LocalStorageKeys} from "./local-storage";
+import {LocalStorageKeys} from "../shared/enums/local-storage";
+import {UserType} from "../shared/models/user-type.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import {LocalStorageKeys} from "./local-storage";
 export class AuthService {
   BASE_URL = environment.apiURL + "/api/auth";
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   public get isLoggedIn() {
     const obj = localStorage.getItem(LocalStorageKeys.AUTH);
@@ -23,12 +24,12 @@ export class AuthService {
     const obj = localStorage.getItem(LocalStorageKeys.AUTH);
     const json = obj ? JSON.parse(obj) : null;
 
-    if ("userType" in json) return json.userType;
+    if (json && "userType" in json) return json.userType as UserType;
     return null;
   }
 
   login(loginRequest: LoginRequest) {
-    return this.httpClient.post<LoginResponse>(
+    return this.http.post<LoginResponse>(
       `${this.BASE_URL}/login`,
       JSON.stringify(loginRequest),
       httpOptions

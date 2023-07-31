@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthRoutes } from './auth/auth-routing.module';
 import { ClienteRoutes } from './cliente';
 import { gerenteRoutes } from './gerente/gerente-routing.module';
-import { adminRoutes } from './admin/admin-routing.module';
+import { adminRoutes } from './admin/admin.routes';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 

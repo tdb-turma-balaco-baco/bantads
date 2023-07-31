@@ -6,74 +6,16 @@
     </span>
   </a>
   <hr>
-  <ul *ngIf="usuarioAutenticado?.perfil === 'CLIENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/extrato']">
-        <i class="fa-solid fa-receipt"></i>
-        Extrato
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/transferir']">
-        <i class="fa-solid fa-money-bill-transfer"></i>
-        Transferência
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/sacar']">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        Saque
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/depositar']">
-        <i class="fa-solid fa-piggy-bank"></i>
-        Depositar
-      </a>
-    </li>
-  </ul>
-  <ul *ngIf="usuarioAutenticado?.perfil === 'GERENTE'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/gerente/clientes']">
-        <i class="fa-solid fa-people-group"></i>
-        Clientes
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/gerente/consultar-cliente']">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        Pesquisar
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/gerente/top-clientes']">
-        <i class="fa-solid fa-ranking-star"></i>
-        Ranking
-      </a>
-    </li>
-  </ul>
-  <ul *ngIf="usuarioAutenticado?.perfil === 'ADMIN'" ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/admin']">
-        <i class="fa-solid fa-clipboard-user"></i>
-        Gerentes
-      </a>
-    </li>
-    <li ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/admin/relatorio-clientes']">
-        <i class="fa-solid fa-people-group"></i>
-        Relatório de Clientes
+  <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column mb-auto">
+    <li *ngFor="let route of avaliableNavRoutes" ngbNavItem="">
+      <a href="#" ngbNavLink class="text-white" [routerLink]="[route.route]">
+        <i [class]="route.icon"></i>
+        {{route.description}}
       </a>
     </li>
   </ul>
   <hr>
   <ul ngbNav [(activeId)]="activeId" class="nav nav-pills flex-column d-flex">
-    <li *ngIf="usuarioAutenticado?.perfil === 'CLIENTE'" ngbNavItem="">
-      <a href="#" ngbNavLink class="text-white" [routerLink]="['/perfil']">
-        <i class="fa-solid fa-address-card"></i>
-        Perfil
-      </a>
-    </li>
     <li ngbNavItem="">
       <a (click)="logout()" ngbNavLink class="text-white">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
